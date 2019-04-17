@@ -25,6 +25,6 @@ t_room		*room_new(void)
 	room->distance = INFINITY;
 	room->parent = NULL;
 	room->pred = NULL;
-	room->next = NULL;
+	room->succ = NULL;
 	return (room);
 }

@@ -10,13 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-t_glist		*glist_new(void const *data)
+#include <stdlib.h>		// malloc, free, NULL
+#include "lem_in.h"
+
+t_glist		*glist_new(void *data)
 {
 	t_glist	*elem;
 
 	elem = malloc(sizeof(t_glist));
 	elem->data = data;
 	elem->next = NULL;
+	return (elem);
 }
 
 void		glist_push(t_glist **head, t_glist *elem)

@@ -13,7 +13,7 @@
 #include <stdlib.h>		// malloc, free, NULL
 #include "lem_in.h"
 
-void		link_push(t_room *src, t_room const *dst, int weight)
+void		link_push(t_room *src, t_room *dst, int weight)
 {
 	t_link	*l;
 
@@ -25,27 +25,21 @@ void		link_push(t_room *src, t_room const *dst, int weight)
 
 t_room		*link_pop(t_room *src)
 {
-//	t_list	*n;
 	t_link	*l;
 	t_room	*dst;
 
 	if (src->links == NULL)
 		return (NULL);
-//	n = src->links->next;
 	l = src->links->data;
 	dst = l->dst;
 	free(l);
-//	free(src->links);
-//	src->links = n;
-	//
 	glist_delete(&src->links);
-	//
 	return (dst);
 }
 
 void		link_delete(t_room *src, t_room *dst)
 {
-	t_list	*links;
+	t_glist	*links;
 	t_link	*l;
 
 	l = src->links->data;

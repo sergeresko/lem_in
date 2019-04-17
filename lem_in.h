@@ -16,6 +16,7 @@
 // TODO:
 # define INFINITY		123456
 
+typedef struct s_glist	t_glist;
 typedef struct s_room	t_room;
 typedef struct s_graph	t_graph;
 typedef struct s_link	t_link;
@@ -51,11 +52,13 @@ struct		s_link
 	int		weight;
 };
 
-t_glist		*glist_new(void const *data);
+t_glist		*glist_new(void *data);
 void		glist_push(t_glist **head, t_glist *elem);
 void		glist_delete(t_glist **elem);
 
-void		link_push(t_room *src, t_room const *dst, int weight);
+t_room		*room_new(void);
+
+void		link_push(t_room *src, t_room *dst, int weight);
 t_room		*link_pop(t_room *src);
 void		link_delete(t_room *src, t_room *dst);
 

@@ -10,6 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>		// free, NULL
+#include "lem_in.h"
+
 static void	restore_path(t_room *start, t_room *y, t_room *t)
 {
 	t_room	*x;
@@ -36,6 +39,7 @@ void		restore_graph(t_room *start, t_room *end)
 	t_glist	*links;
 	t_link	*l;
 
+	links = end->links;
 	while (links != NULL)
 	{
 		l = links->data;

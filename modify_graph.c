@@ -10,6 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>		// NULL
+#include "lem_in.h"
+
 static void	modify_path(t_room *start, t_room *x, t_room *end)
 {
 	t_room	*y;
