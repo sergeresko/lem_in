@@ -160,7 +160,7 @@ int		main(void)
 	printf("bhandari: %d\n", bhandari(&g));
 	print_paths(&g);
 
-//	print_graph(&g);
+	print_graph(&g);
 
 	system("leaks -q a.out");
 
