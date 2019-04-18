@@ -41,8 +41,8 @@ int			dijkstra(t_room *src, t_room *end)		// t_bool
 {
 	t_set	*s;
 
-	src->distance = 0;
 	s = set_new();
+	src->distance = 0;
 	while (src != NULL && src != end)
 	{
 		body(src, s);

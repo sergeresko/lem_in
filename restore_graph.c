@@ -25,13 +25,13 @@ static void	restore_path(t_room *start, t_room *y, t_room *t)
 		z = link_pop(x);
 		x->links = y->links;
 		free(y);			// instead of room_destroy
-		link_push(x, t, 1);		// t == x->succ
-		link_push(t, x, 1);		// t == x->succ
+		link_push(x, t, LINK_POSITIVE);		// t == x->succ
+		link_push(t, x, LINK_POSITIVE);		// t == x->succ
 		t = x;
 		y = z;
 	}
-	link_push(start, t, 1);		// t == x
-	link_push(t, start, 1);		// t == x
+	link_push(start, t, LINK_POSITIVE);		// t == x
+	link_push(t, start, LINK_POSITIVE);		// t == x
 }
 
 void		restore_graph(t_room *start, t_room *end)
@@ -44,7 +44,7 @@ void		restore_graph(t_room *start, t_room *end)
 	{
 		l = links->data;
 		links = links->next;
-		if (l->weight == -1)
+		if (l->weight == LINK_NEGATIVE)
 			restore_path(start, l->dst, end);
 	}
 }

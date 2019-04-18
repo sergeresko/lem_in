@@ -16,6 +16,10 @@
 // TODO:
 # define INFINITY		123456
 
+# define LINK_POSITIVE	1
+# define LINK_ZERO		0
+# define LINK_NEGATIVE	(-1)
+
 typedef struct s_glist	t_glist;
 typedef struct s_room	t_room;
 typedef struct s_graph	t_graph;

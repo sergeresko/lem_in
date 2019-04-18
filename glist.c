@@ -30,13 +30,13 @@ void		glist_push(t_glist **head, t_glist *elem)
 }
 
 //	deletes one element assuming it exists
-//	If elem is inside a list and p->next = elem, call it like this:
+//	If elem is inside a list and p->next == elem, call it like this:
 //		glist_delete(&p->next);
 void		glist_delete(t_glist **elem)
 {
-	t_glist	*n;
+	t_glist	*del;
 
-	n = (*elem)->next;
-	free(*elem);
-	*elem = n;
+	del = *elem;
+	*elem = del->next;
+	free(del);
 }

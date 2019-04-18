@@ -30,12 +30,12 @@ static void	modify_path(t_room *start, t_room *x, t_room *end)
 		y = room_new();				//
 		y->links = x->links;
 		x->links = NULL;
-		link_push(x->succ, y, -1);
-		link_push(y, x, 0);
+		link_push(x->succ, y, LINK_NEGATIVE);
+		link_push(y, x, LINK_ZERO);
 		if (x->pred == start)
 		{
 			link_delete(start, x);
-			link_push(x, start, -1);
+			link_push(x, start, LINK_NEGATIVE);
 			// break;
 		}
 //	printf("HELLO\n");
