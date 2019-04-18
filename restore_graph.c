@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 17:04:22 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/17 17:12:55 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/18 11:33:46 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static void	restore_path(t_room *start, t_room *y, t_room *t)
 		t = x;
 		y = z;
 	}
-	link_push(start, t, 1);		// y == start
-	link_push(t, start, 1);		// y == start
+	link_push(start, t, 1);		// t == x
+	link_push(t, start, 1);		// t == x
 }
 
 void		restore_graph(t_room *start, t_room *end)

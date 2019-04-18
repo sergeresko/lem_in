@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 17:19:36 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/17 20:40:45 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/18 13:14:40 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,19 @@ t_room		*room_new(void);
 void		link_push(t_room *src, t_room *dst, int weight);
 t_room		*link_pop(t_room *src);
 void		link_delete(t_room *src, t_room *dst);
+
+// -----------------------------
+typedef struct s_set	t_set;
+
+struct		s_set
+{
+	t_glist	*elements;
+};
+
+t_set		*set_new(void);
+void		set_push(t_set *s, t_room *x);
+t_room		*set_pop_min(t_set *s);
+void		set_destroy(t_set **s);
+// -----------------------------
 
 #endif

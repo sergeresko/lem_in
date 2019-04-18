@@ -1,5 +1,5 @@
 #include <string.h>		// strdup
-#include <unistd.h>		// sleep
+#include <stdlib.h>		// system
 #include <stdio.h>
 #include "lem_in.h"
 
@@ -48,6 +48,6 @@ int		main(void)
 	link_delete(b, a);
 	print_links(b);
 
-	sleep(30);
+	system("leaks -q a.out");
 	return (0);
 }

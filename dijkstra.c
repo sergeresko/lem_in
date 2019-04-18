@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 19:31:05 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/17 19:50:32 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/18 11:31:21 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "lem_in.h"
 
 // TODO: rename
-void		body(t_set *s, t_room *src)
+void		body(t_room *src, t_set *s)
 {
 	t_list	*links;
 	t_link	*l;
@@ -45,7 +45,7 @@ int			dijkstra(t_room *src, t_room *end)		// t_bool
 	s = set_new();
 	while (src != NULL && src != end)
 	{
-		body();
+		body(src, s);
 		src = set_pop_min(s);		// if s is empty, returns NULL
 	}
 	set_destroy(&s);
