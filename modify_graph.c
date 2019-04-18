@@ -6,10 +6,15 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:52:57 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/17 17:09:23 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/18 16:37:19 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+//
+//
+#include <stdio.h>		// printf for debugging
+//
+//
 #include <stdlib.h>		// NULL
 #include "lem_in.h"
 
@@ -24,6 +29,7 @@ static void	modify_path(t_room *start, t_room *x, t_room *end)
 		link_delete(x, x->pred);
 		y = room_new();				//
 		y->links = x->links;
+		x->links = NULL;
 		link_push(x->succ, y, -1);
 		link_push(y, x, 0);
 		if (x->pred == start)
@@ -32,6 +38,7 @@ static void	modify_path(t_room *start, t_room *x, t_room *end)
 			link_push(x, start, -1);
 			// break;
 		}
+	printf("HELLO\n");
 		x = x->pred;
 	}
 }
@@ -39,14 +46,21 @@ static void	modify_path(t_room *start, t_room *x, t_room *end)
 void		modify_graph(t_room *start, t_room *end)
 {
 	t_glist	*links;
-	t_room	*x;
+	t_link	*l;
+	t_glist	*n;
+//	t_room	*x;
 
 	links = end->links;
 	while (links != NULL)
 	{
-		x = links->data;
-		if (x->succ == end)
-			modify_path(start, x, end);
-		links = links->next;
+		l = links->data;
+		n = links->next;
+//		x = l->dst;
+//		if (x->succ == end)
+//			modify_path(start, x, end);
+		if (l->dst->succ == end)
+			modify_path(start, l->dst, end);
+//		links = links->next;
+		links = n;
 	}
 }

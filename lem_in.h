@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 17:19:36 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/18 14:13:29 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/18 14:53:07 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,10 @@ void		set_destroy(t_set **s);
 
 int			dijkstra(t_room *src, t_room *end);		// t_bool
 // -----------------------------
+
+void		modify_graph(t_room *start, t_room *end);
+void		restore_graph(t_room *start, t_room *end);
+void		xor_paths(t_room *start, t_room *end);
+int			bhandari(t_graph *g);	// t_bool
 
 #endif

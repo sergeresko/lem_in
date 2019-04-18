@@ -6,10 +6,11 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 17:28:27 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/17 17:31:38 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/18 14:55:54 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>		// NULL
 #include "lem_in.h"
 
 void		xor_paths(t_room *start, t_room *end)

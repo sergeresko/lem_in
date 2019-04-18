@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 17:04:22 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/18 11:33:46 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/18 16:53:33 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ void		restore_graph(t_room *start, t_room *end)
 	while (links != NULL)
 	{
 		l = links->data;
+		links = links->next;		//
 		if (l->weight == -1)
 			restore_path(start, l->dst, end);
-		links = links->next;
+//		links = links->next;
 	}
 }

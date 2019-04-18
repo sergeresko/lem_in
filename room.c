@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 20:36:08 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/17 20:39:29 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/18 16:39:35 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_room		*room_new(void)
 	t_room	*room;
 
 	room = malloc(sizeof(t_room));		// check memory
-//	room->name = NULL;
+	room->name = NULL;	//
 //	room->x = 0;
 //	room->y = 0;
 	room->links = NULL;

@@ -6,9 +6,17 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:45:48 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/17 20:41:19 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/18 16:48:05 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+//
+//
+#include <stdio.h>		// printf for debugging
+//
+//
+#include <stdlib.h>		// NULL
+#include "lem_in.h"
 
 static void	adjust_parents(t_room *x)
 {
@@ -51,6 +59,7 @@ int			bhandari(t_graph *g)	// t_bool
 	res = dijkstra(g->start, g->end);
 	adjust_parents(g->end);
 	restore_graph(g->start, g->end);
+	printf("BHANDARI - HELLO\n");		//
 	xor_paths(g->start, g->end);
 	clear_dist_parent(g->rooms);
 	return (res);
