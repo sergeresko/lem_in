@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 17:19:36 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/18 13:14:40 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/18 14:13:29 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ t_set		*set_new(void);
 void		set_push(t_set *s, t_room *x);
 t_room		*set_pop_min(t_set *s);
 void		set_destroy(t_set **s);
+
+int			dijkstra(t_room *src, t_room *end);		// t_bool
 // -----------------------------
 
 #endif

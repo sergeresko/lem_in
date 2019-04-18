@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 19:31:05 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/18 11:31:21 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/18 14:13:58 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 // TODO: rename
 void		body(t_room *src, t_set *s)
 {
-	t_list	*links;
+	t_glist	*links;
 	t_link	*l;
 	t_room	*dst;
 	int		d;
@@ -31,7 +31,7 @@ void		body(t_room *src, t_set *s)
 		{
 			dst->distance = d;
 			dst->parent = src;
-			set_add(s, dst);
+			set_push(s, dst);
 		}
 		links = links->next;
 	}
