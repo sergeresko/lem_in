@@ -2,10 +2,11 @@
 #include <stdio.h>
 
 static void usage(void) {
-	printf("Usage: ./my ants len1 [len2 [len3 [...]]]\n"
-			"where\n"
-			"    ants - number of ants (>= 1),\n"
-			"    lenX - path lengths (>= 2).\n");
+	printf("Usage: ./their ants len1 [len2 [len3 [...]]]\n"
+	"where\n"
+	"    ants - number of ants (>= 1),\n"
+	"    lenX - path lengths (>= 2) in non-decreasing order (with another order\n"
+	"			the answer may be incorrect if some paths are unused).\n");
 	exit(1);
 }
 
@@ -44,24 +45,30 @@ int main(int ac, char **av) {
 	}
 	printf("\n");
 
+	/* beginning of different part */
+
 	int debug_iterations = 0;		//
-	n_turns = 0;
 	while (n_ants) {
-		++n_turns;
-		for (int i = 0; i < n_paths; ++i) {
-			++debug_iterations;		//
-			if (lengths[i]) {
-				lengths[i]--;
-			}
-			if (lengths[i] == 0) {
-				numbers[i]++;
-				if (--n_ants == 0) {
-					break;
-				}
-			}
+		int i = 0;
+		while (++debug_iterations && i < n_paths - 1
+				&& lengths[i] + numbers[i] >= lengths[i + 1] + numbers[i + 1]) {
+			++i;
 		}
+		numbers[i]++;
+		--n_ants;
 	}
 	printf("[debug: iterations = %d]\n", debug_iterations);		//
+
+	n_turns = 0;
+	for (int i = 0; i < n_paths; ++i) {
+		if (numbers[i]) {
+			int tmp = numbers[i] + lengths[i] - 1;
+			if (tmp > n_turns)
+				n_turns = tmp;
+		}
+	}
+
+	/* end of different part */
 
 	printf("Numbers:\n");
 	printf("[%d]=%d", 0, numbers[0]);

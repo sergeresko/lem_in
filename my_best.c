@@ -5,7 +5,7 @@ static void usage(void) {
 	printf("Usage: ./my ants len1 [len2 [len3 [...]]]\n"
 			"where\n"
 			"    ants - number of ants (>= 1),\n"
-			"    lenX - path lengths (>= 2).\n");
+			"    lenX - path lengths (>= 2) in non-descending order.\n");
 	exit(1);
 }
 
@@ -44,24 +44,32 @@ int main(int ac, char **av) {
 	}
 	printf("\n");
 
-	int debug_iterations = 0;		//
-	n_turns = 0;
-	while (n_ants) {
-		++n_turns;
-		for (int i = 0; i < n_paths; ++i) {
-			++debug_iterations;		//
-			if (lengths[i]) {
-				lengths[i]--;
-			}
-			if (lengths[i] == 0) {
-				numbers[i]++;
-				if (--n_ants == 0) {
-					break;
-				}
-			}
+	/* beginning of different part */
+
+	// TODO: there's sometimes an off-by-one error in n_turns
+
+	int i = 0;
+	while (++i < n_paths) {
+		int d = lengths[i] - lengths[i - 1];
+		if (n_ants / i < d) {
+			break;
 		}
+		n_ants -= d * i;
 	}
-	printf("[debug: iterations = %d]\n", debug_iterations);		//
+	int d = n_ants / i;
+	n_ants -= d * i;
+	n_turns = lengths[i - 1] + d;
+	for (int j = 0; j < i; ++j) {
+		numbers[j] = n_turns - lengths[j];
+	}
+	for (int j = i; j < n_paths; ++j) {
+		numbers[j] = 0;
+	}
+	for (int j = 0; n_ants; ++j, --n_ants) {
+		numbers[j]++;
+	}
+
+	/* end of different part */
 
 	printf("Numbers:\n");
 	printf("[%d]=%d", 0, numbers[0]);
