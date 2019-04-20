@@ -13,6 +13,10 @@
 #include <stdlib.h>		// malloc, free, NULL
 #include "lem_in.h"
 
+/*
+**	allocate a new element initialized with `data`
+*/
+
 t_glist		*glist_new(void *data)
 {
 	t_glist	*elem;
@@ -23,15 +27,25 @@ t_glist		*glist_new(void *data)
 	return (elem);
 }
 
+/*
+**	prepend an element to the list whose first element's address is `head`
+*/
+
 void		glist_push(t_glist **head, t_glist *elem)
 {
 	elem->next = *head;
 	*head = elem;
 }
 
-//	deletes one element assuming it exists
-//	If elem is inside a list and p->next == elem, call it like this:
-//		glist_delete(&p->next);
+/*
+**	delete one element from a list
+**
+**	If the element is the first one in the list, call the function like this:
+**		glist_delete(&head);
+**	If the element follows element `p` in the list, call it like this:
+**		glist_delete(&p->next);
+*/
+
 void		glist_delete(t_glist **elem)
 {
 	t_glist	*del;

@@ -13,6 +13,9 @@
 #include <stdlib.h>		// NULL
 #include "lem_in.h"
 
+/*
+**	TODO: [Description; rename]
+*/
 void		xor_paths(t_room *start, t_room *end)
 {
 	t_room	*a;

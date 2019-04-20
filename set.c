@@ -10,11 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>		// malloc, NULL
+#include <stdlib.h>		// malloc, free, NULL
 #include "lem_in.h"
 
 /*
-**	A quite inefficient implementation.
+**	TODO: A quite inefficient implementation.
+*/
+
+/*
+**	return a new empty set
 */
 
 t_set		*set_new(void)
@@ -26,7 +30,10 @@ t_set		*set_new(void)
 	return (s);
 }
 
-// Check if x is already in set; if not, add it.
+/*
+**	include room `x` in set `s` if it is not already there
+*/
+
 void		set_push(t_set *s, t_room *x)
 {
 	t_glist	*e;
@@ -41,8 +48,11 @@ void		set_push(t_set *s, t_room *x)
 	glist_push(&s->elements, glist_new(x));
 }
 
-// Exclude a room with smallest distance and return it.
-// If set is empty, return NULL.
+/*
+**	exclude from the set and return a room with the smallest `distance` field;
+**	if the set was empty, do nothing and return NULL
+*/
+
 t_room		*set_pop_min(t_set *s)
 {
 	t_glist	*e;
@@ -54,6 +64,7 @@ t_room		*set_pop_min(t_set *s)
 	if (s->elements == NULL)
 		return (NULL);
 	// otherwise
+	// TODO: refactor, see link_delete
 	e = s->elements;
 	r = e->data;
 	e_min = e;
@@ -81,6 +92,10 @@ t_room		*set_pop_min(t_set *s)
 	glist_delete(&e->next);
 	return (r);
 }
+
+/*
+**	TODO: describe
+*/
 
 void		set_destroy(t_set **s)
 {

@@ -56,7 +56,10 @@ static t_path	*init_paths(int n_paths, t_room *start)
 	return (paths);
 }
 
-// sort paths by length in non-descending order
+/*
+**	sort an array of paths by length in non-descending order
+*/
+
 static void	sort_paths(int n_paths, t_path *paths)
 {
 	int		i;

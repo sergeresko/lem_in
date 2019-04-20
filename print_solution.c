@@ -25,30 +25,24 @@ static int	add(t_room **loc, t_solution const *s)
 	i = 0;
 	while (i < s->n_paths && s->numbers[i] > 0)
 	{
-		s->numbers[i] -= 1;
+		s->numbers[i] -= 1;		// modifies solution, so const is misleading
 		loc[i] = s->paths[i].origin;
 		++i;
 	}
 	return (i);
 }
 
-static int	advance(t_room **loc, int k)
+static void	advance(t_room **loc, int k)
 {
-	int		count;
 	int		i;
 
-	count = 0;
 	i = 0;
 	while (i < k)
 	{
 		if (loc[i] != NULL)
-		{
 			loc[i] = loc[i]->succ;		// ->... ?
-			++count;
-		}
 		++i;
 	}
-	return (count);
 }
 
 static void	print_turn(t_room *const *loc, int k)
@@ -66,24 +60,29 @@ static void	print_turn(t_room *const *loc, int k)
 				printf(" ");	// ft_putchar(' ');
 			else
 				first = 0;		// FALSE
-			printf("L%d-%s", i + 1, loc[i]->name);
+			printf("L%d-%s", i + 1, loc[i]->name);		//
 		}
 		++i;
 	}
-	if (!first)
-		printf("\n");
+	if (!first)				// Are these two lines
+		printf("\n");		// still needed?
 }
+
+/*
+**	TODO: [Description; what `loc` is for]
+*/
 
 void		print_solution(t_solution const *s, int n_ants)
 {
 	t_room	**loc;
+	int		count;
 	int		k;
 
 	loc = malloc(n_ants * sizeof(t_room *));		// check memory
-	k = add(loc, s);
-	print_turn(loc, k);
-	while (advance(loc, k) > 0)
+	count = s->n_turns;
+	while (count--)
 	{
+		advance(loc, k);
 		k += add(loc + k, s);
 		print_turn(loc, k);
 	}

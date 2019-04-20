@@ -13,6 +13,12 @@
 #include <stdlib.h>		// free, NULL
 #include "lem_in.h"
 
+/*
+**	restore the path whose last room before `end` in the modified graph is `y`
+**
+**	TODO: [Description; get rid of `t`, replace by `end`]
+*/
+
 static void	restore_path(t_room *start, t_room *y, t_room *t)
 {
 	t_room	*x;
@@ -33,6 +39,10 @@ static void	restore_path(t_room *start, t_room *y, t_room *t)
 	link_push(start, t, LINK_POSITIVE);		// t == x
 	link_push(t, start, LINK_POSITIVE);		// t == x
 }
+
+/*
+**	restore every path that had been described by `pred`/`succ`
+*/
 
 void		restore_graph(t_room *start, t_room *end)
 {

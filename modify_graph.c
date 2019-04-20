@@ -18,6 +18,12 @@
 #include <stdlib.h>		// NULL
 #include "lem_in.h"
 
+/*
+**	modify the path whose last room before `end` is `x`
+**
+**	TODO: [Description]
+*/
+
 static void	modify_path(t_room *start, t_room *x, t_room *end)
 {
 	t_room	*y;
@@ -42,6 +48,10 @@ static void	modify_path(t_room *start, t_room *x, t_room *end)
 		x = x->pred;
 	}
 }
+
+/*
+**	modify every path described by `pred`/`succ`
+*/
 
 void		modify_graph(t_room *start, t_room *end)
 {

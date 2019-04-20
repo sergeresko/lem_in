@@ -38,7 +38,11 @@ static void	adjust_parents(t_room *x)
 	}
 }
 
-static void	clear_dist_parent(t_glist *rooms)
+/*
+**	reset the `distance` and `parent` fields of all rooms to default values
+*/
+
+static void	tidy_up(t_glist *rooms)
 {
 	t_room	*x;
 
@@ -61,6 +65,6 @@ int			bhandari(t_graph *g)	// t_bool
 	restore_graph(g->start, g->end);
 //	printf("BHANDARI - HELLO\n");
 	xor_paths(g->start, g->end);
-	clear_dist_parent(g->rooms);
+	tidy_up(g->rooms);
 	return (res);
 }

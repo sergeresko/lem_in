@@ -13,6 +13,11 @@
 #include <stdlib.h>		// malloc, free, NULL
 #include "lem_in.h"
 
+/*
+**	to the list of links from room `src` prepend a new link to room `dst`
+**	of specified weight
+*/
+
 void		link_push(t_room *src, t_room *dst, int weight)
 {
 	t_link	*l;
@@ -22,6 +27,10 @@ void		link_push(t_room *src, t_room *dst, int weight)
 	l->weight = weight;
 	glist_push(&src->links, glist_new(l));	// glist_push_new(&src->links, l);
 }
+
+/*
+**	remove the first link from room `src` and return that link's destination
+*/
 
 t_room		*link_pop(t_room *src)
 {
@@ -36,6 +45,10 @@ t_room		*link_pop(t_room *src)
 	glist_delete(&src->links);
 	return (dst);
 }
+
+/*
+**	remove the link from room `src` to room `dst`
+*/
 
 void		link_delete(t_room *src, t_room *dst)
 {
