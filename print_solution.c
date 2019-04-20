@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/20 14:21:16 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/20 15:58:59 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/20 19:27:23 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@
 #include <stdlib.h>		// malloc, free, NULL
 #include "lem_in.h"
 
-static int	add(t_room **loc, t_path **paths, int n_paths)
+static int	add(t_room **loc, t_solution const *s)
 {
 	int		i;
 
 	i = 0;
-	while (i < n_paths && paths[i]->ants > 0)
+	while (i < s->n_paths && s->numbers[i] > 0)
 	{
-		paths[i]->ants -= 1;
-		loc[i] = paths[i]->origin;
+		s->numbers[i] -= 1;
+		loc[i] = s->paths[i].origin;
 		++i;
 	}
 	return (i);
@@ -51,7 +51,7 @@ static int	advance(t_room **loc, int k)
 	return (count);
 }
 
-static void	print_turn(t_room **loc, int k)
+static void	print_turn(t_room *const *loc, int k)
 {
 	int		first;		// t_bool
 	int		i;
@@ -74,17 +74,17 @@ static void	print_turn(t_room **loc, int k)
 		printf("\n");
 }
 
-void		print_solution(t_path **paths, int n_paths, int n_ants)
+void		print_solution(t_solution const *s, int n_ants)
 {
-	t_room	*(*loc);
+	t_room	**loc;
 	int		k;
 
 	loc = malloc(n_ants * sizeof(t_room *));		// check memory
-	k = add(loc, paths, n_paths);
+	k = add(loc, s);
 	print_turn(loc, k);
 	while (advance(loc, k) > 0)
 	{
-		k += add(loc + k, paths, n_paths);
+		k += add(loc + k, s);
 		print_turn(loc, k);
 	}
 	free(loc);

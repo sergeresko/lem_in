@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 17:19:36 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/20 15:51:32 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/20 19:52:25 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int			dijkstra(t_room *src, t_room *end);		// t_bool
 
 // -----------------------------
 typedef struct s_path	t_path;
+typedef struct s_solution	t_solution;
 
 struct	s_path
 {
@@ -92,7 +93,19 @@ struct	s_path
 	int		ants;
 };
 
-void		print_solution(t_path **paths, int n_paths, int n_ants);
+struct	s_solution
+{
+	int		n_paths;
+	t_path	*paths;
+	int		*numbers;
+	int		n_turns;
+};
+
+void		distribute_ants(int n_ants, t_solution *s);
+t_solution	*build_solution(int n_ants, t_room *start, int n_paths);
+void		solution_destroy(t_solution *s);
+void		print_solution(t_solution const *s, int n_ants);
+//void		print_solution(t_path **paths, int n_paths, int n_ants);
 // -----------------------------
 
 void		modify_graph(t_room *start, t_room *end);
