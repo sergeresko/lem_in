@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 static void usage(void) {
-	printf("Usage: ./my ants len1 [len2 [len3 [...]]]\n"
+	printf("Usage: ./my_best ants len1 [len2 [len3 [...]]]\n"
 			"where\n"
 			"    ants - number of ants (>= 1),\n"
 			"    lenX - path lengths (>= 2) in non-descending order.\n");
@@ -46,17 +46,18 @@ int main(int ac, char **av) {
 
 	/* beginning of different part */
 
-	// TODO: there's sometimes an off-by-one error in n_turns
-
 	int i = 0;
 	while (++i < n_paths) {
 		int d = lengths[i] - lengths[i - 1];
-		if (n_ants / i < d) {
+		printf("-- d = l[%d] - l[%d] = %d\n", i, i - 1, d);		//
+		if (n_ants / i <= d) {
+			printf("-- break\n");								//
 			break;
 		}
 		n_ants -= d * i;
 	}
 	int d = n_ants / i;
+	printf("-- d = a / i = %d / %d = %d\n", n_ants, i, d);		//
 	n_ants -= d * i;
 	n_turns = lengths[i - 1] + d;
 	for (int j = 0; j < i; ++j) {
@@ -64,6 +65,9 @@ int main(int ac, char **av) {
 	}
 	for (int j = i; j < n_paths; ++j) {
 		numbers[j] = 0;
+	}
+	if (n_ants == 0) {
+		--n_turns;
 	}
 	for (int j = 0; n_ants; ++j, --n_ants) {
 		numbers[j]++;

@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 17:19:36 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/18 14:53:07 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/20 15:51:32 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,19 @@ t_room		*set_pop_min(t_set *s);
 void		set_destroy(t_set **s);
 
 int			dijkstra(t_room *src, t_room *end);		// t_bool
+// -----------------------------
+
+// -----------------------------
+typedef struct s_path	t_path;
+
+struct	s_path
+{
+	t_room	*origin;
+	int		length;
+	int		ants;
+};
+
+void		print_solution(t_path **paths, int n_paths, int n_ants);
 // -----------------------------
 
 void		modify_graph(t_room *start, t_room *end);
