@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/20 14:21:16 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/20 19:27:23 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/21 12:32:18 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void		print_solution(t_solution const *s, int n_ants)
 
 	loc = malloc(n_ants * sizeof(t_room *));		// check memory
 	count = s->n_turns;
+	k = 0;
 	while (count--)
 	{
 		advance(loc, k);
