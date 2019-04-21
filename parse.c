@@ -32,6 +32,8 @@ int		ft_atoi_strict(char const *str, int *value)		// t_bool
 			return (0);		// FALSE
 		++str;
 	}
+	if (*str)
+		return (0);			// FALSE
 	*value = sign * abs;
 	return (1);				// TRUE
 }

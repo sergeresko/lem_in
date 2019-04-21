@@ -105,7 +105,6 @@ void		distribute_ants(int n_ants, t_solution *s);
 t_solution	*build_solution(int n_ants, t_room *start, int n_paths);
 void		solution_destroy(t_solution *s);
 void		print_solution(t_solution const *s, int n_ants);
-//void		print_solution(t_path **paths, int n_paths, int n_ants);
 // -----------------------------
 
 void		modify_graph(t_room *start, t_room *end);
