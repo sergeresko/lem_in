@@ -58,57 +58,48 @@ int		ft_strprefix(char const *str, char const *prefix)
 }
 */
 
-t_token		parse_command(char const *str)
+void		parse_command(char const *str, t_token *t)
 {
-	t_token	t;
-
 	if (ft_strcmp(str, "##start") == 0)
-		t.type = COMMAND_START;
+		t->type = TOKEN_COMMAND_START;
 	else if (ft_strcmp(str, "##end") == 0)
-		t.type = COMMAND_END;
+		t->type = TOKEN_COMMAND_END;
 	else
-		t.type = COMMENT;
-	return (t);
+		t->type = TOKEN_COMMENT;
 }
 
 // TODO:
-t_token		parse_turn(char const *str)
+void		parse_turn(char const *str, t_token *t)
 {
-	t_token	t;
-
 	(void)str;
-	t.type = TURN;
-	return (t);
+	t->type = TOKEN_TURN;
 }
 
-t_token		parse_room(char const *str)
+void		parse_room(char const *str, t_token *t)
 {
-	t_token	t;
 	char	**words;
 
 	words = ft_strsplit(str, ' ');
 	if (words && words[0] && words[1] && words[2] && !words[3]
 			&& !ft_strchr(words[0], '-')
-			&& ft_atoi_strict(words[1], &t.value.room.x)
-			&& ft_atoi_strict(words[2], &t.value.room.y))
+			&& ft_atoi_strict(words[1], &t->value.room.x)
+			&& ft_atoi_strict(words[2], &t->value.room.y))
 	{
-		t.type = ROOM;
-		t.value.room.name = words[0];
+		t->type = TOKEN_ROOM;
+		t->value.room.name = words[0];
 		free(words[1]);
 		free(words[2]);
 		free(words);
 	}
 	else
 	{
-		t.type = ERROR;
+		t->type = TOKEN_ERROR;
 		ft_clear_tab(words);		// TODO: replace this function
 	}
-	return (t);
 }
 
-t_token		parse_link(char const *str)
+void		parse_link(char const *str, t_token *t)
 {
-	t_token		t;
 	size_t		i;
 	char const	*dst;
 
@@ -118,29 +109,27 @@ t_token		parse_link(char const *str)
 	dst = str + i + 1;
 	if (i > 0 && *dst && !ft_strchr(dst, '-'))
 	{
-		t.type = LINK;
-		t.value.link.src = ft_strsub(str, 0, i);
-		t.value.link.dst = ft_strdup(dst);
+		t->type = TOKEN_LINK;
+		t->value.link.src = ft_strsub(str, 0, i);
+		t->value.link.dst = ft_strdup(dst);
 	}
 	else
-		t.type = ERROR;
-	return (t);
+		t->type = TOKEN_ERROR;
 }
 
-t_token		parse_ants(char const *str)
+//	NOTE that the number of ants may be zero!
+
+void		parse_ants(char const *str, t_token *t)
 {
-	t_token	t;
 	int		n;
 
-	n = ft_atoi(str);
-	if (n > 0)
+	if (ft_atoi_strict(str, &n) && n >= 0)
 	{
-		t.type = ANTS;
-		t.value.ants = n;
+		t->type = TOKEN_ANTS;
+		t->value.ants = n;
 	}
 	else
-		t.type = ERROR;
-	return (t);
+		t->type = TOKEN_ERROR;
 }
 
 t_token		parse(char *str)
@@ -150,20 +139,20 @@ t_token		parse(char *str)
 	if (str[0] == '#')
 	{
 		if (str[1] == '#')
-			return (parse_command(str));
-		t.type = COMMENT;
+			return (parse_command(str, &t));
+		t.type = TOKEN_COMMENT;
 		return (t);
 	}
 	if (str[0] == 'L')
-		return (parse_turn(str));
+		return (parse_turn(str, &t));
 	if (ft_strchr(str, ' '))
-		return (parse_room(str));
+		return (parse_room(str, &t));
 	if (ft_strchr(str, '-'))
-		return (parse_link(str));
+		return (parse_link(str, &t));
 	if (*str == '\0')
 	{
-		t.type = EMPTY;
+		t.type = TOKEN_EMPTY_LINE;
 		return (t);
 	}
-	return (parse_ants(str));
+	return (parse_ants(str, &t));
 }

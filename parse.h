@@ -19,15 +19,16 @@ typedef struct s_token	t_token;
 
 enum		e_type
 {
-	COMMAND_START,
-	COMMAND_END,
-	COMMENT,
-	TURN,
-	ROOM,
-	LINK,
-	ANTS,
-	EMPTY,
-	ERROR,
+	TOKEN_COMMAND_START,
+	TOKEN_COMMAND_END,
+	TOKEN_COMMENT,
+	TOKEN_TURN,
+	TOKEN_ROOM,
+	TOKEN_LINK,
+	TOKEN_ANTS,
+	TOKEN_EMPTY_LINE,
+	TOKEN_ERROR,
+	TOKEN_EOF,
 };
 
 union		u_value
