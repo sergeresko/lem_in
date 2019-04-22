@@ -41,13 +41,14 @@ static int	distribute_evenly(int n_ants, t_solution *s)
 	int		i;
 	int		d;
 
-	i = 0;
-	while (++i < s->n_paths)
+	i = 1;
+	while (i < s->n_paths)
 	{
 		d = s->paths[i].length - s->paths[i - 1].length;
 		if (n_ants / i <= d)
 			break ;
 		n_ants -= d * i;
+		++i;
 	}
 	d = n_ants / i;
 	n_ants -= d * i;
