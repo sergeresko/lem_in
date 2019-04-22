@@ -13,8 +13,7 @@
 #include <stdlib.h>		// NULL
 #include "lem_in.h"
 
-// TODO: rename
-void		body(t_room *src, t_set *s)
+void		update_neighbors(t_room *src, t_set *s)
 {
 	t_glist	*links;
 	t_link	*l;
@@ -45,7 +44,7 @@ int			dijkstra(t_room *src, t_room *end)		// t_bool
 	src->distance = 0;
 	while (src != NULL && src != end)
 	{
-		body(src, s);
+		update_neighbors(src, s);
 		src = set_pop_min(s);		// if s is empty, returns NULL
 	}
 	set_destroy(&s);

@@ -1,3 +1,16 @@
+usage: ./lem-in [options] < [filename]
+
+options:
+	-h	help
+	-i	input
+	-r	rooms with their adjacency lists
+	-p	paths and distribution of ants
+	-s	solution
+	-c	count turns
+No options is equivalent to `-is`.
+
+-----
+
 ERROR in line 1: a non-negative integer number of ants expected
 -14
 
@@ -7,4 +20,6 @@ abc-def
 ERROR in line 18: no start room
 abc-def
 
-// check that a room is not linked to itself, e.g. `abc-abc`
+-----
+
+check that a room is not linked to itself, e.g. `abc-abc`
