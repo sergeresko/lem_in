@@ -34,13 +34,13 @@ enum		e_type
 union		u_value
 {
 	int		ants;
-	struct	s_val_room
+	struct	s_value_room
 	{
 		char	*name;
 		int		x;
 		int		y;
 	}		room;
-	struct	s_val_link
+	struct	s_value_link
 	{
 		char	*src;
 		char	*dst;

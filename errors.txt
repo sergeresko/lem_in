@@ -1,13 +1,13 @@
-usage: ./lem-in [options] < [filename]
+usage: ./lem-in [options] < [file]
 
-options:
-	-h	help
-	-i	input
-	-r	rooms with their adjacency lists
-	-p	paths and distribution of ants
-	-s	solution
-	-c	count turns
-No options is equivalent to `-is`.
+Options to indicate what is to be printed:
+	-h	this help
+	-i	raw input
+	-r	rooms with their neighbor lists
+	-p	selected paths and ant distribution
+	-l	lists of moves made at each turn
+	-n	total number of turns
+If called without options, -i and -l are assumed.
 
 -----
 
@@ -22,4 +22,53 @@ abc-def
 
 -----
 
-check that a room is not linked to itself, e.g. `abc-abc`
+ERROR in line 4: invalid number of ants (a non-negative integer expected)
+34.7
+
+ERROR in line 6: already has a start room
+##start
+
+ERROR in line 8: already has an end room
+##end
+
+ERROR in line 9: already has a room with this name
+cjh 65 -23
+
+ERROR in line 11: invalid room (format: name coord_x coord_y)
+Xf4h 4 6 9
+
+ERROR in line 14: invalid link (format: name1-name2)
+tr-35y-dj
+
+ERROR in line 15: already has a link between these rooms
+end-ABC
+
+ERROR in line 17: a room cannot be linked to itself
+prst-prst
+
+-----
+
+read_room:
+
+get token
+if room
+	add room
+if start
+	die if has start
+	get token
+	die if not room
+	add room start
+if end
+	die if has end
+	get token
+	die if not room
+	add room end
+if link
+
+-----
+
+test on empty file
+
+-----
+
+check if start and end are directly connented

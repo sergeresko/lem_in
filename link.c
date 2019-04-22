@@ -75,3 +75,23 @@ void		link_delete(t_room *src, t_room *dst)
 		links = links->next;
 	}
 }
+
+/*
+**	return the link from `src` to `dst` if it exists or NULL otherwise
+*/
+
+t_link		*link_find(t_room *src, t_room *dst)
+{
+	t_glist	*links;
+	t_link	*l;
+
+	links = src->links;
+	while (links != NULL)
+	{
+		l = links->data;
+		if (l->dst == dst)
+			return (l);
+		links = links->next;
+	}
+	return (NULL);
+}

@@ -132,27 +132,25 @@ void		parse_ants(char const *str, t_token *t)
 		t->type = TOKEN_ERROR;
 }
 
-t_token		parse(char *str)
-{
-	t_token	t;
+//	the order matters
 
+void		parse(char const *str, t_token *t)
+{
 	if (str[0] == '#')
 	{
 		if (str[1] == '#')
-			return (parse_command(str, &t));
-		t.type = TOKEN_COMMENT;
-		return (t);
+			parse_command(str, t);
+		else
+			t->type = TOKEN_COMMENT;
 	}
-	if (str[0] == 'L')
-		return (parse_turn(str, &t));
-	if (ft_strchr(str, ' '))
-		return (parse_room(str, &t));
-	if (ft_strchr(str, '-'))
-		return (parse_link(str, &t));
-	if (*str == '\0')
-	{
-		t.type = TOKEN_EMPTY_LINE;
-		return (t);
-	}
-	return (parse_ants(str, &t));
+	else if (str[0] == 'L')
+		parse_turn(str, t);
+	else if (ft_strchr(str, ' '))
+		parse_room(str, t);
+	else if (ft_strchr(str, '-'))
+		parse_link(str, t);
+	else if (str[0] == '\0')
+		t->type = TOKEN_EMPTY_LINE;
+	else
+		parse_ants(str, t);
 }
