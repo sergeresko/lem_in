@@ -106,14 +106,14 @@ void		add_link(t_token *t)
 
 void		add_room()
 {
-	char	*room_name;		// not needed
 	t_room	*r;
 
-	room_name = t->value.room.name;
-	if (find_room(lem->graph->rooms, room_name) != NULL)
+	if (find_room(lem->graph->rooms, t->value.room.name) != NULL)
 		lem_die();
 	r = room_new();
-	r->name = room_name;
+	r->name = t->value.room.name;
+	r->x = t->value.room.x;
+	r->y = t->value.room.y;
 	glist_push(&lem->graph->rooms, glist_new(r));
 	if ()
 		lem->graph->start = r;
