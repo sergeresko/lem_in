@@ -80,6 +80,7 @@ t_room		*find_room(t_glist *rooms, char const *room_name)
 		r = rooms->data;
 		if (ft_strcmp(r->name, room_name) == 0)
 			return (r);
+		rooms = rooms->next;
 	}
 	return (NULL);
 }
