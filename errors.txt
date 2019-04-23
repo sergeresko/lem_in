@@ -11,39 +11,39 @@ If called without options, -i and -l are assumed.
 
 -----
 
-ERROR in line 1: a non-negative integer number of ants expected
+ERROR at line 1: a non-negative integer number of ants expected
 -14
 
-ERROR in line 6: these rooms are already connected
+ERROR at line 6: these rooms are already connected
 abc-def
 
-ERROR in line 18: no start room
+ERROR at line 18: no start room
 abc-def
 
 -----
 
-ERROR in line 4: invalid number of ants (a non-negative integer expected)
+ERROR at line 4: invalid number of ants (a non-negative integer expected)
 34.7
 
-ERROR in line 6: already has a start room
+ERROR at line 6: already has a start room
 ##start
 
-ERROR in line 8: already has an end room
+ERROR at line 8: already has an end room
 ##end
 
-ERROR in line 9: already has a room with this name
+ERROR at line 9: already has a room with this name
 cjh 65 -23
 
-ERROR in line 11: invalid room (format: name coord_x coord_y)
+ERROR at line 11: invalid room (format: name coord_x coord_y)
 Xf4h 4 6 9
 
-ERROR in line 14: invalid link (format: name1-name2)
+ERROR at line 14: invalid link (format: name1-name2)
 tr-35y-dj
 
-ERROR in line 15: already has a link between these rooms
+ERROR at line 15: already has a link between the rooms
 end-ABC
 
-ERROR in line 17: a room cannot be linked to itself
+ERROR at line 17: a room cannot be linked to itself
 prst-prst
 
 -----

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 18:04:16 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/21 19:21:26 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/23 14:15:11 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		ft_atoi_strict(char const *str, int *value)		// t_bool
 		++str;
 	if (*str == '\0')
 		return (0);			// FALSE
-	n = 0;
+	abs = 0;
 	while ('0' <= *str && *str <= '9')
 	{
 		abs = abs * 10 + (int)(*str - '0');
@@ -58,47 +58,47 @@ int		ft_strprefix(char const *str, char const *prefix)
 }
 */
 
-void		parse_command(char const *str, t_token *t)
+void		tokenize_command_or_comment(char const *str, t_token *token)
 {
 	if (ft_strcmp(str, "##start") == 0)
-		t->type = TOKEN_COMMAND_START;
+		token->type = TOKEN_COMMAND_START;
 	else if (ft_strcmp(str, "##end") == 0)
-		t->type = TOKEN_COMMAND_END;
+		token->type = TOKEN_COMMAND_END;
 	else
-		t->type = TOKEN_COMMENT;
+		token->type = TOKEN_COMMENT;
 }
 
 // TODO:
-void		parse_turn(char const *str, t_token *t)
+void		tokenize_turn(char const *str, t_token *token)
 {
 	(void)str;
-	t->type = TOKEN_TURN;
+	token->type = TOKEN_TURN;
 }
 
-void		parse_room(char const *str, t_token *t)
+void		tokenize_room(char const *str, t_token *token)
 {
 	char	**words;
 
 	words = ft_strsplit(str, ' ');
 	if (words && words[0] && words[1] && words[2] && !words[3]
 			&& !ft_strchr(words[0], '-')
-			&& ft_atoi_strict(words[1], &t->value.room.x)
-			&& ft_atoi_strict(words[2], &t->value.room.y))
+			&& ft_atoi_strict(words[1], &token->value.room.x)
+			&& ft_atoi_strict(words[2], &token->value.room.y))
 	{
-		t->type = TOKEN_ROOM;
-		t->value.room.name = words[0];
+		token->type = TOKEN_ROOM;
+		token->value.room.name = words[0];
 		free(words[1]);
 		free(words[2]);
 		free(words);
 	}
 	else
 	{
-		t->type = TOKEN_ERROR;
+		token->type = TOKEN_ERROR;
 		ft_clear_tab(words);		// TODO: replace this function
 	}
 }
 
-void		parse_link(char const *str, t_token *t)
+void		tokenize_link(char const *str, t_token *token)
 {
 	size_t		i;
 	char const	*dst;
@@ -109,48 +109,43 @@ void		parse_link(char const *str, t_token *t)
 	dst = str + i + 1;
 	if (i > 0 && *dst && !ft_strchr(dst, '-'))
 	{
-		t->type = TOKEN_LINK;
-		t->value.link.src = ft_strsub(str, 0, i);
-		t->value.link.dst = ft_strdup(dst);
+		token->type = TOKEN_LINK;
+		token->value.link.src = ft_strsub(str, 0, i);
+		token->value.link.dst = ft_strdup(dst);
 	}
 	else
-		t->type = TOKEN_ERROR;
+		token->type = TOKEN_ERROR;
 }
 
 //	NOTE that the number of ants may be zero!
 
-void		parse_ants(char const *str, t_token *t)
+void		tokenize_ants(char const *str, t_token *token)
 {
-	int		n;
+	int		number;
 
-	if (ft_atoi_strict(str, &n) && n >= 0)
+	if (ft_atoi_strict(str, &number) && number >= 0)
 	{
-		t->type = TOKEN_ANTS;
-		t->value.ants = n;
+		token->type = TOKEN_ANTS;
+		token->value.ants = number;
 	}
 	else
-		t->type = TOKEN_ERROR;
+		token->type = TOKEN_ERROR;
 }
 
 //	the order matters
 
-void		parse(char const *str, t_token *t)
+void		tokenize(char const *str, t_token *token)
 {
 	if (str[0] == '#')
-	{
-		if (str[1] == '#')
-			parse_command(str, t);
-		else
-			t->type = TOKEN_COMMENT;
-	}
+		tokenize_command_or_comment(str, token);
 	else if (str[0] == 'L')
-		parse_turn(str, t);
+		tokenize_turn(str, token);
 	else if (ft_strchr(str, ' '))
-		parse_room(str, t);
+		tokenize_room(str, token);
 	else if (ft_strchr(str, '-'))
-		parse_link(str, t);
+		tokenize_link(str, token);
 	else if (str[0] == '\0')
-		t->type = TOKEN_EMPTY_LINE;
+		token->type = TOKEN_EMPTY_LINE;
 	else
-		parse_ants(str, t);
+		tokenize_ants(str, token);
 }

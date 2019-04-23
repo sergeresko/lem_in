@@ -1,3 +1,6 @@
+#include "lem_in.h"
+#include "parse.h"
+
 typedef struct s_input	t_input;
 typedef struct s_lem	t_lem;
 
@@ -15,22 +18,27 @@ struct		s_lem
 	t_graph	*graph;
 };
 
-void		save_line(char *str, t_input *input)
-{
-	t_glist	*e;
+// ----------------------------------------------------------------------------
 
-	e = glist_new(str);
+static void	save_line(char *str, t_input *input)
+{
+	t_glist	*item;
+
+	item = glist_new(str);
 	if (input->lines == NULL)
-		input->lines = e;
+		input->lines = item;
 	else
-		input->tail->next = e;
-	input->tail = e;
+		input->tail->next = item;
+	input->tail = item;
 	input->line_count += 1;
 }
 
-//	return the first non-comment token
+/*
+**	read and save lines until first non-comment or end of file,
+**	construct a respective token
+*/
 
-void		get_next_token(t_lem *lem, t_token *t)
+void		get_next_token(t_lem *lem, t_token *token)
 {
 	int		status;
 	char	*str;
@@ -38,34 +46,36 @@ void		get_next_token(t_lem *lem, t_token *t)
 	while ((status = get_next_line(STDIN_FILENO, &str)) == GNL_OK)
 	{
 		save_line(str, lem->input);
-		parse(str, t);
-		if (t->type != TOKEN_COMMENT)
+		tokenize(str, token);
+		if (token->type != TOKEN_COMMENT)
 			return ;
 	}
 	if (status == GNL_EOF)
 	{
-		t->type = TOKEN_EOF;
+		token->type = TOKEN_EOF;
 		return ;
 	}
 	if (status == GNL_ERROR)
 	{
-		// TODO:
+		// TODO: ... exit(1)
 	}
 }
 
-void		read_ants(t_lem *lem)
+// ----------------------------------------------------------------------------
+
+void		read_ants(t_lem *lem, t_token *token)
 {
-	t_token	t;
-
-	get_next_token(lem->input, &t);
-	if (t.type == TOKEN_EOF)	//
-		lem_die();				// unexpected end of file
-	if (t.type != TOKEN_ANTS)
-	{
-		lem_die(lem, ERROR_ANTS);
-	}
-	lem->total_ants = t.value.ants;
+	get_next_token(lem->input, token);
+	if (token->type == TOKEN_EOF)
+		lem_die(lem, "unexpected end of file");		///////////////
+	if (token->type != TOKEN_ANTS)
+//	{
+		lem_die(lem, "invalid number of ants (a non-negative integer expected)");
+//	}
+	lem->total_ants = token->value.ants;
 }
+
+// ----------------------------------------------------------------------------
 
 /*
 **	return the room called `name` or NULL if it is not in the list
@@ -85,102 +95,145 @@ t_room		*find_room(t_glist *rooms, char const *room_name)
 	return (NULL);
 }
 
-//	TODO: make sure that ft_strcmp(src_name, dst_name) != 0
+// ----------------------------------------------------------------------------
 
-void		add_link(t_token *t)
-//void		add_link(char const *src_name, char const *dst_name)
+#define ROOM_STANDARD	0
+#define ROOM_START		1
+#define ROOM_END		2
+
+static void	add_room(t_lem *lem, t_token *token)
 {
-	t_room	*src;
-	t_room	*dst;
+	t_room	*room;
 
-	if ((src = find_room(lem->graph->rooms, t->value.link.src)) == NULL)
-		lem_die();
-	if ((dst = find_room(lem->graph->rooms, t->value.link.dst)) == NULL)
-		lem_die();
-	if (link_find(src, dst) != NULL)
-		lem_die();
-	link_push(src, dst, LINK_POSITIVE);
-	link_push(dst, src, LINK_POSITIVE);
-	free(src_name);							//
-	free(dst_name);							//
+	if (find_room(lem->graph->rooms, token->value.room.name) != NULL)
+		lem_die(lem, "already has a room with this name");
+	room = room_new();
+	room->name = token->value.room.name;
+	room->x = token->value.room.x;
+	room->y = token->value.room.y;
+	glist_push(&lem->graph->rooms, glist_new(room));
 }
-
-void		add_room()
+/*
+static void	read_complex_room(t_lem *lem, t_token *token)
 {
-	t_room	*r;
+	int		room_type;
 
-	if (find_room(lem->graph->rooms, t->value.room.name) != NULL)
-		lem_die();
-	r = room_new();
-	r->name = t->value.room.name;
-	r->x = t->value.room.x;
-	r->y = t->value.room.y;
-	glist_push(&lem->graph->rooms, glist_new(r));
-	if ()
-		lem->graph->start = r;
-	else if ()
-		lem->graph->end = r;
+	room_type = (token->type == TOKEN_COMMAND_START) ? ROOM_START : ROOM_END;
+	if (room_type == ROOM_START && lem->graph->start != NULL)
+		lem_die(lem, "already has a start");
+	if (room_type == ROOM_END && lem->graph->end != NULL)
+		lem_die(lem, "already has an end");
+	get_next_token(lem, token);
+	if (token->type == TOKEN_EOF)
+		lem_die(lem, "unexpected end of file");		//////////////
+	if (token->type != TOKEN_ROOM)
+		lem_die(lem, "invalid room (format: name coord_x coord_y)");
+	add_room(lem, token);
+	if (room_type == ROOM_START)
+		lem->graph->start = lem->graph->rooms->data;
+	else if (room_type == ROOM_END)
+		lem->graph->end = lem->graph->rooms->data;
 }
+*/
+/*
+**	If no error occurred and the function returned FALSE, the final value
+**	of `token->type` is one of the following:
+**	TOKEN_TURN, TOKEN_LINK, TOKEN_ANTS, TOKEN_EMPTY_LINE, TOKEN_ERROR, TOKEN_EOF.
+*/
 
-int			read_room()		// t_bool
+static int	read_room(t_lem *lem, t_token *token)		// t_bool
 {
-	t_token	t;
-
-	get_next_token(lem, &t);
-	if (t.type == TOKEN_ROOM)
-		add_room();
-	else if (t.type == TOKEN_COMMAND_START)
+	get_next_token(lem, token);
+	if (token->type == TOKEN_ROOM)
+		add_room(lem, token, ROOM_STANDARD);
+	else if (token->type == TOKEN_COMMAND_START)
 	{
 		if (lem->graph->start != NULL)
-			lem_die();
-		get_next_token(lem, &t);
-		if (t.type != TOKEN_ROOM)
-			lem_die();
-		add_room();
+			lem_die(lem, token, "already has a start");
+		get_next_token(lem, token);
+		if (token->type != TOKEN_ROOM)
+			lem_die(lem, token, "invalid room (format: name coord_x coord_y)");
+		add_room(lem, token, ROOM_START);
 	}
-	else if (t.type == TOKEN_COMMAND_END)
+	else if (token->type == TOKEN_COMMAND_END)
 	{
 		if (lem->graph->end != NULL)
-			lem_die();
-		get_next_token(lem, &t);		//	repetition:
-		if (t.type != TOKEN_ROOM)		//	same
-			lem_die();					//	as
-		add_room();						//	above
+			lem_die(lem, token, "already has an end");
+		get_next_token(lem, token);
+		if (token->type != TOKEN_ROOM)
+			lem_die(lem, token, "invalid room (format: name coord_x coord_y)");
+		add_room(lem, token, ROOM_END);
 	}
-	else
-	{
-
-	}
+	return (token->type == TOKEN_ROOM);
 }
 
 void		read_rooms(t_lem *lem, t_token *t)
 {
 	while (read_room(lem, t))
 		;
+}
 
-	t_token	t;
+// ----------------------------------------------------------------------------
 
-	while (1)
+//	TODO: make sure that ft_strcmp(src_name, dst_name) != 0
+
+void		add_link(t_lem *lem, t_token *token)
+//void		add_link(char const *src_name, char const *dst_name)
+{
+	t_room	*src;
+	t_room	*dst;
+
+	if ((src = find_room(lem->graph->rooms, token->value.link.src)) == NULL)
+		lem_die(lem, token, "has no room called `src`");
+	if ((dst = find_room(lem->graph->rooms, token->value.link.dst)) == NULL)
+		lem_die(lem, token, "has no room called `dst`");
+	if (link_find(src, dst) != NULL)
+		lem_die(lem, token, "already has a link between these rooms");
+	link_push(src, dst, LINK_POSITIVE);
+	link_push(dst, src, LINK_POSITIVE);
+	free(src_name);							//
+	free(dst_name);							//
+}
+
+int			read_link(t_lem *lem, t_token *token)		// t_bool
+{
+	get_next_token(lem, token);
+	if (token->type == TOKEN_LINK)
 	{
-		get_next_token(&t);
-		if (t.type == TOKEN_ROOM)
-		{
-		}
-		else if (t.type == TOKEN_COMMAND_START)
-		{
-		}
-		else if (t.type == TOKEN_COMMAND_END)
-		{
-		}
-		else if (t.type == TOKEN_LINK)
-		{
-		}
-		else
-		{
-		}
+		if (ft_strcmp(token->value.link.dst, token->value.link.src) == 0)
+			lem_die(lem, token, "a room cannot be linked to itself");
+		add_link(lem, token);
 	}
+	return (token->type == TOKEN_LINK);
 }
 
 void		read_links()
 {
+	if (token->type != TOKEN_LINK)
+	{
+	}
+
+}
+
+void		read()
+{
+	t_token	token;
+
+	read_ants(lem);
+	while (read_room(lem, &token))
+		;
+	if (token.type != TOKEN_LINK)
+		lem_die();		// invalid room or link
+	while (read_link(lem, &token))
+		;
+	if (token.type == TOKEN_EOF)
+		lem_die();
+	if (token.type != TOKEN_LINK)
+		lem_die();
+	if (lem->graph->rooms == NULL)
+		lem_die();
+	if (lem->graph->start == NULL)
+		lem_die();
+	if (lem->graph->end == NULL)
+		lem_die();
 }
