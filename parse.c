@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 18:04:16 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/23 14:15:11 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/23 16:36:01 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ int		ft_strprefix(char const *str, char const *prefix)
 void		tokenize_command_or_comment(char const *str, t_token *token)
 {
 	if (ft_strcmp(str, "##start") == 0)
-		token->type = TOKEN_COMMAND_START;
+		token->type = TOKEN_CMD_START;
 	else if (ft_strcmp(str, "##end") == 0)
-		token->type = TOKEN_COMMAND_END;
+		token->type = TOKEN_CMD_END;
 	else
 		token->type = TOKEN_COMMENT;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 14:51:58 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/21 18:02:51 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/23 18:51:39 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ typedef struct s_token	t_token;
 
 enum		e_type
 {
-	TOKEN_COMMAND_START,
-	TOKEN_COMMAND_END,
+	TOKEN_CMD_START,
+	TOKEN_CMD_END,
 	TOKEN_COMMENT,
 	TOKEN_TURN,
 	TOKEN_ROOM,
@@ -52,5 +52,10 @@ struct		s_token
 	t_type	type;
 	t_value	value;
 };
+
+void		get_next_token(t_lem *lem, t_token *token);
+void		read_ants(t_lem *lem, t_token *token);
+void		read_rooms(t_lem *lem, t_token *token);
+void		read_links(t_lem *lem, t_token *token);
 
 #endif

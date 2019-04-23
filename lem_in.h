@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 17:19:36 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/20 19:52:25 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/23 18:54:46 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,25 @@ t_room		*room_new(void);
 void		link_push(t_room *src, t_room *dst, int weight);
 t_room		*link_pop(t_room *src);
 void		link_delete(t_room *src, t_room *dst);
+
+// -----------------------------
+
+typedef struct s_input	t_input;
+typedef struct s_lem	t_lem;
+
+struct		s_input
+{
+	int		line_count;
+	t_glist	*lines;
+	t_glist	*tail;
+};
+
+struct		s_lem
+{
+	t_input	*input;
+	int		total_ants;
+	t_graph	*graph;
+};
 
 // -----------------------------
 typedef struct s_set	t_set;
