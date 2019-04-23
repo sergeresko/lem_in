@@ -100,6 +100,7 @@ void		add_link(t_token *t)
 	if (link_find(src, dst) != NULL)
 		lem_die();
 	link_push(src, dst, LINK_POSITIVE);
+	link_push(dst, src, LINK_POSITIVE);
 	free(src_name);							//
 	free(dst_name);							//
 }
