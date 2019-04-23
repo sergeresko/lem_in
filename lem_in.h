@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 17:19:36 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/23 18:54:46 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/23 19:57:48 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ t_room		*room_new(void);
 void		link_push(t_room *src, t_room *dst, int weight);
 t_room		*link_pop(t_room *src);
 void		link_delete(t_room *src, t_room *dst);
+t_link		*link_find(t_room *src, t_room *dst);		// currently used only when parsing
 
 // -----------------------------
 
@@ -84,6 +85,8 @@ struct		s_lem
 	int		total_ants;
 	t_graph	*graph;
 };
+
+void		read_input(t_lem *lem);
 
 // -----------------------------
 typedef struct s_set	t_set;

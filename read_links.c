@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 18:09:06 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/23 19:33:53 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/23 19:59:50 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ void		add_link(t_lem *lem, t_token *token)
 	t_room	*dst;
 
 	if ((src = find_room(lem->graph->rooms, token->value.link.src)) == NULL)
-		lem_die(lem, token, "has no room called `src`");
+		lem_die(lem, "has no room called `src`");		// TODO: change message
 	if ((dst = find_room(lem->graph->rooms, token->value.link.dst)) == NULL)
-		lem_die(lem, token, "has no room called `dst`");
+		lem_die(lem, "has no room called `dst`");		// TODO: change message
 	if (link_find(src, dst) != NULL)
 		lem_die(lem, "already has a link between these rooms");
 	link_push(src, dst, LINK_POSITIVE);
 	link_push(dst, src, LINK_POSITIVE);
-	free(src_name);							//
-	free(dst_name);							//
+	free(token->value.link.src);						//
+	free(token->value.link.dst);						//
 }
 
 static int	read_link(t_lem *lem, t_token *token)		// t_bool
@@ -48,7 +48,7 @@ static int	read_link(t_lem *lem, t_token *token)		// t_bool
 
 void		read_links(t_lem *lem, t_token *token)
 {
-	if (token.type != TOKEN_EOF && token.type != TOKEN_LINK)
+	if (token->type != TOKEN_EOF && token->type != TOKEN_LINK)
 		lem_die(lem, "invalid room or link");
 	while (read_link(lem, token))
 		get_next_token(lem, token);

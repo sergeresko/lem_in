@@ -6,12 +6,14 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 14:51:58 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/23 18:51:39 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/23 20:02:19 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
+
+#include "lem_in.h"		// hence files that include "parse.h" need not include "lem_in.h"
 
 typedef enum e_type		t_type;
 typedef union u_value	t_value;
@@ -53,6 +55,12 @@ struct		s_token
 	t_value	value;
 };
 
+void		tokenize(char const *str, t_token *token);
+
+t_room		*find_room(t_glist *rooms, char const *room_name);
+
+void		lem_die(t_lem *lem, char const *message);
+void		lem_die_eof(char const *message);
 void		get_next_token(t_lem *lem, t_token *token);
 void		read_ants(t_lem *lem, t_token *token);
 void		read_rooms(t_lem *lem, t_token *token);

@@ -12,7 +12,7 @@ void		read_eof(t_lem *lem, t_token *token)
 		lem_die_eof("end room is missing");	// without line number
 }
 
-void		read(t_lem *lem)
+void		read_input(t_lem *lem)
 {
 	t_token	token;
 

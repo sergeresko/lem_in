@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 18:04:16 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/23 16:36:01 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/23 20:02:51 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void		tokenize_room(char const *str, t_token *token)
 	else
 	{
 		token->type = TOKEN_ERROR;
-		ft_clear_tab(words);		// TODO: replace this function
+		ft_clear_tab((void **)words);		// TODO: replace this function
 	}
 }
 

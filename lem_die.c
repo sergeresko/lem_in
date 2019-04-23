@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:34:35 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/23 19:36:15 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/23 20:13:05 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ void		lem_die_eof(char const *message)
 {
 	//
 	// TODO: replace printf with ft_putstr_fd and print to STRERR
-	printf("%s\n", message);
+	printf("\e[1mERROR: %s\e[0m\n", message);
 	//
 	//
 	exit(1);
 }
 
-void		lem_die(lem *lem, char const *message)
+void		lem_die(t_lem *lem, char const *message)
 {
 	//
 	// TODO: replace printf with ft_putstr_fd and print to STRERR
-	printf("ERROR at line %d: %s\n%s\n", lem->input->line_count, message, lem->input->tail->data);
+	printf("\e[1mERROR at line %d: %s\e[0m\n%s\n", lem->input->line_count, message, lem->input->tail->data);
 	//
 	//
 	exit(1);
