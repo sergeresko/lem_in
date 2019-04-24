@@ -6,10 +6,15 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 17:04:22 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/18 17:13:35 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/24 20:19:18 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+//
+//
+#include "libft.h"		// for debugging
+//
+//
 #include <stdlib.h>		// free, NULL
 #include "lem_in.h"
 
@@ -49,12 +54,27 @@ void		restore_graph(t_room *start, t_room *end)
 	t_glist	*links;
 	t_link	*l;
 
+	// <
+	//
+	ft_printf("\033[36m< restore_graph finished\033[0m\n");
+	//
+	// >
 	links = end->links;
 	while (links != NULL)
 	{
 		l = links->data;
+		// <
+		//
+		ft_printf("\033[36ml = %#p\033[0m\n", l);
+		//
+		// >
 		links = links->next;
 		if (l->weight == LINK_NEGATIVE)
 			restore_path(start, l->dst, end);
 	}
+	// <
+	//
+	ft_printf("\033[36m> restore_graph finished\033[0m\n");
+	//
+	// >
 }

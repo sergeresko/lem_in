@@ -1,3 +1,4 @@
+#include <unistd.h>		// sleep
 #include <stdlib.h>
 #include "libft.h"
 #include "lem_in.h"
@@ -24,6 +25,12 @@ int		main(int argc, char **argv)
 	n_paths = 0;
 	while (bhandari(&lem.graph))
 	{
+		//
+		//
+		ft_printf("##### HELLO!\n");
+		usleep(500000);
+		//
+		//
 		++n_paths;
 		s = build_solution(lem.total_ants, lem.graph.start, n_paths);
 		if (lem.options.paths)
@@ -32,6 +39,12 @@ int		main(int argc, char **argv)
 			print_solution(s, lem.total_ants);
 		if (lem.options.total)
 			print_total(s);
+		//
+		//
+		ft_printf("###### %d\n", n_paths);
+		usleep(500000);
+		//
+		//
 		solution_destroy(s);
 	}
 

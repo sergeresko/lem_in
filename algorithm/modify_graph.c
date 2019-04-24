@@ -6,13 +6,13 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:52:57 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/18 17:31:47 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/24 18:53:34 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //
 //
-#include <stdio.h>		// printf for debugging
+#include "libft.h"		// for debugging
 //
 //
 #include <stdlib.h>		// NULL
@@ -58,12 +58,27 @@ void		modify_graph(t_room *start, t_room *end)
 	t_glist	*links;
 	t_link	*l;
 
+	// <
+	//
+	ft_printf("\033[36m< modify_graph started\033[0m\n");
+	//
+	// >
 	links = end->links;
 	while (links != NULL)
 	{
 		l = links->data;
+		// <
+		//
+		ft_printf("\033[36ml = %#p\033[0m\n", l);
+		//
+		// >
 		links = links->next;
 		if (l->dst->succ == end)
 			modify_path(start, l->dst, end);
 	}
+	// <
+	//
+	ft_printf("\033[36m> modify_graph finished\033[0m\n", l);
+	//
+	// >
 }

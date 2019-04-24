@@ -1,4 +1,4 @@
-gcc -Wall -Wextra -Werror \
+gcc -g -Wall -Wextra -Werror \
 	_test/test_read_eval_print.c \
 	-I . -I read_input -I ~/projects/filler/rendu/libft \
 	~/projects/filler/rendu/libft/libft.a \
