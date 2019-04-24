@@ -1,7 +1,9 @@
 gcc -Wall -Wextra -Werror \
-	_test/test_read.c \
+	_test/test_read_eval_print.c \
 	-I . -I read_input -I ~/projects/filler/rendu/libft \
 	~/projects/filler/rendu/libft/libft.a \
+	\
+	read_options.c \
 	\
 	read_input/find_room.c \
 	read_input/ft_atoi_strict.c \
@@ -17,3 +19,20 @@ gcc -Wall -Wextra -Werror \
 	datatypes/glist.c \
 	datatypes/link.c \
 	datatypes/room.c \
+	datatypes/set.c \
+	\
+	algorithm/bhandari.c \
+	algorithm/modify_graph.c \
+	algorithm/restore_graph.c \
+	algorithm/xor_paths.c \
+	\
+	algorithm/dijkstra.c \
+	\
+	algorithm/build_solution.c \
+	algorithm/distribute_ants.c \
+	\
+	print_input.c \
+	print_rooms.c \
+	print_paths.c \
+	print_solution.c \
+	print_total.c

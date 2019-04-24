@@ -6,16 +6,12 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/20 14:21:16 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/21 12:32:18 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/24 15:21:02 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//
-//
-#include <stdio.h>		// printf for debugging
-//
-//
 #include <stdlib.h>		// malloc, free, NULL
+#include "libft.h"
 #include "lem_in.h"
 
 static int	add(t_room **loc, t_solution const *s)
@@ -23,9 +19,9 @@ static int	add(t_room **loc, t_solution const *s)
 	int		i;
 
 	i = 0;
-	while (i < s->n_paths && s->numbers[i] > 0)
+	while (i < s->n_paths && s->ants_per_path[i] > 0)
 	{
-		s->numbers[i] -= 1;		// modifies solution, so const is misleading
+		s->ants_per_path[i] -= 1;		// modifies solution, so const is misleading
 		loc[i] = s->paths[i].origin;
 		++i;
 	}
@@ -57,15 +53,18 @@ static void	print_turn(t_room *const *loc, int k)
 		if (loc[i] != NULL)
 		{
 			if (!first)
-				printf(" ");	// ft_putchar(' ');
+				ft_putchar(' ');
 			else
 				first = 0;		// FALSE
-			printf("L%d-%s", i + 1, loc[i]->name);		//
+			ft_putchar('L');
+			ft_putnbr(i + 1);
+			ft_putchar('-');
+			ft_putstr(loc[i]->name);
 		}
 		++i;
 	}
 	if (!first)				// Are these two lines
-		printf("\n");		// still needed?
+		ft_putchar('\n');	// still needed?
 }
 
 /*

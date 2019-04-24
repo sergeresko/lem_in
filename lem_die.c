@@ -6,34 +6,39 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:34:35 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/23 20:13:05 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/24 15:16:37 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//
-//
-#include <stdio.h>		// printf for debugging
-//
-//
 #include <stdlib.h>		// exit
+#include <unistd.h>		// STDERR_FILENO
+#include "libft.h"
 #include "lem_in.h"
 
-void		lem_die_eof(char const *message)
+void		lem_die(char const *message)
 {
-	//
-	// TODO: replace printf with ft_putstr_fd and print to STRERR
-	printf("\e[1mERROR: %s\e[0m\n", message);
-	//
-	//
+	ft_putstr_fd("\033[1mERROR: ", STDERR_FILENO);
+	ft_putstr_fd(message, STDERR_FILENO);
+	ft_putstr_fd("\033[0m\n", STDERR_FILENO);
 	exit(1);
 }
 
-void		lem_die(t_lem *lem, char const *message)
+void		lem_die_at_line(t_lem const *lem, char const *message)
 {
-	//
-	// TODO: replace printf with ft_putstr_fd and print to STRERR
-	printf("\e[1mERROR at line %d: %s\e[0m\n%s\n", lem->input->line_count, message, lem->input->tail->data);
-	//
-	//
+	ft_putstr_fd("\033[1mERROR at line ", STDERR_FILENO);
+	ft_putnbr_fd(lem->input.line_count, STDERR_FILENO);
+	ft_putstr_fd(": ", STDERR_FILENO);
+	ft_putstr_fd(message, STDERR_FILENO);
+	ft_putstr_fd("\033[0m\n", STDERR_FILENO);
+	ft_putstr_fd(lem->input.last->data, STDERR_FILENO);
+	ft_putstr_fd("\n", STDERR_FILENO);
+	exit(1);
+}
+
+void		lem_die_from_bug(char const *message)
+{
+	ft_putstr_fd("\033[1;31mBUG: ", STDERR_FILENO);
+	ft_putstr_fd(message, STDERR_FILENO);
+	ft_putstr_fd("\033[0m\n", STDERR_FILENO);
 	exit(1);
 }

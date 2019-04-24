@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 17:19:36 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/24 12:49:55 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/24 15:35:24 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@
 # define LINK_POSITIVE	1
 # define LINK_ZERO		0
 # define LINK_NEGATIVE	(-1)
+
+typedef enum e_bool		t_bool;
+
+enum		e_bool
+{
+	FALSE = 0,
+	TRUE = 1,
+};
 
 typedef struct s_glist	t_glist;
 typedef struct s_room	t_room;
@@ -69,23 +77,35 @@ t_link		*link_find(t_room *src, t_room *dst);		// currently used only when parsi
 
 // -----------------------------
 
+typedef struct s_opt	t_opt;
 typedef struct s_input	t_input;
 typedef struct s_lem	t_lem;
+
+struct		s_opt
+{
+	int		input;
+	int		rooms;
+	int		paths;
+	int		moves;
+	int		total;
+};
 
 struct		s_input
 {
 	int		line_count;
 	t_glist	*lines;
-	t_glist	*tail;
+	t_glist	*last;
 };
 
 struct		s_lem
 {
-	t_input	*input;
+	t_opt	options;
+	t_input	input;
 	int		total_ants;
-	t_graph	*graph;
+	t_graph	graph;
 };
 
+void		read_options(int argc, char *const *argv, t_opt *options);
 void		read_input(t_lem *lem);
 
 // -----------------------------
@@ -112,14 +132,14 @@ struct	s_path
 {
 	t_room	*origin;
 	int		length;
-	int		ants;
+	int		ants;		// TODO: what is this?
 };
 
 struct	s_solution
 {
 	int		n_paths;
 	t_path	*paths;
-	int		*numbers;
+	int		*ants_per_path;
 	int		n_turns;
 };
 
@@ -127,6 +147,7 @@ void		distribute_ants(int n_ants, t_solution *s);
 t_solution	*build_solution(int n_ants, t_room *start, int n_paths);
 void		solution_destroy(t_solution *s);
 void		print_solution(t_solution const *s, int n_ants);
+void		print_total(t_solution const *s);
 // -----------------------------
 
 void		modify_graph(t_room *start, t_room *end);
@@ -135,7 +156,16 @@ void		xor_paths(t_room *start, t_room *end);
 int			bhandari(t_graph *g);	// t_bool
 
 // -----------------------------
-void		lem_die(t_lem *lem, char const *message);
-void		lem_die_eof(char const *message);
+void		lem_die(char const *message);
+void		lem_die_at_line(t_lem const *lem, char const *message);
+void		lem_die_from_bug(char const *message);
+
+
+
+
+void		print_input(t_input const *input);
+void		print_rooms(t_graph const *g);
+void		print_paths(t_solution const *s, t_room const *start);
+void		print_solution(t_solution const *s, int n_ants);
 
 #endif

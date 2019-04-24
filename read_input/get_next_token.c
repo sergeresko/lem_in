@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 18:05:54 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/24 12:58:01 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/24 15:12:53 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static void	save_line(char *str, t_input *input)
 	if (input->lines == NULL)
 		input->lines = item;
 	else
-		input->tail->next = item;
-	input->tail = item;
+		input->last->next = item;
+	input->last = item;
 	input->line_count += 1;
 }
 
@@ -41,7 +41,7 @@ void		get_next_token(t_lem *lem, t_token *token)
 
 	while ((status = get_next_line(STDIN_FILENO, &str)) == GNL_OK)
 	{
-		save_line(str, lem->input);
+		save_line(str, &lem->input);
 		tokenize(str, token);
 		if (token->type != TOKEN_COMMENT)
 			return ;

@@ -6,19 +6,21 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 11:55:05 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/24 12:27:43 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/24 15:23:27 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>		// NULL
 #include "libft.h"
 #include "lem_in.h"
 // #include "datatypes.h"
 
-static void	print_neighbors(t_room *room)
+static void	print_neighbors(t_room const *room)
 {
 	t_glist	*links;
 	t_link	*l;
 
+	links = room->links;
 	while (links != NULL)
 	{
 		l = links->data;
@@ -28,29 +30,29 @@ static void	print_neighbors(t_room *room)
 	}
 }
 
-static void	print_room(t_room *room)
+static void	print_room(t_room const *room)
 {
-	ft_putstr("# "
+	ft_putstr("#   ");
 	ft_putstr(room->name);
 	ft_putstr(" - [");
 	print_neighbors(room);
 	ft_putstr(" ]\n");
 }
 
-void		print_rooms(t_graph *g)
+void		print_rooms(t_graph const *g)
 {
-	g_list	*rooms;
+	t_glist	*rooms;
 	t_room	*r;
 
-	ft_putstr("#\n# Rooms:\n#\n");
+	ft_putstr("#\n#   Rooms:\n#\n");
 	rooms = g->rooms;
 	while (rooms != NULL)
 	{
 		r = rooms->data;
 		if (r == g->start)
-			ft_putstr("# ##start\n");
+			ft_putstr("#   ##start\n");
 		else if (r == g->end)
-			ft_putstr("# ##end\n");
+			ft_putstr("#   ##end\n");
 		print_room(rooms->data);
 		rooms = rooms->next;
 	}

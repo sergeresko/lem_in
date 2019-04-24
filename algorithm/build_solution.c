@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/20 16:48:50 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/20 19:53:33 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/24 15:20:03 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ t_solution	*build_solution(int n_ants, t_room *start, int n_paths)
 	s->n_paths = n_paths;
 	s->paths = init_paths(n_paths, start);
 	sort_paths(n_paths, s->paths);
-	s->numbers = malloc(n_ants * sizeof(int));
+	s->ants_per_path = malloc(n_ants * sizeof(int));
 	distribute_ants(n_ants, s);
 	return (s);
 }
@@ -100,6 +100,6 @@ t_solution	*build_solution(int n_ants, t_room *start, int n_paths)
 void	solution_destroy(t_solution *s)
 {
 	free(s->paths);
-	free(s->numbers);
+	free(s->ants_per_path);
 	free(s);
 }
