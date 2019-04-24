@@ -1,7 +1,10 @@
+#LIBFT_DIR=~/projects/filler/rendu/libft/
+LIBFT_DIR='../filler/test/libft/'
+
 gcc -g -Wall -Wextra -Werror \
 	_test/test_read_eval_print.c \
-	-I . -I read_input -I ~/projects/filler/rendu/libft \
-	~/projects/filler/rendu/libft/libft.a \
+	-I ./ -I read_input/ -I ../filler/test/libft/ \
+	../filler/test/libft/libft.a \
 	\
 	read_options.c \
 	\

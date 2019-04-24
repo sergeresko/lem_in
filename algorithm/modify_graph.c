@@ -18,6 +18,12 @@
 #include <stdlib.h>		// NULL
 #include "lem_in.h"
 
+// <
+//
+#define DEBUG_PTR(ptr) (((unsigned long long)(ptr) & 0xfffff0) >> 4)
+//
+// >
+
 /*
 **	modify the path whose last room before `end` is `x`
 **
@@ -69,7 +75,7 @@ void		modify_graph(t_room *start, t_room *end)
 		l = links->data;
 		// <
 		//
-		ft_printf("\033[36ml = %#p\033[0m\n", l);
+		ft_printf("\033[36ml = %05x\033[0m\n", DEBUG_PTR(l));
 		//
 		// >
 		links = links->next;

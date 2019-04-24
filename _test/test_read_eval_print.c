@@ -39,13 +39,13 @@ int		main(int argc, char **argv)
 			print_solution(s, lem.total_ants);
 		if (lem.options.total)
 			print_total(s);
+		solution_destroy(s);
 		//
 		//
 		ft_printf("###### %d\n", n_paths);
 		usleep(500000);
 		//
 		//
-		solution_destroy(s);
 	}
 
 	system("leaks -q a.out");

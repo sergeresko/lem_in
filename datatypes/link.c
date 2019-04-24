@@ -18,6 +18,12 @@
 #include <stdlib.h>		// malloc, free, NULL
 #include "lem_in.h"
 
+// <
+//
+#define DEBUG_PTR(ptr) (((unsigned long long)(ptr) & 0xfffff0) >> 4)
+//
+// >
+
 /*
 **	to the list of links from room `src` prepend a new link to room `dst`
 **	of specified weight
@@ -30,8 +36,8 @@ void		link_push(t_room *src, t_room *dst, int weight)
 
 	// <
 	//
-	ft_printf(PF_GREEN"link_push (%s -> %s, %d)"PF_RESET":\n", src->name, dst->name, weight);
-	ft_printf("    original %s->links: %#p, ", src->name, src->links);
+	ft_printf(PF_GREEN"%s -> %s (%d)"PF_RESET": ", src->name, dst->name, weight);
+	ft_printf("original %s->links %05x, ", src->name, DEBUG_PTR(src->links));
 	//
 	// >
 	l = malloc(sizeof(t_link));		// TODO: check memory
@@ -40,7 +46,7 @@ void		link_push(t_room *src, t_room *dst, int weight)
 	glist_push(&src->links, _debug_addr = glist_new(l));	// glist_push_new(&src->links, l);
 	// <
 	//
-	ft_printf("new link: "PF_GREEN"%#p"PF_RESET", new item: "PF_GREEN"%#p"PF_RESET", new %s->links: %#p\n", l, _debug_addr, src->name, src->links);
+	ft_printf("link "PF_GREEN"%05x"PF_RESET", item "PF_GREEN"%05x"PF_RESET"\n", DEBUG_PTR(l), DEBUG_PTR(_debug_addr));
 	if (_debug_addr != src->links)
 		lem_die_from_bug("2019/04/24 19:38");
 	//
@@ -58,7 +64,6 @@ t_room		*link_pop(t_room *src)
 
 	// <
 	//
-	ft_printf(PF_RED"link_pop"PF_RESET"(src: %#p) ", src);
 	if (src->links == NULL)
 		ft_printf("[%s has no links, "PF_RED"doing nothing]"PF_RESET"\n", src->name);
 	//
@@ -69,20 +74,15 @@ t_room		*link_pop(t_room *src)
 	dst = l->dst;
 	// <
 	//
-	ft_printf("item = %s->links: %#p, link = item->data: %#p ", src->name, src->links, l);
-	ft_printf(PF_RED"[%s -> %s, %d]"PF_RESET":\n", src->name, dst->name, l->weight);
+	ft_printf(PF_RED"%s -> %s (%d)"PF_RESET": ", src->name, dst->name, l->weight);
+	ft_printf("item "PF_RED"%05x"PF_RESET", link "PF_RED"%05x"PF_RESET", ", DEBUG_PTR(src->links), DEBUG_PTR(l));
 	//
 	// >
 	free(l);
-	// <
-	//
-	ft_printf("    link freed, ");
-	//
-	// >
 	glist_delete(&src->links);
 	// <
 	//
-	ft_printf("item deleted, new %s->links: %#p\n", src->name, src->links);
+	ft_printf("new %s->links %05x\n", src->name, DEBUG_PTR(src->links));
 	//
 	// >
 	return (dst);
@@ -100,13 +100,20 @@ void		link_delete(t_room *src, t_room *dst)
 	l = src->links->data;
 	if (l->dst == dst)
 	{
+		// <
 		//
+		ft_printf(PF_MAGENTA"%s -> %s (%d)"PF_RESET": ", src->name, dst->name, l->weight);
+		ft_printf("old %s->links %05x, link "PF_MAGENTA"%05x"PF_RESET", item "PF_MAGENTA"%05x"PF_RESET", ",
+				src->name, DEBUG_PTR(src->links), DEBUG_PTR(l), DEBUG_PTR(src->links));
 		//
-		ft_printf("\033[35mfreeing link at %#p\033[0m\n", l);
-		//
-		//
+		// >
 		free(l);
 		glist_delete(&src->links);
+		// <
+		//
+		ft_printf("new %s->links %05x\n", src->name, DEBUG_PTR(src->links));
+		//
+		// >
 		return ;
 	}
 	links = src->links;
@@ -115,13 +122,20 @@ void		link_delete(t_room *src, t_room *dst)
 		l = links->next->data;
 		if (l->dst == dst)
 		{
+			// <
 			//
+			ft_printf(PF_MAGENTA"%s -> %s (%d)"PF_RESET": ", src->name, dst->name, l->weight);
+			ft_printf("old %s->links %05x, link "PF_MAGENTA"%05x"PF_RESET", item "PF_MAGENTA"%05x"PF_RESET", ",
+					src->name, DEBUG_PTR(src->links), DEBUG_PTR(l), DEBUG_PTR(links->next));
 			//
-			ft_printf("\033[35mfreeing link at %#p\033[0m\n", l);
-			//
-			//
+			// >
 			free(l);
 			glist_delete(&links->next);
+			// <
+			//
+			ft_printf("new %s->links %05x\n", src->name, DEBUG_PTR(src->links));
+			//
+			// >
 			return ;
 		}
 		links = links->next;

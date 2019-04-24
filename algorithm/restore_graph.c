@@ -18,6 +18,12 @@
 #include <stdlib.h>		// free, NULL
 #include "lem_in.h"
 
+// <
+//
+#define DEBUG_PTR(ptr) (((unsigned long long)(ptr) & 0xfffff0) >> 4)
+//
+// >
+
 /*
 **	restore the path whose last room before `end` in the modified graph is `y`
 **
@@ -56,7 +62,7 @@ void		restore_graph(t_room *start, t_room *end)
 
 	// <
 	//
-	ft_printf("\033[36m< restore_graph finished\033[0m\n");
+	ft_printf(PF_CYAN"< restore_graph started"PF_RESET"\n");
 	//
 	// >
 	links = end->links;
@@ -65,7 +71,7 @@ void		restore_graph(t_room *start, t_room *end)
 		l = links->data;
 		// <
 		//
-		ft_printf("\033[36ml = %#p\033[0m\n", l);
+		ft_printf(PF_CYAN"l = %05x"PF_RESET"\n", DEBUG_PTR(l));
 		//
 		// >
 		links = links->next;
@@ -74,7 +80,7 @@ void		restore_graph(t_room *start, t_room *end)
 	}
 	// <
 	//
-	ft_printf("\033[36m> restore_graph finished\033[0m\n");
+	ft_printf(PF_CYAN"> restore_graph finished"PF_RESET"\n");
 	//
 	// >
 }

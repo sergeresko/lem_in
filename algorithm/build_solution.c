@@ -12,7 +12,7 @@
 
 //
 //
-#include <stdio.h>		// printf for debugging
+#include "libft.h"		// for debugging
 //
 //
 #include <stdlib.h>		// malloc, free, NULL
@@ -64,7 +64,7 @@ static void	sort_paths(int n_paths, t_path *paths)
 {
 	int		i;
 	int		j;
-	t_path	p;
+	t_path	tmp;
 
 	i = 0;
 	while (i < n_paths - 1)
@@ -74,9 +74,9 @@ static void	sort_paths(int n_paths, t_path *paths)
 		{
 			if (paths[i].length > paths[j].length)
 			{
-				p = paths[i];
+				tmp = paths[i];
 				paths[i] = paths[j];
-				paths[j] = p;
+				paths[j] = tmp;
 			}
 			++j;
 		}
@@ -100,6 +100,11 @@ t_solution	*build_solution(int n_ants, t_room *start, int n_paths)
 void	solution_destroy(t_solution *s)
 {
 	free(s->paths);
+	// <
+	//
+	ft_putstr("##### solution_destroy: s->paths freed\n");
+	//
+	// >
 	free(s->ants_per_path);
 	free(s);
 }
