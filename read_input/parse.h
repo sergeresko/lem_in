@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 14:51:58 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/23 20:02:19 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/24 11:33:41 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ struct		s_token
 	t_type	type;
 	t_value	value;
 };
+
+int			ft_atoi_strict(char const *str, int *value);	// t_bool
 
 void		tokenize(char const *str, t_token *token);
 

@@ -1,42 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 18:04:16 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/23 20:02:51 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/24 11:41:12 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>		// size_t, free
 #include "libft.h"		// TODO:
 #include "parse.h"
-
-int		ft_atoi_strict(char const *str, int *value)		// t_bool
-{
-	int		sign;
-	int		abs;
-
-	sign = (*str == '-') ? -1 : 1;
-	if (*str == '-' || *str == '+')
-		++str;
-	if (*str == '\0')
-		return (0);			// FALSE
-	abs = 0;
-	while ('0' <= *str && *str <= '9')
-	{
-		abs = abs * 10 + (int)(*str - '0');
-		if (abs < 0)
-			return (0);		// FALSE
-		++str;
-	}
-	if (*str)
-		return (0);			// FALSE
-	*value = sign * abs;
-	return (1);				// TRUE
-}
 
 /*
 void	token_destroy(t_token *t)
