@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_input.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/24 12:54:33 by syeresko          #+#    #+#             */
+/*   Updated: 2019/04/24 12:54:44 by syeresko         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>		// NULL
-#include "lem_in.h"
-#include "parse.h"
+#include "lem_in.h"		// not really needed, since read_input.h includes it
+#include "read_input.h"
 
 void		read_eof(t_lem *lem, t_token *token)
 {

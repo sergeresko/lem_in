@@ -1,7 +1,6 @@
 #include <stdlib.h>		// malloc, NULL
 #include <stdio.h>
 #include "lem_in.h"
-#include "parse.h"
 
 void	lem_init(t_lem *lem)
 {

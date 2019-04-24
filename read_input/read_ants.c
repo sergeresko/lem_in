@@ -6,12 +6,12 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 18:07:20 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/23 19:33:56 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/24 12:52:12 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
-#include "parse.h"
+#include "lem_in.h"		// not really needed, since read_input.h includes it
+#include "read_input.h"
 
 void		read_ants(t_lem *lem, t_token *token)
 {

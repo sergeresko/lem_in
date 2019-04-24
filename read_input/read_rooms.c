@@ -6,13 +6,13 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 18:11:24 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/23 19:33:55 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/24 12:53:41 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>		// NULL
-#include "lem_in.h"
-#include "parse.h"
+#include "lem_in.h"		// not really needed, since read_input.h includes it
+#include "read_input.h"
 
 static void	add_room(t_lem *lem, t_token *token)
 {

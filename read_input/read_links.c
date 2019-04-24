@@ -6,14 +6,14 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 18:09:06 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/23 19:59:50 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/24 12:53:29 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>		// NULL
 #include "libft.h"		// ft_strcmp
-#include "lem_in.h"
-#include "parse.h"
+#include "lem_in.h"		// not really needed, since read_input.h includes it
+#include "read_input.h"
 
 //	TODO: make sure that ft_strcmp(src_name, dst_name) != 0
 

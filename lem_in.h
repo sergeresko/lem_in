@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 17:19:36 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/23 19:57:48 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/24 12:49:55 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,5 +133,9 @@ void		modify_graph(t_room *start, t_room *end);
 void		restore_graph(t_room *start, t_room *end);
 void		xor_paths(t_room *start, t_room *end);
 int			bhandari(t_graph *g);	// t_bool
+
+// -----------------------------
+void		lem_die(t_lem *lem, char const *message);
+void		lem_die_eof(char const *message);
 
 #endif

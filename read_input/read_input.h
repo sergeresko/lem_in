@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.h                                            :+:      :+:    :+:   */
+/*   read_input.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 14:51:58 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/24 11:33:41 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/24 12:51:04 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSE_H
-# define PARSE_H
+#ifndef READ_INPUT_H
+# define READ_INPUT_H
 
-#include "lem_in.h"		// hence files that include "parse.h" need not include "lem_in.h"
+#include "lem_in.h"		// hence files that include "read_input.h" need not include "lem_in.h"
 
 typedef enum e_type		t_type;
 typedef union u_value	t_value;
@@ -55,15 +55,13 @@ struct		s_token
 	t_value	value;
 };
 
-int			ft_atoi_strict(char const *str, int *value);	// t_bool
+int			ft_atoi_strict(char const *str, int *value);	// t_bool	// maybe out of here
 
 void		tokenize(char const *str, t_token *token);
-
-t_room		*find_room(t_glist *rooms, char const *room_name);
-
-void		lem_die(t_lem *lem, char const *message);
-void		lem_die_eof(char const *message);
 void		get_next_token(t_lem *lem, t_token *token);
+
+t_room		*find_room(t_glist *rooms, char const *room_name);		// out of here
+
 void		read_ants(t_lem *lem, t_token *token);
 void		read_rooms(t_lem *lem, t_token *token);
 void		read_links(t_lem *lem, t_token *token);
