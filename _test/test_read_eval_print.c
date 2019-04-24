@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include "libft.h"
 #include "lem_in.h"
 
 int		main(int argc, char **argv)
@@ -13,6 +14,12 @@ int		main(int argc, char **argv)
 		print_input(&lem.input);
 	if (lem.options.rooms)
 		print_rooms(&lem.graph);
+
+	if (link_find(lem.graph.start, lem.graph.end) != NULL)
+	{
+		ft_putstr("TODO: start and end are directly connected\n");
+		return (0);
+	}
 
 	n_paths = 0;
 	while (bhandari(&lem.graph))
