@@ -37,7 +37,7 @@ void		link_push(t_room *src, t_room *dst, int weight)
 	// <
 	//
 	ft_printf(PF_GREEN"%s -> %s (%d)"PF_RESET": ", src->name, dst->name, weight);
-	ft_printf("original %s->links %05x, ", src->name, DEBUG_PTR(src->links));
+	ft_printf("old %s->links %05x, ", src->name, DEBUG_PTR(src->links));
 	//
 	// >
 	l = malloc(sizeof(t_link));		// TODO: check memory
@@ -65,11 +65,14 @@ t_room		*link_pop(t_room *src)
 	// <
 	//
 	if (src->links == NULL)
-		ft_printf("[%s has no links, "PF_RED"doing nothing]"PF_RESET"\n", src->name);
+		ft_printf("[%s has no links, "PF_RED"doing nothing"PF_RESET"]\n", src->name);
 	//
 	// >
 	if (src->links == NULL)
+	{
+		lem_die_from_bug("popping an empty list");
 		return (NULL);
+	}
 	l = src->links->data;
 	dst = l->dst;
 	// <
@@ -103,11 +106,16 @@ void		link_delete(t_room *src, t_room *dst)
 		// <
 		//
 		ft_printf(PF_MAGENTA"%s -> %s (%d)"PF_RESET": ", src->name, dst->name, l->weight);
-		ft_printf("old %s->links %05x, link "PF_MAGENTA"%05x"PF_RESET", item "PF_MAGENTA"%05x"PF_RESET", ",
+		ft_printf("old %s->links %05x, link "PF_MAGENTA"%05x"PF_RESET", item "PF_MAGENTA"%05x"PF_RESET,
 				src->name, DEBUG_PTR(src->links), DEBUG_PTR(l), DEBUG_PTR(src->links));
 		//
 		// >
 		free(l);
+		// <
+		//
+		ft_putstr(", ");
+		//
+		// >
 		glist_delete(&src->links);
 		// <
 		//
@@ -125,12 +133,17 @@ void		link_delete(t_room *src, t_room *dst)
 			// <
 			//
 			ft_printf(PF_MAGENTA"%s -> %s (%d)"PF_RESET": ", src->name, dst->name, l->weight);
-			ft_printf("old %s->links %05x, link "PF_MAGENTA"%05x"PF_RESET", item "PF_MAGENTA"%05x"PF_RESET", ",
+			ft_printf("old %s->links %05x, link "PF_MAGENTA"%05x"PF_RESET", item "PF_MAGENTA"%05x"PF_RESET",",
 					src->name, DEBUG_PTR(src->links), DEBUG_PTR(l), DEBUG_PTR(links->next));
 			//
 			// >
 			free(l);
-			glist_delete(&links->next);
+			// <
+			//
+			ft_putstr(" ");
+			//
+			// >
+			glist_delete(&links->next);		// <-- TODO: the bug is here
 			// <
 			//
 			ft_printf("new %s->links %05x\n", src->name, DEBUG_PTR(src->links));
@@ -140,6 +153,7 @@ void		link_delete(t_room *src, t_room *dst)
 		}
 		links = links->next;
 	}
+	lem_die_from_bug("no link to delete");
 }
 
 /*

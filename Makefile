@@ -4,7 +4,6 @@ LIBFT_DIR='../filler/test/libft/'
 gcc -g -Wall -Wextra -Werror \
 	_test/test_read_eval_print.c \
 	-I ./ -I read_input/ -I ../filler/test/libft/ \
-	../filler/test/libft/libft.a \
 	\
 	read_options.c \
 	\
@@ -38,4 +37,6 @@ gcc -g -Wall -Wextra -Werror \
 	print_rooms.c \
 	print_paths.c \
 	print_solution.c \
-	print_total.c
+	print_total.c \
+	\
+	-L ../filler/test/libft/ -l ft
