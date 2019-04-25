@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dijkstra.c                                         :+:      :+:    :+:   */
+/*   find_shortest_path.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>		// NULL
-#include "lem_in.h"
+#include "datatypes.h"
 
 void		update_neighbors(t_room *src, t_set *s)
 {
@@ -36,7 +36,11 @@ void		update_neighbors(t_room *src, t_set *s)
 	}
 }
 
-int			dijkstra(t_room *src, t_room *end)		// t_bool
+/*
+**	modified Dijkstra's algorithm
+*/
+
+t_bool		find_shortest_path(t_room *src, t_room *end)
 {
 	t_set	*s;
 

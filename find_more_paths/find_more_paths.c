@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bhandari.c                                         :+:      :+:    :+:   */
+/*   find_more_paths.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,13 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//
-//
-#include <stdio.h>		// printf for debugging
-//
-//
 #include <stdlib.h>		// NULL
-#include "lem_in.h"
+#include "find_more_paths.h"
 
 static void	adjust_parents(t_room *x)
 {
@@ -55,16 +50,19 @@ static void	tidy_up(t_glist *rooms)
 	}
 }
 
-int			bhandari(t_graph *g)	// t_bool
+/*
+**	Bhandari's algorithm
+*/
+
+t_bool		find_more_paths(t_graph *g)
 {
-	int		res;				// t_bool
+	t_bool	found;
 
 	modify_graph(g->start, g->end);
-	res = dijkstra(g->start, g->end);
+	found = find_shortest_path(g->start, g->end);
 	adjust_parents(g->end);
 	restore_graph(g->start, g->end);
-//	printf("BHANDARI - HELLO\n");
 	xor_paths(g->start, g->end);
 	tidy_up(g->rooms);
-	return (res);
+	return (found);
 }

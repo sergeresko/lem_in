@@ -16,7 +16,8 @@
 #endif
 // }
 #include <stdlib.h>		// malloc, free, NULL
-#include "lem_in.h"
+#include "datatypes.h"
+#include "lem_in.h"		// lem_die_from_bug
 // {
 #ifdef DEBUG
 # define DEBUG_PTR(ptr) (((unsigned long long)(ptr) & 0xfffff0) >> 4)

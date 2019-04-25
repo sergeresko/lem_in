@@ -10,15 +10,17 @@
 #                                                                              #
 # **************************************************************************** #
 
-LIBFT_DIR = ~/projects/filler/rendu/libft/
-#LIBFT_DIR='../filler/test/libft/'
+#LIBFT_DIR = ~/projects/filler/rendu/libft/
+LIBFT_DIR = ../filler/test/libft/
 
 NAME = a.out
 
 all: $(NAME)
-	@ gcc -g -Wall -Wextra -Werror \
+
+$(NAME):
+	@ gcc -Wall -Wextra -Werror \
 		_test/test_read_eval_print.c \
-		-I ./ -I read_input/ -I ~/projects/filler/rendu/libft \
+		-I ./ -I read_input/ -I datatypes/ -I find_more_paths/ -I $(LIBFT_DIR) \
 		\
 		read_options.c \
 		\
@@ -38,20 +40,19 @@ all: $(NAME)
 		datatypes/room.c \
 		datatypes/set.c \
 		\
-		algorithm/bhandari.c \
-		algorithm/modify_graph.c \
-		algorithm/restore_graph.c \
-		algorithm/xor_paths.c \
+		find_more_paths/find_more_paths.c \
+		find_more_paths/modify_graph.c \
+		find_more_paths/find_shortest_path.c \
+		find_more_paths/restore_graph.c \
+		find_more_paths/xor_paths.c \
 		\
-		algorithm/dijkstra.c \
+		solution/build_solution.c \
+		solution/distribute_ants.c \
 		\
-		algorithm/build_solution.c \
-		algorithm/distribute_ants.c \
+		print/print_input.c \
+		print/print_rooms.c \
+		print/print_paths.c \
+		print/print_moves.c \
+		print/print_total.c \
 		\
-		print_input.c \
-		print_rooms.c \
-		print_paths.c \
-		print_solution.c \
-		print_total.c \
-		\
-		-L ~/projects/filler/rendu/libft -l ft
+		$(LIBFT_DIR)libft.a

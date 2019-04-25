@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>		// NULL
-#include "lem_in.h"
+#include "datatypes.h"
 
 /*
 **	TODO: [Description; rename]

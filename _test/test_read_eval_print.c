@@ -1,4 +1,4 @@
-#include <unistd.h>		// sleep
+//#include <unistd.h>		// sleep
 #include <stdlib.h>
 #include "libft.h"
 #include "lem_in.h"
@@ -23,12 +23,12 @@ int		main(int argc, char **argv)
 	}
 
 	n_paths = 0;
-	while (bhandari(&lem.graph))
+	while (find_more_paths(&lem.graph))
 	{
 		//
 		//
-		ft_printf("##### HELLO!\n");
-		usleep(500000);
+//		ft_printf("##### HELLO!\n");
+//		usleep(500000);
 		//
 		//
 		++n_paths;
@@ -42,8 +42,8 @@ int		main(int argc, char **argv)
 		solution_destroy(s);
 		//
 		//
-		ft_printf("###### %d\n", n_paths);
-		usleep(500000);
+//		ft_printf("###### %d\n", n_paths);
+//		usleep(500000);
 		//
 		//
 	}
