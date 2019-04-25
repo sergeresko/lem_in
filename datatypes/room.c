@@ -10,27 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//	<
-//
-#include "libft.h"		// for debugging
-//
-//	>
-
+// {
+#ifdef DEBUG
+# include "libft.h"		// for debugging
+#endif
+// }
 #include <stdlib.h>		// malloc
 #include "lem_in.h"
-
-// <
-//
-#define DEBUG_PTR(ptr) (((unsigned long long)(ptr) & 0xfffff0) >> 4)
-//
-// >
+// {
+#ifdef DEBUG
+# define DEBUG_PTR(ptr) (((unsigned long long)(ptr) & 0xfffff0) >> 4)
+#endif
+// }
 
 t_room		*room_new(void)
 {
 	t_room	*room;
 
 	room = malloc(sizeof(t_room));		// check memory
+// {
+#ifdef DEBUG
 	ft_printf(PF_YELLOW"[malloc %05x (room)]"PF_RESET, DEBUG_PTR(room));	//
+#endif
+// }
 	room->name = NULL;	//
 //	room->x = 0;
 //	room->y = 0;

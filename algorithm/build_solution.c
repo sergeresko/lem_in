@@ -6,15 +6,10 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/20 16:48:50 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/25 19:26:05 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/25 19:53:08 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//
-//
-#include "libft.h"		// for debugging
-//
-//
 #include <stdlib.h>		// malloc, free, NULL
 #include "lem_in.h"
 
@@ -100,11 +95,6 @@ t_solution	*build_solution(int n_ants, t_room *start, int n_paths)
 void	solution_destroy(t_solution *s)
 {
 	free(s->paths);
-	// <
-	//
-	ft_putstr("##### solution_destroy: s->paths freed\n");
-	//
-	// >
 	free(s->ants_per_path);
 	free(s);
 }
