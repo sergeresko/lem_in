@@ -30,12 +30,12 @@
 **	TODO: [Description; get rid of `t`, replace by `end`]
 */
 
-static void	restore_path(t_room *start, t_room *y, t_room *t)
+static void	restore_path(t_room *start, t_room *y, t_room *end)
 {
 	t_room	*x;
 	t_room	*z;
 
-	link_delete(t, y);
+	link_delete(end, y);
 	while (y != start)
 	{
 		x = link_pop(y);
@@ -43,13 +43,13 @@ static void	restore_path(t_room *start, t_room *y, t_room *t)
 		x->links = y->links;
 		free(y);			// instead of room_destroy
 		ft_printf(PF_YELLOW"[free %05x (room)]"PF_RESET, DEBUG_PTR(y));	//
-		link_push(x, t, LINK_POSITIVE);		// t == x->succ
-		link_push(t, x, LINK_POSITIVE);		// t == x->succ
-		t = x;
+		link_push(x, x->succ, LINK_POSITIVE);		// t == x->succ
+		link_push(x->succ, x, LINK_POSITIVE);		// t == x->succ
+//		t = x;
 		y = z;
 	}
-	link_push(start, t, LINK_POSITIVE);		// t == x
-	link_push(t, start, LINK_POSITIVE);		// t == x
+	link_push(start, x, LINK_POSITIVE);		// t == x
+	link_push(x, start, LINK_POSITIVE);		// t == x
 }
 
 /*
