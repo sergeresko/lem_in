@@ -10,8 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+// <
+//
+#include "libft.h"		// for debugging
+//
+// >
+
 #include <stdlib.h>		// malloc, free, NULL
 #include "lem_in.h"
+
+// <
+//
+#define DEBUG_PTR(ptr) (((unsigned long long)(ptr) & 0xfffff0) >> 4)
+//
+// >
 
 /*
 **	allocate a new element initialized with `data`
@@ -22,6 +34,7 @@ t_glist		*glist_new(void *data)
 	t_glist	*elem;
 
 	elem = malloc(sizeof(t_glist));
+	ft_printf(PF_YELLOW"[malloc %05x (glist)]"PF_RESET, DEBUG_PTR(elem));	//
 	elem->data = data;
 	elem->next = NULL;
 	return (elem);
@@ -53,4 +66,5 @@ void		glist_delete(t_glist **elem)
 	del = *elem;
 	*elem = del->next;
 	free(del);
+	ft_printf(PF_YELLOW"[free %05x (glist)]"PF_RESET, DEBUG_PTR(del));	//
 }

@@ -42,6 +42,7 @@ static void	restore_path(t_room *start, t_room *y, t_room *t)
 		z = link_pop(x);
 		x->links = y->links;
 		free(y);			// instead of room_destroy
+		ft_printf(PF_YELLOW"[free %05x (room)]"PF_RESET, DEBUG_PTR(y));	//
 		link_push(x, t, LINK_POSITIVE);		// t == x->succ
 		link_push(t, x, LINK_POSITIVE);		// t == x->succ
 		t = x;

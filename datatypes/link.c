@@ -41,6 +41,7 @@ void		link_push(t_room *src, t_room *dst, int weight)
 	//
 	// >
 	l = malloc(sizeof(t_link));		// TODO: check memory
+	ft_printf(PF_YELLOW"[malloc %05x (link)]"PF_RESET, DEBUG_PTR(l));	//
 	l->dst = dst;
 	l->weight = weight;
 	glist_push(&src->links, _debug_addr = glist_new(l));	// glist_push_new(&src->links, l);
@@ -62,12 +63,6 @@ t_room		*link_pop(t_room *src)
 	t_link	*l;
 	t_room	*dst;
 
-	// <
-	//
-	if (src->links == NULL)
-		ft_printf("[%s has no links, "PF_RED"doing nothing"PF_RESET"]\n", src->name);
-	//
-	// >
 	if (src->links == NULL)
 	{
 		lem_die_from_bug("popping an empty list");
@@ -82,6 +77,7 @@ t_room		*link_pop(t_room *src)
 	//
 	// >
 	free(l);
+	ft_printf(PF_YELLOW"[free %05x (link)]"PF_RESET, DEBUG_PTR(l));	//
 	glist_delete(&src->links);
 	// <
 	//
@@ -111,6 +107,7 @@ void		link_delete(t_room *src, t_room *dst)
 		//
 		// >
 		free(l);
+		ft_printf(PF_YELLOW"[free %05x (link)]"PF_RESET, DEBUG_PTR(l));	//
 		// <
 		//
 		ft_putstr(", ");
@@ -138,6 +135,7 @@ void		link_delete(t_room *src, t_room *dst)
 			//
 			// >
 			free(l);
+			ft_printf(PF_YELLOW"[free %05x (link)]"PF_RESET, DEBUG_PTR(l));	//
 			// <
 			//
 			ft_putstr(" ");
