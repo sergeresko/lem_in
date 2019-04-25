@@ -71,13 +71,13 @@ static void	print_turn(t_room *const *loc, int k)
 **	TODO: [Description; what `loc` is for]
 */
 
-void		print_solution(t_solution const *s, int n_ants)
+void		print_moves(t_solution const *s, int total_ants)
 {
 	t_room	**loc;
 	int		count;
 	int		k;
 
-	loc = malloc(n_ants * sizeof(t_room *));		// check memory
+	loc = malloc(total_ants * sizeof(t_room *));		// check memory
 	count = s->n_turns;
 	k = 0;
 	while (count--)

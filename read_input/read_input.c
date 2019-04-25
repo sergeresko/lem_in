@@ -14,7 +14,7 @@
 #include "lem_in.h"		// not really needed, since read_input.h includes it
 #include "read_input.h"
 
-static void	init(t_lem *lem)
+static void		lem_init(t_lem *lem)
 {
 	lem->graph.rooms = NULL;
 	lem->graph.start = NULL;
@@ -24,7 +24,7 @@ static void	init(t_lem *lem)
 	lem->input.last = NULL;
 }
 
-static void	read_eof(t_lem *lem, t_token *token)
+static void		read_eof(t_lem *lem, t_token *token)
 {
 	if (token->type != TOKEN_EOF)
 		lem_die_at_line(lem, "invalid link (format: name1-name2)");
@@ -34,11 +34,11 @@ static void	read_eof(t_lem *lem, t_token *token)
 		lem_die("end room is missing");	// without line number
 }
 
-void		read_input(t_lem *lem)
+void			read_input(t_lem *lem)
 {
-	t_token	token;
+	t_token		token;
 
-	init(lem);
+	lem_init(lem);
 	get_next_token(lem, &token);
 	read_ants(lem, &token);
 	read_rooms(lem, &token);

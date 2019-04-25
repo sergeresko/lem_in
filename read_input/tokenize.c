@@ -34,7 +34,7 @@ int		ft_strprefix(char const *str, char const *prefix)
 }
 */
 
-void		tokenize_command_or_comment(char const *str, t_token *token)
+static void		tokenize_command_or_comment(char const *str, t_token *token)
 {
 	if (ft_strcmp(str, "##start") == 0)
 		token->type = TOKEN_CMD_START;
@@ -44,16 +44,16 @@ void		tokenize_command_or_comment(char const *str, t_token *token)
 		token->type = TOKEN_COMMENT;
 }
 
-// TODO:
+// TODO: to separate file
 void		tokenize_turn(char const *str, t_token *token)
 {
 	(void)str;
 	token->type = TOKEN_TURN;
 }
 
-void		tokenize_room(char const *str, t_token *token)
+static void		tokenize_room(char const *str, t_token *token)
 {
-	char	**words;
+	char		**words;
 
 	words = ft_strsplit(str, ' ');
 	if (words && words[0] && words[1] && words[2] && !words[3]
@@ -74,7 +74,7 @@ void		tokenize_room(char const *str, t_token *token)
 	}
 }
 
-void		tokenize_link(char const *str, t_token *token)
+static void		tokenize_link(char const *str, t_token *token)
 {
 	size_t		i;
 	char const	*dst;
@@ -95,9 +95,9 @@ void		tokenize_link(char const *str, t_token *token)
 
 //	NOTE that the number of ants may be zero!
 
-void		tokenize_ants(char const *str, t_token *token)
+static void		tokenize_ants(char const *str, t_token *token)
 {
-	int		number;
+	int			number;
 
 	if (ft_atoi_strict(str, &number) && number >= 0)
 	{

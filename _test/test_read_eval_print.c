@@ -36,7 +36,7 @@ int		main(int argc, char **argv)
 		if (lem.options.paths)
 			print_paths(s, lem.graph.start);
 		if (lem.options.moves)
-			print_solution(s, lem.total_ants);
+			print_moves(s, lem.total_ants);
 		if (lem.options.total)
 			print_total(s);
 		solution_destroy(s);

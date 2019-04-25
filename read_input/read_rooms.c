@@ -14,9 +14,9 @@
 #include "lem_in.h"		// not really needed, since read_input.h includes it
 #include "read_input.h"
 
-static void	add_room(t_lem *lem, t_token *token)
+static void		add_room(t_lem *lem, t_token *token)
 {
-	t_room	*room;
+	t_room		*room;
 
 	if (find_room(lem->graph.rooms, token->value.room.name) != NULL)
 		lem_die_at_line(lem, "already has a room with this name");
@@ -27,9 +27,9 @@ static void	add_room(t_lem *lem, t_token *token)
 	glist_push(&lem->graph.rooms, glist_new(room));
 }
 
-static void	read_start_or_end_room(t_lem *lem, t_token *token)
+static void		read_start_or_end_room(t_lem *lem, t_token *token)
 {
-	int		is_start;		// t_bool
+	t_bool		is_start;
 
 	is_start = (token->type == TOKEN_CMD_START);
 	if (is_start && lem->graph.start != NULL)
@@ -54,7 +54,7 @@ static void	read_start_or_end_room(t_lem *lem, t_token *token)
 **	TOKEN_TURN, TOKEN_LINK, TOKEN_ANTS, TOKEN_EMPTY_LINE, TOKEN_ERROR, TOKEN_EOF.
 */
 
-static int	read_room(t_lem *lem, t_token *token)		// t_bool
+static t_bool	read_room(t_lem *lem, t_token *token)
 {
 	if (token->type == TOKEN_ROOM)
 		add_room(lem, token);
@@ -63,7 +63,7 @@ static int	read_room(t_lem *lem, t_token *token)		// t_bool
 	return (token->type == TOKEN_ROOM);
 }
 
-void		read_rooms(t_lem *lem, t_token *token)
+void			read_rooms(t_lem *lem, t_token *token)
 {
 //	if (token->type == TOKEN_EOF)
 //		lem_die_eof(lem);

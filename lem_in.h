@@ -86,7 +86,7 @@ void		lem_die_from_bug(char const *message);
 void		print_input(t_input const *input);
 void		print_rooms(t_graph const *g);
 void		print_paths(t_solution const *s, t_room const *start);
-void		print_solution(t_solution const *s, int n_ants);
+void		print_moves(t_solution const *s, int n_ants);
 void		print_total(t_solution const *s);
 
 #endif

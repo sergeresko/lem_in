@@ -55,7 +55,7 @@ struct		s_token
 	t_value	value;
 };
 
-int			ft_atoi_strict(char const *str, int *value);	// t_bool	// maybe out of here
+t_bool		ft_atoi_strict(char const *str, int *value);	// maybe out of here
 
 void		tokenize(char const *str, t_token *token);
 void		get_next_token(t_lem *lem, t_token *token);

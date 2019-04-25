@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int			ft_atoi_strict(char const *str, int *value)		// t_bool
+#include "datatypes.h"
+
+t_bool		ft_atoi_strict(char const *str, int *value)
 {
 	int		sign;
 	int		abs;
@@ -19,17 +21,17 @@ int			ft_atoi_strict(char const *str, int *value)		// t_bool
 	if (*str == '-' || *str == '+')
 		++str;
 	if (*str == '\0')
-		return (0);			// FALSE
+		return (FALSE);
 	abs = 0;
 	while ('0' <= *str && *str <= '9')
 	{
 		abs = abs * 10 + (int)(*str - '0');
 		if (abs < 0)
-			return (0);		// FALSE
+			return (FALSE);
 		++str;
 	}
 	if (*str)
-		return (0);			// FALSE
+		return (FALSE);
 	*value = sign * abs;
-	return (1);				// TRUE
+	return (TRUE);
 }

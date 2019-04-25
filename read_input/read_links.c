@@ -17,11 +17,11 @@
 
 //	TODO: make sure that ft_strcmp(src_name, dst_name) != 0
 
-void		add_link(t_lem *lem, t_token *token)
+void			add_link(t_lem *lem, t_token *token)
 //void		add_link(char const *src_name, char const *dst_name)
 {
-	t_room	*src;
-	t_room	*dst;
+	t_room		*src;
+	t_room		*dst;
 
 	if ((src = find_room(lem->graph.rooms, token->value.link.src)) == NULL)
 		lem_die_at_line(lem, "has no room called `src`");		// TODO: change message
@@ -35,7 +35,7 @@ void		add_link(t_lem *lem, t_token *token)
 	free(token->value.link.dst);						//
 }
 
-static int	read_link(t_lem *lem, t_token *token)		// t_bool
+static t_bool	read_link(t_lem *lem, t_token *token)
 {
 	if (token->type == TOKEN_LINK)
 	{
@@ -46,7 +46,7 @@ static int	read_link(t_lem *lem, t_token *token)		// t_bool
 	return (token->type == TOKEN_LINK);
 }
 
-void		read_links(t_lem *lem, t_token *token)
+void			read_links(t_lem *lem, t_token *token)
 {
 	if (token->type != TOKEN_EOF && token->type != TOKEN_LINK)
 		lem_die_at_line(lem, "invalid room or link");
