@@ -6,7 +6,7 @@
 int		main(int argc, char **argv)
 {
 	t_lem		lem;
-//	t_solution	*s;
+	t_solution	*s;
 	int			n_paths;
 
 	read_options(argc, argv, &lem.options);
@@ -32,7 +32,6 @@ int		main(int argc, char **argv)
 		//
 		//
 		++n_paths;
-/*
 		s = build_solution(lem.total_ants, lem.graph.start, n_paths);
 		if (lem.options.paths)
 			print_paths(s, lem.graph.start);
@@ -41,7 +40,6 @@ int		main(int argc, char **argv)
 		if (lem.options.total)
 			print_total(s);
 		solution_destroy(s);
-*/
 		//
 		//
 		ft_printf("###### %d\n", n_paths);

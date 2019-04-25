@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_solution.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/20 16:48:50 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/24 15:20:03 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/25 19:26:05 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ t_solution	*build_solution(int n_ants, t_room *start, int n_paths)
 	s->n_paths = n_paths;
 	s->paths = init_paths(n_paths, start);
 	sort_paths(n_paths, s->paths);
-	s->ants_per_path = malloc(n_ants * sizeof(int));
+	s->ants_per_path = malloc(n_paths * sizeof(int));
 	distribute_ants(n_ants, s);
 	return (s);
 }
