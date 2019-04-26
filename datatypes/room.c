@@ -34,15 +34,15 @@ t_room		*room_new(void)
 **	return the room called `name` or NULL if it is not in the list
 */
 
-t_room		*room_find(t_glist const *rooms, char const *room_name)
+t_room		*room_find(t_list const *rooms, char const *room_name)
 {
-	t_room	*r;
+	t_room	*room;
 
 	while (rooms != NULL)
 	{
-		r = rooms->data;
-		if (ft_strcmp(r->name, room_name) == 0)
-			return (r);
+		room = rooms->data;
+		if (ft_strcmp(room->name, room_name) == 0)
+			return (room);
 		rooms = rooms->next;
 	}
 	return (NULL);

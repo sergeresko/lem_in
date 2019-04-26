@@ -20,7 +20,7 @@
 
 typedef enum e_bool		t_bool;
 
-typedef struct s_glist	t_glist;
+typedef struct s_list	t_list;
 typedef struct s_room	t_room;
 typedef struct s_link	t_link;
 typedef struct s_graph	t_graph;
@@ -38,26 +38,25 @@ enum		e_bool
 };
 
 /*
-**	TODO: rename to t_list
 **	generic singly-linked list
 **
-**	`glist_push` prepends a new item containing the specified data.
-**	`glist_pop` deletes the first item and returns its data.
+**	`list_push` prepends a new item containing the specified data.
+**	`list_pop` deletes the first item and returns its data.
 **
 **	The trick to insert or remove an item in the middle or end of a list,
-**	say right after an item pointed to by `t_glist *item`, is to pass
+**	say right after an item pointed to by `t_list *item`, is to pass
 **	`&item->next` as the `head` parameter to these functions.
 */
 
-struct		s_glist
+struct		s_list
 {
 	void	*data;
-	t_glist	*next;
+	t_list	*next;
 };
 
-t_glist		*glist_new(void *data);			// TODO: to be removed
-void		glist_push(t_glist **head, void *data);
-void		*glist_pop(t_glist **head);
+t_list		*list_new(void *data);			// TODO: to be removed
+void		list_push(t_list **head, void *data);
+void		*list_pop(t_list **head);
 
 /*
 **	TODO: describe
@@ -73,7 +72,7 @@ struct		s_room
 	char	*name;
 	int		x;
 	int		y;
-	t_glist	*links;
+	t_list	*links;
 	int		distance;
 	t_room	*parent;
 	t_room	*pred;
@@ -81,7 +80,7 @@ struct		s_room
 };
 
 t_room		*room_new(void);
-t_room		*room_find(t_glist const *rooms, char const *room_name);
+t_room		*room_find(t_list const *rooms, char const *room_name);
 
 /*
 **	weighted directed link between rooms
@@ -111,7 +110,7 @@ t_link		*link_find(t_room *src, t_room *dst);		// currently used only when parsi
 
 struct		s_graph
 {
-	t_glist	*rooms;
+	t_list	*rooms;
 	t_room	*start;
 	t_room	*end;
 };
@@ -124,7 +123,7 @@ struct		s_graph
 
 struct		s_set
 {
-	t_glist	*elements;
+	t_list	*elements;
 };
 
 t_set		*set_new(void);

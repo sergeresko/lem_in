@@ -48,7 +48,7 @@ static void	modify_path(t_room *start, t_room *in, t_room *end)
 
 void		modify_graph(t_room *start, t_room *end)
 {
-	t_glist	*links;
+	t_list	*links;
 	t_link	*l;
 
 	links = end->links;

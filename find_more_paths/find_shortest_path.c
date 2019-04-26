@@ -14,7 +14,7 @@
 
 void		update_neighbors(t_room *src, t_set *s)
 {
-	t_glist	*links;
+	t_list	*links;
 	t_link	*l;
 	t_room	*dst;
 	int		new_distance;

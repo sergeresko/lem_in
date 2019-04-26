@@ -31,8 +31,8 @@ struct		s_opt
 struct		s_input
 {
 	int		line_count;
-	t_glist	*lines;
-	t_glist	*last;
+	t_list	*lines;
+	t_list	*last;
 };
 
 struct		s_lem

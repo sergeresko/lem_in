@@ -36,7 +36,7 @@ t_set		*set_new(void)
 
 void		set_push(t_set *s, t_room *x)
 {
-	t_glist	*e;
+	t_list	*e;
 
 	e = s->elements;
 	while (e != NULL)
@@ -45,7 +45,7 @@ void		set_push(t_set *s, t_room *x)
 			return ;
 		e = e->next;
 	}
-	glist_push(&s->elements, x);
+	list_push(&s->elements, x);
 }
 
 /*
@@ -55,8 +55,8 @@ void		set_push(t_set *s, t_room *x)
 
 t_room		*set_pop_min(t_set *s)
 {
-	t_glist	*e;
-	t_glist	*e_min;
+	t_list	*e;
+	t_list	*e_min;
 	int		min;
 	t_room	*r;
 
@@ -83,13 +83,13 @@ t_room		*set_pop_min(t_set *s)
 
 	if (s->elements == e_min)
 	{
-		(void)glist_pop(&s->elements);
+		(void)list_pop(&s->elements);
 		return (r);
 	}
 	e = s->elements;
 	while (e->next != e_min)
 		e = e->next;
-	(void)glist_pop(&e->next);
+	(void)list_pop(&e->next);
 	return (r);
 }
 
@@ -99,8 +99,8 @@ t_room		*set_pop_min(t_set *s)
 
 void		set_destroy(t_set **s)
 {
-	t_glist	*e;
-	t_glist	*n;
+	t_list	*e;
+	t_list	*n;
 
 	e = (*s)->elements;
 	while (e != NULL)

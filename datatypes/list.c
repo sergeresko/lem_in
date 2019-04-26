@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   glist.c                                            :+:      :+:    :+:   */
+/*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -18,21 +18,21 @@
 **	TODO: to be removed
 */
 
-t_glist		*glist_new(void *data)
+t_list		*list_new(void *data)
 {
-	t_glist	*elem;
+	t_list	*elem;
 
-	elem = malloc(sizeof(t_glist));
+	elem = malloc(sizeof(t_list));
 	elem->data = data;
 	elem->next = NULL;
 	return (elem);
 }
 
-void		glist_push(t_glist **head, void *data)
+void		list_push(t_list **head, void *data)
 {
-	t_glist	*item;
+	t_list	*item;
 
-	item = malloc(sizeof(t_glist));
+	item = malloc(sizeof(t_list));
 	item->data = data;
 	item->next = *head;
 	*head = item;
@@ -40,9 +40,9 @@ void		glist_push(t_glist **head, void *data)
 
 //	the return value is never used, so the function may be made void
 //	and all lines with `data` removed from its body
-void		*glist_pop(t_glist **head)
+void		*list_pop(t_list **head)
 {
-	t_glist	*item;
+	t_list	*item;
 	void	*data;
 
 	item = *head;

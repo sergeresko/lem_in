@@ -26,7 +26,7 @@ void		link_push(t_room *src, t_room *dst, int weight)
 	l = malloc(sizeof(t_link));		// TODO: check memory
 	l->dst = dst;
 	l->weight = weight;
-	glist_push(&src->links, l);
+	list_push(&src->links, l);
 }
 
 /*
@@ -46,7 +46,7 @@ t_room		*link_pop(t_room *src)
 	l = src->links->data;
 	dst = l->dst;
 	free(l);
-	(void)glist_pop(&src->links);
+	(void)list_pop(&src->links);
 	return (dst);
 }
 
@@ -56,14 +56,14 @@ t_room		*link_pop(t_room *src)
 
 void		link_delete(t_room *src, t_room *dst)
 {
-	t_glist	*links;
+	t_list	*links;
 	t_link	*l;
 
 	l = src->links->data;
 	if (l->dst == dst)
 	{
 		free(l);
-		(void)glist_pop(&src->links);
+		(void)list_pop(&src->links);
 		return ;
 	}
 	links = src->links;
@@ -73,7 +73,7 @@ void		link_delete(t_room *src, t_room *dst)
 		if (l->dst == dst)
 		{
 			free(l);
-			(void)glist_pop(&links->next);
+			(void)list_pop(&links->next);
 			return ;
 		}
 		links = links->next;
@@ -87,7 +87,7 @@ void		link_delete(t_room *src, t_room *dst)
 
 t_link		*link_find(t_room *src, t_room *dst)
 {
-	t_glist	*links;
+	t_list	*links;
 	t_link	*l;
 
 	links = src->links;

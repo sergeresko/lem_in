@@ -15,7 +15,7 @@
 
 void		print_input(t_input const *input)
 {
-	t_glist	*lines;
+	t_list	*lines;
 	int		count;
 
 	lines = input->lines;

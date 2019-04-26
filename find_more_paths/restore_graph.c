@@ -45,7 +45,7 @@ static void	restore_path(t_room *start, t_room *out, t_room *end)
 
 void		restore_graph(t_room *start, t_room *end)
 {
-	t_glist	*links;
+	t_list	*links;
 	t_link	*l;
 
 	links = end->links;

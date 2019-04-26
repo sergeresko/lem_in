@@ -36,7 +36,7 @@ static void	adjust_parents(t_room *x)
 **	reset the `distance` and `parent` fields of all rooms to default values
 */
 
-static void	tidy_up(t_glist *rooms)
+static void	tidy_up(t_list *rooms)
 {
 	t_room	*x;
 

@@ -29,7 +29,7 @@ static int	path_length(t_room *origin)
 static t_path	*init_paths(int n_paths, t_room *start)
 {
 	t_path	*paths;
-	t_glist *links;
+	t_list	*links;
 	t_link	*l;
 	int		i;
 

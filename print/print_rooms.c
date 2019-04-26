@@ -16,7 +16,7 @@
 
 static void	print_neighbors(t_room const *room)
 {
-	t_glist	*links;
+	t_list	*links;
 	t_link	*l;
 
 	links = room->links;
@@ -40,7 +40,7 @@ static void	print_room(t_room const *room)
 
 void		print_rooms(t_graph const *g)
 {
-	t_glist	*rooms;
+	t_list	*rooms;
 	t_room	*r;
 
 	ft_putstr("#\n#   Rooms:\n#\n");

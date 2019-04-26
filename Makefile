@@ -35,7 +35,7 @@ $(NAME):
 		\
 		lem_die.c \
 		\
-		datatypes/glist.c \
+		datatypes/list.c \
 		datatypes/link.c \
 		datatypes/room.c \
 		datatypes/set.c \

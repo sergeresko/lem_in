@@ -19,9 +19,9 @@
 // TODO: remake using the new version of list_push
 static void	save_line(char *line, t_input *input)
 {
-	t_glist	*item;
+	t_list	*item;
 
-	item = glist_new(line);
+	item = list_new(line);
 	if (input->lines == NULL)
 		input->lines = item;
 	else
