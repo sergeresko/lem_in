@@ -10,21 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// {
-#ifdef DEBUG
-# include "libft.h"		// for debugging
-#endif
-// }
 #include <stdlib.h>		// malloc, free
 #include "datatypes.h"
-// {
-#ifdef DEBUG
-# define DEBUG_PTR(ptr) (((unsigned long long)(ptr) & 0xfffff0) >> 4)
-#endif
-// }
 
 /*
 **	allocate a new element initialized with `data`
+**	TODO: to be removed
 */
 
 t_glist		*glist_new(void *data)
@@ -32,45 +23,31 @@ t_glist		*glist_new(void *data)
 	t_glist	*elem;
 
 	elem = malloc(sizeof(t_glist));
-// {
-#ifdef DEBUG
-	ft_printf(PF_YELLOW"[malloc %05x (glist)]"PF_RESET, DEBUG_PTR(elem));
-#endif
-// }
 	elem->data = data;
 	elem->next = NULL;
 	return (elem);
 }
 
-/*
-**	prepend an element to the list whose first element's address is `head`
-*/
-
-void		glist_push(t_glist **head, t_glist *elem)
+void		glist_push(t_glist **head, void *data)
 {
-	elem->next = *head;
-	*head = elem;
+	t_glist	*item;
+
+	item = malloc(sizeof(t_glist));
+	item->data = data;
+	item->next = *head;
+	*head = item;
 }
 
-/*
-**	delete one element from a list
-**
-**	If the element is the first one in the list, call the function like this:
-**		glist_delete(&head);
-**	If the element follows element `p` in the list, call it like this:
-**		glist_delete(&p->next);
-*/
-
-void		glist_delete(t_glist **elem)
+//	the return value is never used, so the function may be made void
+//	and all lines with `data` removed from its body
+void		*glist_pop(t_glist **head)
 {
-	t_glist	*del;
+	t_glist	*item;
+	void	*data;
 
-	del = *elem;
-	*elem = del->next;
-	free(del);
-// {
-#ifdef DEBUG
-	ft_printf(PF_YELLOW"[free %05x (glist)]"PF_RESET, DEBUG_PTR(del));
-#endif
-// }
+	item = *head;
+	*head = item->next;
+	data = item->data;
+	free(item);
+	return (data);
 }

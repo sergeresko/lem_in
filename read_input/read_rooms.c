@@ -23,7 +23,7 @@ static void		add_room(t_lem *lem, t_token *token)
 	room->name = token->value.room.name;
 	room->x = token->value.room.x;
 	room->y = token->value.room.y;
-	glist_push(&lem->graph.rooms, glist_new(room));
+	glist_push(&lem->graph.rooms, room);
 }
 
 static void		read_start_or_end_room(t_lem *lem, t_token *token)

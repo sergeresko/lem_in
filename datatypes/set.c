@@ -45,7 +45,7 @@ void		set_push(t_set *s, t_room *x)
 			return ;
 		e = e->next;
 	}
-	glist_push(&s->elements, glist_new(x));
+	glist_push(&s->elements, x);
 }
 
 /*
@@ -83,13 +83,13 @@ t_room		*set_pop_min(t_set *s)
 
 	if (s->elements == e_min)
 	{
-		glist_delete(&s->elements);
+		(void)glist_pop(&s->elements);
 		return (r);
 	}
 	e = s->elements;
 	while (e->next != e_min)
 		e = e->next;
-	glist_delete(&e->next);
+	(void)glist_pop(&e->next);
 	return (r);
 }
 

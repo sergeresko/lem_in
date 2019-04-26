@@ -38,10 +38,10 @@ enum		e_bool
 };
 
 /*
-**	TODO: rename to t_list, refactor
+**	TODO: rename to t_list
 **	generic singly-linked list
 **
-**	`glist_push` prepends a new item to the list.
+**	`glist_push` prepends a new item containing the specified data.
 **	`glist_pop` deletes the first item and returns its data.
 **
 **	The trick to insert or remove an item in the middle or end of a list,
@@ -55,9 +55,9 @@ struct		s_glist
 	t_glist	*next;
 };
 
-t_glist		*glist_new(void *data);						// needed?
-void		glist_push(t_glist **head, t_glist *elem);		// TODO: void glist_push(t_glist **head, void *data);
-void		glist_delete(t_glist **elem);			// ... **item
+t_glist		*glist_new(void *data);			// TODO: to be removed
+void		glist_push(t_glist **head, void *data);
+void		*glist_pop(t_glist **head);
 
 /*
 **	TODO: describe

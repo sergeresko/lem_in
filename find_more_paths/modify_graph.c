@@ -10,17 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// {
-#ifdef DEBUG
-# include "libft.h"		// for debugging
-#endif
-// }
 #include "datatypes.h"
-// {
-#ifdef DEBUG
-# define DEBUG_PTR(ptr) (((unsigned long long)(ptr) & 0xfffff0) >> 4)
-#endif
-// }
 
 /*
 **	modify the path whose last room before `end` is `x`
@@ -61,27 +51,12 @@ void		modify_graph(t_room *start, t_room *end)
 	t_glist	*links;
 	t_link	*l;
 
-// {
-#ifdef DEBUG
-	ft_printf("\033[36m< modify_graph started\033[0m\n");
-#endif
-// }
 	links = end->links;
 	while (links != NULL)
 	{
 		l = links->data;
-// {
-#ifdef DEBUG
-		ft_printf("\033[36ml = %05x\033[0m\n", DEBUG_PTR(l));
-#endif
-// }
 		links = links->next;
 		if (l->dst->succ == end)
 			modify_path(start, l->dst, end);
 	}
-// {
-#ifdef DEBUG
-	ft_printf("\033[36m> modify_graph finished\033[0m\n", l);
-#endif
-// }
 }
