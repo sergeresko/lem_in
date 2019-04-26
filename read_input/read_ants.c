@@ -18,7 +18,8 @@ void		read_ants(t_lem *lem, t_token *token)
 	if (token->type == TOKEN_EOF)
 		lem_die("number of ants is missing");
 	if (token->type != TOKEN_ANTS)
-		lem_die_at_line(lem, "invalid number of ants (a non-negative integer expected)");
+		lem_die_at_line(lem,
+			"invalid number of ants (a non-negative integer expected)");
 	lem->total_ants = token->value.ants;
 	get_next_token(lem, token);
 }

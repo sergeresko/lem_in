@@ -57,10 +57,8 @@ struct		s_token
 
 t_bool		ft_atoi_strict(char const *str, int *value);	// maybe out of here
 
-void		tokenize(char const *str, t_token *token);
+void		tokenize(char const *line, t_token *token);
 void		get_next_token(t_lem *lem, t_token *token);
-
-t_room		*find_room(t_glist *rooms, char const *room_name);		// out of here
 
 void		read_ants(t_lem *lem, t_token *token);
 void		read_rooms(t_lem *lem, t_token *token);

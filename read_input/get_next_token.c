@@ -16,11 +16,12 @@
 #include "lem_in.h"		// not really needed, since read_input.h includes it
 #include "read_input.h"
 
-static void	save_line(char *str, t_input *input)
+// TODO: remake using the new version of list_push
+static void	save_line(char *line, t_input *input)
 {
 	t_glist	*item;
 
-	item = glist_new(str);
+	item = glist_new(line);
 	if (input->lines == NULL)
 		input->lines = item;
 	else
@@ -37,12 +38,12 @@ static void	save_line(char *str, t_input *input)
 void		get_next_token(t_lem *lem, t_token *token)
 {
 	int		status;
-	char	*str;
+	char	*line;
 
-	while ((status = get_next_line(STDIN_FILENO, &str)) == GNL_OK)
+	while ((status = get_next_line(STDIN_FILENO, &line)) == GNL_OK)
 	{
-		save_line(str, &lem->input);
-		tokenize(str, token);
+		save_line(line, &lem->input);
+		tokenize(line, token);
 		if (token->type != TOKEN_COMMENT)
 			return ;
 	}

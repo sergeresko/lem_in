@@ -17,7 +17,7 @@ static void		add_room(t_lem *lem, t_token *token)
 {
 	t_room		*room;
 
-	if (find_room(lem->graph.rooms, token->value.room.name) != NULL)
+	if (room_find(lem->graph.rooms, token->value.room.name) != NULL)
 		lem_die_at_line(lem, "already has a room with this name");
 	room = room_new();
 	room->name = token->value.room.name;
@@ -46,12 +46,6 @@ static void		read_start_or_end_room(t_lem *lem, t_token *token)
 	else
 		lem->graph.end = lem->graph.rooms->data;
 }
-
-/*	TODO: obsolete description
-**	If no error occurred and the function returned FALSE, the final value
-**	of `token->type` is one of the following:
-**	TOKEN_TURN, TOKEN_LINK, TOKEN_ANTS, TOKEN_EMPTY_LINE, TOKEN_ERROR, TOKEN_EOF.
-*/
 
 static t_bool	read_room(t_lem *lem, t_token *token)
 {

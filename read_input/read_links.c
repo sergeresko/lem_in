@@ -15,24 +15,22 @@
 #include "lem_in.h"		// not really needed, since read_input.h includes it
 #include "read_input.h"
 
-//	TODO: make sure that ft_strcmp(src_name, dst_name) != 0
-
 void			add_link(t_lem *lem, t_token *token)
 //void		add_link(char const *src_name, char const *dst_name)
 {
 	t_room		*src;
 	t_room		*dst;
 
-	if ((src = find_room(lem->graph.rooms, token->value.link.src)) == NULL)
-		lem_die_at_line(lem, "has no room called `src`");		// TODO: change message
-	if ((dst = find_room(lem->graph.rooms, token->value.link.dst)) == NULL)
-		lem_die_at_line(lem, "has no room called `dst`");		// TODO: change message
+	if ((src = room_find(lem->graph.rooms, token->value.link.src)) == NULL)
+		lem_die_at_line(lem, "left-hand room does not exist");
+	if ((dst = room_find(lem->graph.rooms, token->value.link.dst)) == NULL)
+		lem_die_at_line(lem, "right-hand room does not exist");
 	if (link_find(src, dst) != NULL)
-		lem_die_at_line(lem, "already has a link between these rooms");
+		lem_die_at_line(lem, "rooms already linked");
 	link_push(src, dst, LINK_POSITIVE);
 	link_push(dst, src, LINK_POSITIVE);
-	free(token->value.link.src);						//
-	free(token->value.link.dst);						//
+	free(token->value.link.src);
+	free(token->value.link.dst);
 }
 
 static t_bool	read_link(t_lem *lem, t_token *token)
@@ -40,7 +38,7 @@ static t_bool	read_link(t_lem *lem, t_token *token)
 	if (token->type == TOKEN_LINK)
 	{
 		if (ft_strcmp(token->value.link.src, token->value.link.dst) == 0)
-			lem_die_at_line(lem, "a room cannot be linked to itself");
+			lem_die_at_line(lem, "cannot link a room to itself");
 		add_link(lem, token);
 	}
 	return (token->type == TOKEN_LINK);

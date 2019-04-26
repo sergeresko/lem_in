@@ -11,13 +11,13 @@
 /* ************************************************************************** */
 
 #include "libft.h"		// ft_strcmp
-#include "lem_in.h"
+#include "datatypes.h"
 
 /*
 **	return the room called `name` or NULL if it is not in the list
 */
 
-t_room		*find_room(t_glist *rooms, char const *room_name)
+t_room		*find_room(t_glist const *rooms, char const *room_name)
 {
 	t_room	*r;
 

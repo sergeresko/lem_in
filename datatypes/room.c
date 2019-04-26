@@ -16,6 +16,7 @@
 #endif
 // }
 #include <stdlib.h>		// malloc
+#include "libft.h"
 #include "datatypes.h"
 // {
 #ifdef DEBUG
@@ -42,4 +43,18 @@ t_room		*room_new(void)
 	room->pred = NULL;
 	room->succ = NULL;
 	return (room);
+}
+
+t_room		*room_find(t_glist const *rooms, char const *room_name)
+{
+	t_room	*r;
+
+	while (rooms != NULL)
+	{
+		r = rooms->data;
+		if (ft_strcmp(r->name, room_name) == 0)
+			return (r);
+		rooms = rooms->next;
+	}
+	return (NULL);
 }

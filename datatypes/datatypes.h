@@ -81,6 +81,7 @@ struct		s_room
 };
 
 t_room		*room_new(void);
+t_room		*room_find(t_glist const *rooms, char const *room_name);
 
 /*
 **	weighted directed link between rooms
