@@ -14,29 +14,29 @@
 #include "datatypes.h"
 
 /*
-**	restore the path whose last room before `end` in the modified graph is `y`
+**	restore the path whose last room before `end` in the modified graph is `out`
 **
 **	TODO: [Description]
 */
 
-static void	restore_path(t_room *start, t_room *y, t_room *end)
+static void	restore_path(t_room *start, t_room *out, t_room *end)
 {
-	t_room	*x;
-	t_room	*z;
+	t_room	*in;
+	t_room	*pred_out;
 
-	link_delete(end, y);
-	while (y != start)
+	link_delete(end, out);
+	while (out != start)
 	{
-		x = link_pop(y);
-		z = link_pop(x);
-		x->links = y->links;
-		free(y);			// instead of room_destroy
-		link_push(x, x->succ, LINK_POSITIVE);
-		link_push(x->succ, x, LINK_POSITIVE);
-		y = z;
+		in = link_pop(out);
+		pred_out = link_pop(in);
+		in->links = out->links;
+		free(out);			// instead of room_destroy
+		link_push(in, in->succ, LINK_POSITIVE);
+		link_push(in->succ, in, LINK_POSITIVE);
+		out = pred_out;
 	}
-	link_push(start, x, LINK_POSITIVE);
-	link_push(x, start, LINK_POSITIVE);
+	link_push(start, in, LINK_POSITIVE);
+	link_push(in, start, LINK_POSITIVE);
 }
 
 /*

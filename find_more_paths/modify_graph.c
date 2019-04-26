@@ -13,32 +13,32 @@
 #include "datatypes.h"
 
 /*
-**	modify the path whose last room before `end` is `x`
+**	modify the path whose last room before `end` is `in`
 **
 **	TODO: [Description]
 */
 
-static void	modify_path(t_room *start, t_room *x, t_room *end)
+static void	modify_path(t_room *start, t_room *in, t_room *end)
 {
-	t_room	*y;
+	t_room	*out;
 
-	link_delete(end, x);
-	while (x != start)
+	link_delete(end, in);
+	while (in != start)
 	{
-		link_delete(x, x->succ);
-		link_delete(x, x->pred);
-		y = room_new();				//
-		y->links = x->links;
-		x->links = NULL;
-		link_push(x->succ, y, LINK_NEGATIVE);
-		link_push(y, x, LINK_ZERO);
-		if (x->pred == start)
+		link_delete(in, in->succ);
+		link_delete(in, in->pred);
+		out = room_new();
+		out->links = in->links;
+		in->links = NULL;
+		link_push(in->succ, out, LINK_NEGATIVE);
+		link_push(out, in, LINK_ZERO);
+		if (in->pred == start)
 		{
-			link_delete(start, x);
-			link_push(x, start, LINK_NEGATIVE);
+			link_delete(start, in);
+			link_push(in, start, LINK_NEGATIVE);
 			// break;
 		}
-		x = x->pred;
+		in = in->pred;
 	}
 }
 

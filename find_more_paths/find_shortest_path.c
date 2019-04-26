@@ -17,17 +17,17 @@ void		update_neighbors(t_room *src, t_set *s)
 	t_glist	*links;
 	t_link	*l;
 	t_room	*dst;
-	int		d;
+	int		new_distance;
 
 	links = src->links;
 	while (links != NULL)
 	{
 		l = links->data;
 		dst = l->dst;
-		d = src->distance + l->weight;
-		if (d < dst->distance)
+		new_distance = src->distance + l->weight;
+		if (new_distance < dst->distance)
 		{
-			dst->distance = d;
+			dst->distance = new_distance;
 			dst->parent = src;
 			set_push(s, dst);
 		}
@@ -51,5 +51,5 @@ t_bool		find_shortest_path(t_room *src, t_room *end)
 		src = set_pop_min(s);		// if s is empty, returns NULL
 	}
 	set_destroy(&s);
-	return (end->distance != INFINITY);
+	return (src == end);
 }
