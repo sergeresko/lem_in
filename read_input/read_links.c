@@ -48,7 +48,7 @@ static t_bool	read_link(t_lem *lem, t_token *token)
 
 void			read_links(t_lem *lem, t_token *token)
 {
-	if (token->type != TOKEN_EOF && token->type != TOKEN_LINK)
+	if (token->type != TOKEN_LINK && token->type != TOKEN_EOF)
 		lem_die_at_line(lem, "invalid room or link");
 	while (read_link(lem, token))
 		get_next_token(lem, token);
