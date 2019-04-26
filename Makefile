@@ -6,11 +6,12 @@
 #    By: syeresko <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/25 19:29:13 by syeresko          #+#    #+#              #
-#    Updated: 2019/04/26 16:28:14 by syeresko         ###   ########.fr        #
+#    Updated: 2019/04/26 20:04:34 by syeresko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-LIBFT_DIR = ~/projects/filler/rendu/libft/
+LIBFT_DIR = libft/
+#LIBFT_DIR = ~/projects/filler/rendu/libft/
 #LIBFT_DIR = ../filler/test/libft/
 
 NAME = a.out
