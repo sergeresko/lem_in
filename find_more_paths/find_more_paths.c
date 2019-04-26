@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>		// NULL
 #include "find_more_paths.h"
 
 static void	adjust_parents(t_room *x)

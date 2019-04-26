@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>		// size_t, free
+#include <stdlib.h>		// free
 #include "libft.h"
 #include "read_input.h"
 

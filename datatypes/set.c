@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>		// malloc, free, NULL
+#include <stdlib.h>		// malloc, free
 #include "lem_in.h"
 
 /*

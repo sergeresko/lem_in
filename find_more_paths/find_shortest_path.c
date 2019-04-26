@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>		// NULL
 #include "datatypes.h"
 
 void		update_neighbors(t_room *src, t_set *s)

@@ -15,7 +15,7 @@
 # include "libft.h"		// debugging
 #endif
 // }
-#include <stdlib.h>		// malloc, free, NULL
+#include <stdlib.h>		// malloc, free
 #include "datatypes.h"
 #include "lem_in.h"		// lem_die_from_bug
 // {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>		// NULL
+#include <stdlib.h>		// free
 #include "libft.h"		// ft_strcmp
 #include "lem_in.h"		// not really needed, since read_input.h includes it
 #include "read_input.h"

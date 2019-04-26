@@ -15,7 +15,7 @@
 # include "libft.h"	// for debugging
 #endif
 // }
-#include <stdlib.h>		// free, NULL
+#include <stdlib.h>		// free
 #include "datatypes.h"
 // {
 #ifdef DEBUG

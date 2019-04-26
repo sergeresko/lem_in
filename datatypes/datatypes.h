@@ -13,6 +13,8 @@
 #ifndef DATATYPES_H
 # define DATATYPES_H
 
+# include <stddef.h>
+
 // TODO:
 # define INFINITY		123456
 
