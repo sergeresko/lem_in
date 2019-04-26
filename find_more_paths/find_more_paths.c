@@ -12,6 +12,7 @@
 
 #include "find_more_paths.h"
 
+// TODO: rename rooms
 static void	adjust_parents(t_room *x)
 {
 	t_room	*p;
@@ -38,13 +39,13 @@ static void	adjust_parents(t_room *x)
 
 static void	tidy_up(t_list *rooms)
 {
-	t_room	*x;
+	t_room	*room;
 
 	while (rooms != NULL)
 	{
-		x = rooms->data;
-		x->distance = INFINITY;
-		x->parent = NULL;
+		room = rooms->data;
+		room->distance = INFINITY;
+		room->parent = NULL;
 		rooms = rooms->next;
 	}
 }

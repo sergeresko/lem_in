@@ -12,7 +12,8 @@
 
 #include "datatypes.h"
 
-void		update_neighbors(t_room *src, t_set *s)
+// TODO: rename `set` in both functions to something meaningful
+void		update_neighbors(t_room *src, t_set *set)
 {
 	t_list	*links;
 	t_link	*l;
@@ -29,7 +30,7 @@ void		update_neighbors(t_room *src, t_set *s)
 		{
 			dst->distance = new_distance;
 			dst->parent = src;
-			set_push(s, dst);
+			set_push(set, dst);
 		}
 		links = links->next;
 	}
@@ -41,15 +42,15 @@ void		update_neighbors(t_room *src, t_set *s)
 
 t_bool		find_shortest_path(t_room *src, t_room *end)
 {
-	t_set	*s;
+	t_set	*set;
 
-	s = set_new();
+	set = set_new();
 	src->distance = 0;
 	while (src != NULL && src != end)
 	{
-		update_neighbors(src, s);
-		src = set_pop_min(s);
+		update_neighbors(src, set);
+		src = set_pop_min(set);
 	}
-	set_destroy(&s);
+	set_destroy(&set);
 	return (src == end);
 }

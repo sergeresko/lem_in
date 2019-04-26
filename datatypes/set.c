@@ -10,50 +10,37 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>		// malloc, free
-#include "lem_in.h"
-
 /*
 **	TODO: A quite inefficient implementation.
 */
 
-/*
-**	return a new empty set
-*/
+#include <stdlib.h>		// malloc, free
+#include "lem_in.h"
 
 t_set		*set_new(void)
 {
-	t_set	*s;
+	t_set	*set;
 
-	s = malloc(sizeof(t_set));		// check memory
-	s->elements = NULL;
-	return (s);
+	set = malloc(sizeof(t_set));		// check memory
+	set->elements = NULL;
+	return (set);
 }
 
-/*
-**	include room `x` in set `s` if it is not already there
-*/
-
-void		set_push(t_set *s, t_room *x)
+void		set_push(t_set *set, t_room *room)
 {
 	t_list	*e;
 
-	e = s->elements;
+	e = set->elements;
 	while (e != NULL)
 	{
-		if (e->data == x)
+		if (e->data == room)
 			return ;
 		e = e->next;
 	}
-	list_push(&s->elements, x);
+	list_push(&set->elements, room);
 }
 
-/*
-**	exclude from the set and return a room with the smallest `distance` field;
-**	if the set was empty, do nothing and return NULL
-*/
-
-t_room		*set_pop_min(t_set *s)
+t_room		*set_pop_min(t_set *set)
 {
 	t_list	*e;
 	t_list	*e_min;
@@ -61,11 +48,11 @@ t_room		*set_pop_min(t_set *s)
 	t_room	*r;
 
 	// if set is empty
-	if (s->elements == NULL)
+	if (set->elements == NULL)
 		return (NULL);
 	// otherwise
 	// TODO: refactor, see link_delete
-	e = s->elements;
+	e = set->elements;
 	r = e->data;
 	e_min = e;
 	min = r->distance;
@@ -81,34 +68,32 @@ t_room		*set_pop_min(t_set *s)
 	}
 	r = e_min->data;
 
-	if (s->elements == e_min)
+	if (set->elements == e_min)
 	{
-		(void)list_pop(&s->elements);
+		(void)list_pop(&set->elements);
 		return (r);
 	}
-	e = s->elements;
+	e = set->elements;
 	while (e->next != e_min)
 		e = e->next;
 	(void)list_pop(&e->next);
 	return (r);
 }
 
-/*
-**	TODO: describe
-*/
-
-void		set_destroy(t_set **s)
+// TODO: reimplement with list_pop
+// Don't assign NULL, pass just t_set *set.
+void		set_destroy(t_set **set)
 {
 	t_list	*e;
 	t_list	*n;
 
-	e = (*s)->elements;
+	e = (*set)->elements;
 	while (e != NULL)
 	{
 		n = e->next;
 		free(e);
 		e = n;
 	}
-	free(*s);
-	*s = NULL;
+	free(*set);
+	*set = NULL;
 }

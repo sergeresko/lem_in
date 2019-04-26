@@ -65,6 +65,8 @@ void		*list_pop(t_list **head);
 **	distance, parent - find_shortest_path
 **	pred, succ
 **	...
+**	`room_new` allocates and initializes a room.
+**	`room_find` returns a room by its name or NULL if it is not in the list.
 */
 
 struct		s_room
@@ -85,8 +87,14 @@ t_room		*room_find(t_list const *rooms, char const *room_name);
 /*
 **	weighted directed link between rooms
 **
-**	TODO: describe
-**	`link_push` creates a new link and prepends an item...
+**	`link_push` creates a new link to `dst` of specified weight
+**		and prepends it to the list of links from `src`.
+**	`link_pop` removes the room's first link and returns its destination
+**		(`src` must have at least one link).
+**	`link_delete` removes the link to `dst` from `src` (the link must
+**		actually exist).
+**	`link_find` returns the link between the given rooms or NULL if they
+**		are not linked.
 */
 
 struct		s_link
@@ -102,7 +110,7 @@ struct		s_link
 void		link_push(t_room *src, t_room *dst, int weight);
 t_room		*link_pop(t_room *src);
 void		link_delete(t_room *src, t_room *dst);
-t_link		*link_find(t_room *src, t_room *dst);		// currently used only when parsing
+t_link		*link_find(t_room *src, t_room *dst);
 
 /*
 **	list of rooms with designated start and end
@@ -118,7 +126,11 @@ struct		s_graph
 /*
 **	set of rooms
 **
-**	TODO: describe
+**	`set_new` returns a new empty set.
+**	`set_push` includes a room in the set if it is not already there.
+**	`set_pop_min` excludes from the set and returns a room with the smallest
+**		distance; if the set is empty, does nothing and returns NULL.
+**	`set_destroy` empties and deletes the set.
 */
 
 struct		s_set
@@ -127,8 +139,8 @@ struct		s_set
 };
 
 t_set		*set_new(void);
-void		set_push(t_set *s, t_room *x);
-t_room		*set_pop_min(t_set *s);
-void		set_destroy(t_set **s);
+void		set_push(t_set *set, t_room *room);
+t_room		*set_pop_min(t_set *set);
+void		set_destroy(t_set **set);
 
 #endif
