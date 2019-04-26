@@ -30,6 +30,10 @@ t_room		*room_new(void)
 	return (room);
 }
 
+/*
+**	return the room called `name` or NULL if it is not in the list
+*/
+
 t_room		*room_find(t_glist const *rooms, char const *room_name)
 {
 	t_room	*r;
