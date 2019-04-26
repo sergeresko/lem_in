@@ -36,7 +36,7 @@ void		update_neighbors(t_room *src, t_set *s)
 }
 
 /*
-**	modified Dijkstra's algorithm
+**	modified Dijkstra's algorithm from the article by Bhandari
 */
 
 t_bool		find_shortest_path(t_room *src, t_room *end)
@@ -48,7 +48,7 @@ t_bool		find_shortest_path(t_room *src, t_room *end)
 	while (src != NULL && src != end)
 	{
 		update_neighbors(src, s);
-		src = set_pop_min(s);		// if s is empty, returns NULL
+		src = set_pop_min(s);
 	}
 	set_destroy(&s);
 	return (src == end);

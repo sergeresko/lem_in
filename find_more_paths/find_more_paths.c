@@ -51,6 +51,14 @@ static void	tidy_up(t_glist *rooms)
 
 /*
 **	Bhandari's algorithm
+**
+**	Ramesh Bhandari (1997)
+**		Optimal Physical Diversity Algorithms and Survivable Networks
+**		[pdfs.semanticscholar.org/b725/030d172355dbf9ed679be11ff383ff16afa7.pdf]
+**
+**	Farabi Iqbal,  Fernando A. Kuipers (2015)
+**		Disjoint Paths in Networks
+**		[fernandokuipers.nl/papers/Wiley.pdf]
 */
 
 t_bool		find_more_paths(t_graph *g)
