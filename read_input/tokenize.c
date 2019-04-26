@@ -96,7 +96,7 @@ void		tokenize(char const *line, t_token *token)
 		tokenize_command_or_comment(line, token);
 	else if (line[0] == 'L')
 		tokenize_turn(line, token);
-	else if (ft_strchr(line, ' '))
+	else if (ft_strchr(line, ' ') && line[0] != ' ')
 		tokenize_room(line, token);
 	else if (ft_strchr(line, '-'))
 		tokenize_link(line, token);

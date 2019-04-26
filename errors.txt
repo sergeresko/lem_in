@@ -61,3 +61,5 @@ test with no links
 -----
 
 check if start and end are directly connented
+
+check if a line begins with "  Lroom"
