@@ -16,7 +16,7 @@ LIBFT_DIR = libft/
 
 NAME = lem-in
 
-MAIN = _test/new.c
+MAIN = main.c
 #MAIN = _test/test_read_eval_print.c
 
 all: $(NAME)
@@ -51,6 +51,10 @@ $(NAME):
 		\
 		solution/build_solution.c \
 		solution/distribute_ants.c \
+		\
+		solve_instant.c \
+		solve_trivial.c \
+		solve_general.c \
 		\
 		print/print_input.c \
 		print/print_rooms.c \
