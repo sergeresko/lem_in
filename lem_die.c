@@ -15,26 +15,30 @@
 #include "libft.h"
 #include "lem_in.h"
 
+#define ANSI_BOLD	"\033[1m"
+#define ANSI_RESET	"\033[0m"
+
 void		lem_die(char const *message)
 {
-	ft_putstr_fd("\033[1mERROR: ", STDERR_FILENO);
+	ft_putstr_fd(ANSI_BOLD"ERROR: ", STDERR_FILENO);
 	ft_putstr_fd(message, STDERR_FILENO);
-	ft_putstr_fd("\033[0m\n", STDERR_FILENO);
+	ft_putstr_fd(ANSI_RESET"\n", STDERR_FILENO);
 	exit(1);
 }
 
 void		lem_die_at_line(t_lem const *lem, char const *message)
 {
-	ft_putstr_fd("\033[1mERROR at line ", STDERR_FILENO);
+	ft_putstr_fd(ANSI_BOLD"ERROR at line ", STDERR_FILENO);
 	ft_putnbr_fd(lem->input.line_count, STDERR_FILENO);
 	ft_putstr_fd(": ", STDERR_FILENO);
 	ft_putstr_fd(message, STDERR_FILENO);
-	ft_putstr_fd("\033[0m\n", STDERR_FILENO);
+	ft_putstr_fd(ANSI_RESET"\n", STDERR_FILENO);
 	ft_putstr_fd(lem->input.last->data, STDERR_FILENO);
 	ft_putstr_fd("\n", STDERR_FILENO);
 	exit(1);
 }
 
+// TODO: to be removed
 void		lem_die_from_bug(char const *message)
 {
 	ft_putstr_fd("\033[1;31mBUG: ", STDERR_FILENO);

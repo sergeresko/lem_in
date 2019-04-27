@@ -19,6 +19,17 @@
 // TODO: remake using the new version of list_push
 static void	save_line(char *line, t_input *input)
 {
+	if (input->lines == NULL)
+	{
+		list_push(&input->lines, line);
+		input->last = input->lines;
+	}
+	else
+	{
+		list_push(&input->last->next, line);
+		input->last = input->last->next;
+	}
+	/*
 	t_list	*item;
 
 	item = list_new(line);
@@ -27,6 +38,7 @@ static void	save_line(char *line, t_input *input)
 	else
 		input->last->next = item;
 	input->last = item;
+	*/
 	input->line_count += 1;
 }
 

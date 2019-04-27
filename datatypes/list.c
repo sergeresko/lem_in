@@ -14,10 +14,7 @@
 #include "datatypes.h"
 
 /*
-**	allocate a new element initialized with `data`
-**	TODO: to be removed
-*/
-
+// allocate a new element initialized with `data`
 t_list		*list_new(void *data)
 {
 	t_list	*elem;
@@ -27,6 +24,7 @@ t_list		*list_new(void *data)
 	elem->next = NULL;
 	return (elem);
 }
+*/
 
 void		list_push(t_list **head, void *data)
 {

@@ -14,10 +14,10 @@
 #include "lem_in.h"
 // #include "datatypes.h"
 
-static void	print_neighbors(t_room const *room)
+static void		print_neighbors(t_room const *room)
 {
-	t_list	*links;
-	t_link	*l;
+	t_list		*links;
+	t_link		*l;
 
 	links = room->links;
 	while (links != NULL)
@@ -29,7 +29,7 @@ static void	print_neighbors(t_room const *room)
 	}
 }
 
-static void	print_room(t_room const *room)
+static void		print_room(t_room const *room)
 {
 	ft_putstr("#   ");
 	ft_putstr(room->name);
@@ -38,19 +38,19 @@ static void	print_room(t_room const *room)
 	ft_putstr(" ]\n");
 }
 
-void		print_rooms(t_graph const *g)
+void			print_rooms(t_graph const *graph)
 {
-	t_list	*rooms;
-	t_room	*r;
+	t_list		*rooms;
+	t_room		*r;
 
 	ft_putstr("#\n#   Rooms:\n#\n");
-	rooms = g->rooms;
+	rooms = graph->rooms;
 	while (rooms != NULL)
 	{
 		r = rooms->data;
-		if (r == g->start)
+		if (r == graph->start)
 			ft_putstr("#   ##start\n");
-		else if (r == g->end)
+		else if (r == graph->end)
 			ft_putstr("#   ##end\n");
 		print_room(rooms->data);
 		rooms = rooms->next;
