@@ -20,7 +20,7 @@ static void	print_tail(t_room const *origin)
 	{
 		ft_putchar(' ');
 		ft_putstr(origin->name);
-		origin = origin->succ;		// TODO: ->...
+		origin = origin->best_succ;		// TODO: ->...
 	}
 }
 

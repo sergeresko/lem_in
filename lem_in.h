@@ -67,12 +67,12 @@ struct	s_solution
 };
 
 void		distribute_ants(int n_ants, t_solution *s);
-t_solution	*build_solution(int n_ants, t_room const *start, int n_paths);
+t_solution	*solution_build(int n_ants, t_room const *start, int n_paths);
 void		solution_destroy(t_solution *s);
 
 // -----------------------------
 
-t_bool		find_more_paths(t_graph *g);
+t_bool		find_more_paths(t_graph *graph);
 
 // -----------------------------
 

@@ -36,7 +36,7 @@ static void		advance(t_room **loc, int k)
 	while (i < k)
 	{
 		if (loc[i] != NULL)
-			loc[i] = loc[i]->succ;		// ->... ?
+			loc[i] = loc[i]->best_succ;		// ->... ?
 		++i;
 	}
 }

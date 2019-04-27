@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+// TODO: rename file
+
 #include <stdlib.h>		// malloc, free
 #include "lem_in.h"
 
@@ -21,7 +23,7 @@ static int		path_length(t_room *origin)
 	while (origin != NULL)
 	{
 		++len;
-		origin = origin->succ;		// ->... ?
+		origin = origin->succ;		// ->... ? [sic!]
 	}
 	return (len);
 }
@@ -79,7 +81,7 @@ static void		sort_paths(int n_paths, t_path *paths)
 	}
 }
 
-t_solution		*build_solution(int n_ants, t_room const *start, int n_paths)
+t_solution		*solution_build(int n_ants, t_room const *start, int n_paths)
 {
 	t_solution	*s;
 

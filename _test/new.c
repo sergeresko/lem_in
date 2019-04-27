@@ -6,11 +6,16 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 12:21:34 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/27 15:47:42 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/27 17:37:08 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// <
+//
 #include <stdlib.h>		// system
+//
+// > 
+#include "libft.h"		// for printing
 #include "lem_in.h"
 
 // ----------------------------------------------------------------------------
@@ -32,7 +37,7 @@ static int		count_links(t_room const *src)
 
 /*
 **	return the smallest of the three numbers: total number of ants, number
-**	of outlets from the start room, and number of inlets to the end room.
+**	of outlets from the start room, and number of inlets to the end room
 */
 
 static int		compute_max_paths(int total_ants, t_graph const *graph)
@@ -52,14 +57,15 @@ static int		compute_max_paths(int total_ants, t_graph const *graph)
 //	solve_trivial
 //	solve_general
 
-static void		print_solution_general(t_solution *best_solution, t_lem *lem)
+static void		print_solution(t_solution *best_solution, t_lem const *lem)
 {
+	// TODO: reorder, empty line
 	if (lem->options.paths)
-		print_paths(best_solution, lem.graph.start);
+		print_paths(best_solution, lem->graph.start);
 	if (lem->options.total)
 		print_total(best_solution);
 	if (lem->options.moves)
-		print_moves(best_solution, lem.total_ants);		// should first print an empty line
+		print_moves(best_solution, lem->total_ants);		// should first print an empty line
 }
 
 void			solution_save(t_solution const *solution)
@@ -70,7 +76,7 @@ void			solution_save(t_solution const *solution)
 	i = 0;
 	while (i < solution->n_paths)
 	{
-		room = solution->paths[i]->origin;
+		room = solution->paths[i].origin;
 		while (room->succ != NULL)
 		{
 			room->best_succ = room->succ;
@@ -90,38 +96,40 @@ static void		solution_improve(t_solution **best_solution, int total_ants,
 			|| solution->n_turns < (*best_solution)->n_turns)
 	{
 		solution_save(solution);
-		solution_destroy(*best_solution);	// if the argument is NULL, do nothing
+		if (*best_solution != NULL)
+			solution_destroy(*best_solution);
 		*best_solution = solution;
 	}
+	else
+		solution_destroy(solution);
 }
 
-void			solve_general()
+void			solve_general(t_lem *lem)
 {
 	int			max_paths;		// const
 	int			path_count;
-//	t_solution	*solution;
 	t_solution	*best_solution;
 
-	max_paths = compute_max_paths(total_ants, graph);
+	max_paths = compute_max_paths(lem->total_ants, &lem->graph);
 	path_count = 0;
 	best_solution = NULL;
-	while (path_count < max_paths && find_more_paths(graph))
+	while (path_count < max_paths && find_more_paths(&lem->graph))
 	{
 		++path_count;
-		solution_improve(&best_solution, total_ants, graph->start, path_count);
+		solution_improve(&best_solution, lem->total_ants, lem->graph.start, path_count);
 		/*
-		solution = solution_build(total_ants, graph->start, path_count);
-		if (best_solution == NULL || solution->n_turns < best_solution->n_turns)
-		{
-			solution_save(...);
-			solution_destroy(best_solution);	// if the argument is NULL, do nothing
-			best_solution = solution;
-		}
+		//
+		ft_putstr("\033[32m");
+		ft_putnbr(path_count);
+		ft_putstr("\033[0m\n");
+		system("leaks -q lem-in");
+		sleep(1);
+		//
 		*/
 	}
 	if (path_count == 0)	// `find_more_paths` failed upon the first call
 		lem_die("end is not reachable");
-	print_solution_general(best_solution, lem);		// why lem? because of options
+	print_solution(best_solution, lem);		// why lem? because of options
 	solution_destroy(best_solution);
 }
 
@@ -152,14 +160,14 @@ static void		print_total_instant(void)
 }
 
 // if there are zero ants
-void			solve_instant(t_options const *opt)
+void			solve_instant(t_lem const *lem)
 {
-	// TODO: reorder
-	if (opt->paths)
+	// TODO: reorder, empty line
+	if (lem->options.paths)
 		print_paths_instant();
-	if (opt->moves)
+	if (lem->options.moves)
 		print_moves_instant();
-	if (opt->total)
+	if (lem->options.total)
 		print_total_instant();
 }
 
@@ -172,7 +180,7 @@ static void		print_paths_trivial(int total_ants, t_room const *start, t_room con
 	ft_putstr("#   ");
 	ft_putnbr(total_ants);
 	ft_putstr(" ant");
-	if (n_ants != 1)
+	if (total_ants != 1)
 		ft_putchar('s');
 	ft_putstr(" to path [ ");
 	ft_putstr(start->name);
@@ -217,7 +225,7 @@ void			solve_trivial(t_lem const *lem)
 	if (lem->options.paths)
 		print_paths_trivial(lem->total_ants, lem->graph.start, lem->graph.end);
 	if (lem->options.moves)
-		print_moves_trivial(lem->total_ants, lem->graph->end);
+		print_moves_trivial(lem->total_ants, lem->graph.end);
 	if (lem->options.total)
 		print_total_trivial();
 }
@@ -247,12 +255,14 @@ int			main(int argc, char **argv)
 	// solve
 	if (lem.total_ants == 0)
 		solve_instant(&lem);
-	else if (find_link(lem.graph.start, lem.graph.end) != NULL)
+	else if (link_find(lem.graph.start, lem.graph.end) != NULL)
 		solve_trivial(&lem);
 	else
-		solve_general();		//
-
-	system("leaks lem-in");
-
+		solve_general(&lem);
+	// <
+	//
+	system("leaks -q lem-in");
+	//
+	// >
 	return (0);
 }
