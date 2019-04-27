@@ -110,7 +110,7 @@ struct		s_link
 void		link_push(t_room *src, t_room *dst, int weight);
 t_room		*link_pop(t_room *src);
 void		link_delete(t_room *src, t_room *dst);
-t_link		*link_find(t_room *src, t_room *dst);
+t_link		*link_find(t_room const *src, t_room const *dst);
 
 /*
 **	list of rooms with designated start and end

@@ -39,6 +39,14 @@ t_room		*link_pop(t_room *src)
 	free(l);
 	(void)list_pop(&src->links);
 	return (dst);
+	// TODO: new variant
+	/*
+	t_room	*dst;
+
+	dst = ((t_link *)src->links->data)->dst;
+	free(list_pop(&src->links));
+	return (dst);
+	*/
 }
 
 void		link_delete(t_room *src, t_room *dst)
@@ -80,9 +88,18 @@ void		link_delete(t_room *src, t_room *dst)
 	}
 	free(l);				// equivalent to
 	(void)list_pop(addr);	// free(list_pop(addr));
+	// TODO: new variant
+	/*
+	t_list	**addr;
+
+	addr = &src->links;
+	while (((t_link *)(*addr)->data)->dst != dst)
+		addr = &(*addr)->next;
+	free(list_pop(addr));
+	*/
 }
 
-t_link		*link_find(t_room *src, t_room *dst)
+t_link		*link_find(t_room const *src, t_room const *dst)
 {
 	t_list	*links;
 	t_link	*l;
@@ -96,4 +113,17 @@ t_link		*link_find(t_room *src, t_room *dst)
 		links = links->next;
 	}
 	return (NULL);
+	// TODO: new variant
+	/*
+	t_list	*links;
+
+	links = src->links;
+	while (links != NULL)
+	{
+		if (((t_link *)links->data)->dst == dst)
+			return (links->data);
+		links = links->next;
+	}
+	return (NULL);
+	*/
 }

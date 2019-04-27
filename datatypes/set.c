@@ -11,7 +11,9 @@
 /* ************************************************************************** */
 
 /*
-**	TODO: A quite inefficient implementation.
+**	This is an inefficient implementation of a mutable set as a singly-linked
+**	list: both `set_push` and `set_pop_min` take O(n) time where n is the
+**	current cardinality.
 */
 
 #include <stdlib.h>		// malloc, free
@@ -78,6 +80,28 @@ t_room		*set_pop_min(t_set *set)
 		e = e->next;
 	(void)list_pop(&e->next);
 	return (r);
+	// TODO: new version
+	/*
+	t_list	**addr;
+	t_list	**addr_min;
+	int		min_distance
+
+	if (set->elements == NULL)
+		return (NULL);
+	addr = &set->elements;
+	addr_min = addr;
+	min_distance = ((t_room *)(*addr)->data)->distance;
+	while (*addr != NULL)
+	{
+		if (((t_room *)(*addr)->data)->distance < min_distance)
+		{
+			addr_min = addr;
+			min_distance = ((t_room *)(*addr)->data)->distance;
+		}
+		*addr = (*addr)->next;
+	}
+	return (list_pop(addr_min));
+	*/
 }
 
 // TODO: reimplement with list_pop
@@ -97,3 +121,12 @@ void		set_destroy(t_set **set)
 	free(*set);
 	*set = NULL;
 }
+// TODO: new version
+/*
+void		set_destroy(t_set *set)
+{
+	while (set->elements != NULL)
+		(void)list_pop(&set->elements);
+	free(set);
+}
+*/
