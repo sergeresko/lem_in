@@ -14,9 +14,9 @@
 #include "libft.h"
 #include "lem_in.h"
 
-static int	add(t_room **loc, t_solution const *s)
+static int		add(t_room **loc, t_solution const *s)
 {
-	int		i;
+	int			i;
 
 	i = 0;
 	while (i < s->n_paths && s->ants_per_path[i] > 0)
@@ -28,9 +28,9 @@ static int	add(t_room **loc, t_solution const *s)
 	return (i);
 }
 
-static void	advance(t_room **loc, int k)
+static void		advance(t_room **loc, int k)
 {
-	int		i;
+	int			i;
 
 	i = 0;
 	while (i < k)
@@ -41,13 +41,13 @@ static void	advance(t_room **loc, int k)
 	}
 }
 
-static void	print_turn(t_room *const *loc, int k)
+static void		print_turn(t_room *const *loc, int k)
 {
-	int		first;		// t_bool
-	int		i;
+	int			i;
+	t_bool		first;
 
-	first = 1;			// TRUE
 	i = 0;
+	first = TRUE;
 	while (i < k)
 	{
 		if (loc[i] != NULL)
@@ -55,7 +55,7 @@ static void	print_turn(t_room *const *loc, int k)
 			if (!first)
 				ft_putchar(' ');
 			else
-				first = 0;		// FALSE
+				first = FALSE;
 			ft_putchar('L');
 			ft_putnbr(i + 1);
 			ft_putchar('-');
@@ -71,11 +71,11 @@ static void	print_turn(t_room *const *loc, int k)
 **	TODO: [Description; what `loc` is for]
 */
 
-void		print_moves(t_solution const *s, int total_ants)
+void			print_moves(t_solution const *s, int total_ants)
 {
-	t_room	**loc;
-	int		count;
-	int		k;
+	t_room		**loc;
+	int			count;
+	int			k;
 
 	loc = malloc(total_ants * sizeof(t_room *));		// check memory
 	count = s->n_turns;

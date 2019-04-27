@@ -13,11 +13,11 @@
 #include "find_more_paths.h"
 
 // TODO: rename rooms
-static void	adjust_parents(t_room *x)
+static void		adjust_parents(t_room *x)
 {
-	t_room	*p;
-	t_link	*l;
-	t_room	*r;
+	t_room		*p;
+	t_link		*l;
+	t_room		*r;
 
 	while ((p = x->parent) != NULL)
 	{
@@ -37,9 +37,9 @@ static void	adjust_parents(t_room *x)
 **	reset the `distance` and `parent` fields of all rooms to default values
 */
 
-static void	tidy_up(t_list *rooms)
+static void		tidy_up(t_list *rooms)
 {
-	t_room	*room;
+	t_room		*room;
 
 	while (rooms != NULL)
 	{
@@ -62,15 +62,15 @@ static void	tidy_up(t_list *rooms)
 **		[fernandokuipers.nl/papers/Wiley.pdf]
 */
 
-t_bool		find_more_paths(t_graph *g)
+t_bool			find_more_paths(t_graph *graph)
 {
-	t_bool	found;
+	t_bool		found;
 
-	modify_graph(g->start, g->end);
-	found = find_shortest_path(g->start, g->end);
-	adjust_parents(g->end);
-	restore_graph(g->start, g->end);
-	xor_paths(g->start, g->end);
-	tidy_up(g->rooms);
+	modify_graph(graph->start, graph->end);
+	found = find_shortest_path(graph->start, graph->end);
+	adjust_parents(graph->end);
+	restore_graph(graph->start, graph->end);
+	xor_paths(graph->start, graph->end);
+	tidy_up(graph->rooms);
 	return (found);
 }

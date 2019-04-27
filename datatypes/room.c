@@ -27,6 +27,7 @@ t_room		*room_new(void)
 	room->parent = NULL;
 	room->pred = NULL;
 	room->succ = NULL;
+//	room->best_succ = NULL;
 	return (room);
 }
 

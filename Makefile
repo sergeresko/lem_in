@@ -6,7 +6,7 @@
 #    By: syeresko <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/25 19:29:13 by syeresko          #+#    #+#              #
-#    Updated: 2019/04/26 20:04:34 by syeresko         ###   ########.fr        #
+#    Updated: 2019/04/27 15:56:06 by syeresko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,16 @@ LIBFT_DIR = libft/
 #LIBFT_DIR = ~/projects/filler/rendu/libft/
 #LIBFT_DIR = ../filler/test/libft/
 
-NAME = a.out
+NAME = lem-in
+
+MAIN = _test/new.c
+#MAIN = _test/test_read_eval_print.c
 
 all: $(NAME)
 
 $(NAME):
 	@ gcc -Wall -Wextra -Werror \
-		_test/test_read_eval_print.c \
+		$(MAIN) \
 		-I ./ -I read_input/ -I datatypes/ -I find_more_paths/ -I $(LIBFT_DIR) \
 		\
 		read_options.c \
@@ -55,4 +58,5 @@ $(NAME):
 		print/print_moves.c \
 		print/print_total.c \
 		\
-		$(LIBFT_DIR)libft.a
+		$(LIBFT_DIR)libft.a \
+		-o $(NAME)

@@ -79,6 +79,7 @@ struct		s_room
 	t_room	*parent;
 	t_room	*pred;
 	t_room	*succ;
+	t_room	*best_succ;		// TODO: added
 };
 
 t_room		*room_new(void);

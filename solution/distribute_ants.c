@@ -33,7 +33,7 @@ static void	compute_ants_per_path(t_solution *s, int i)
 }
 
 /*
-**	TODO: determine how many ants should walk each path
+**	TODO: determine how many ants should travel each path
 */
 
 static int	distribute_evenly(int ant_count, t_solution *s)
@@ -76,5 +76,6 @@ void		distribute_ants(int total_ants, t_solution *s)
 	int		remaining_ants;
 
 	remaining_ants = distribute_evenly(total_ants, s);
+	// TODO: if remaining_ants > 0
 	distribute_remainder(remaining_ants, s);
 }

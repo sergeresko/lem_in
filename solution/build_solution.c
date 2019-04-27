@@ -13,9 +13,9 @@
 #include <stdlib.h>		// malloc, free
 #include "lem_in.h"
 
-static int	path_length(t_room *origin)
+static int		path_length(t_room *origin)
 {
-	int		len;
+	int			len;
 
 	len = 0;
 	while (origin != NULL)
@@ -26,12 +26,12 @@ static int	path_length(t_room *origin)
 	return (len);
 }
 
-static t_path	*init_paths(int n_paths, t_room *start)
+static t_path	*init_paths(int n_paths, t_room const *start)
 {
-	t_path	*paths;
-	t_list	*links;
-	t_link	*l;
-	int		i;
+	t_path		*paths;
+	t_list		*links;
+	t_link		*l;
+	int			i;
 
 	paths = malloc(n_paths * sizeof(t_path));	// check memory
 	links = start->links;
@@ -55,11 +55,11 @@ static t_path	*init_paths(int n_paths, t_room *start)
 **	sort an array of paths by length in non-descending order
 */
 
-static void	sort_paths(int n_paths, t_path *paths)
+static void		sort_paths(int n_paths, t_path *paths)
 {
-	int		i;
-	int		j;
-	t_path	tmp;
+	int			i;
+	int			j;
+	t_path		tmp;
 
 	i = 0;
 	while (i < n_paths - 1)
@@ -79,7 +79,7 @@ static void	sort_paths(int n_paths, t_path *paths)
 	}
 }
 
-t_solution	*build_solution(int n_ants, t_room *start, int n_paths)
+t_solution		*build_solution(int n_ants, t_room const *start, int n_paths)
 {
 	t_solution	*s;
 
@@ -92,7 +92,7 @@ t_solution	*build_solution(int n_ants, t_room *start, int n_paths)
 	return (s);
 }
 
-void	solution_destroy(t_solution *s)
+void			solution_destroy(t_solution *s)
 {
 	free(s->paths);
 	free(s->ants_per_path);

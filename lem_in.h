@@ -67,7 +67,7 @@ struct	s_solution
 };
 
 void		distribute_ants(int n_ants, t_solution *s);
-t_solution	*build_solution(int n_ants, t_room *start, int n_paths);
+t_solution	*build_solution(int n_ants, t_room const *start, int n_paths);
 void		solution_destroy(t_solution *s);
 
 // -----------------------------
