@@ -104,7 +104,7 @@ static int		gnl(t_flist *f, char **line)
 	}
 }
 
-int				get_next_line(const int fd, char **line)
+int				get_next_line(int fd, char **line)
 {
 	static t_flist	*files = NULL;
 	t_flist			*file;

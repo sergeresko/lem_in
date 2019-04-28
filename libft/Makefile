@@ -26,19 +26,18 @@ SRC = \
 	ft_strchr.c ft_strrchr.c ft_strstr.c ft_strnstr.c \
 	ft_strcmp.c ft_strncmp.c \
 	\
-	ft_strequ.c ft_strnequ.c ft_strprefix.c \
 	ft_strsub.c ft_strjoin.c \
 	ft_strsplit.c \
-	ft_strtrim.c \
 	\
 	ft_clear_tab.c \
 	\
 	ft_putchar.c ft_putchar_fd.c \
 	ft_putstr.c ft_putstr_fd.c \
-	ft_putendl.c ft_putendl_fd.c \
 	ft_putnbr.c ft_putnbr_fd.c \
 	\
 	get_next_line.c \
+	\
+	ft_malloc_or_die.c
 
 OBJ_DIR = ./obj/
 

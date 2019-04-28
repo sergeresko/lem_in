@@ -46,16 +46,10 @@ int			ft_strncmp(const char *s1, const char *s2, size_t n);
 **	string functions
 */
 
-int			ft_strequ(char const *s1, char const *s2);
-int			ft_strnequ(char const *s1, char const *s2, size_t n);
-int			ft_strprefix(char const *str, char const *prefix);
-
 char		*ft_strsub(char const *s, unsigned int start, size_t len);
 char		*ft_strjoin(char const *s1, char const *s2);
 
 char		**ft_strsplit(char const *s, char c);
-
-char		*ft_strtrim(char const *s);
 
 /*
 **	generic table function
@@ -68,15 +62,11 @@ void		ft_clear_tab(void **tab);
 */
 
 void		ft_putchar(char c);
-void		ft_putnchar(char c, int times);
 void		ft_putstr(char const *s);
-void		ft_putendl(char const *s);
 void		ft_putnbr(int n);
 
 void		ft_putchar_fd(char c, int fd);
-void		ft_putnchar_fd(char c, int times, int fd);
 void		ft_putstr_fd(char const *s, int fd);
-void		ft_putendl_fd(char const *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
 
 /*
@@ -99,6 +89,6 @@ struct		s_flist
 	t_flist	*next;
 };
 
-int			get_next_line(const int fd, char **line);
+int			get_next_line(int fd, char **line);
 
 #endif
