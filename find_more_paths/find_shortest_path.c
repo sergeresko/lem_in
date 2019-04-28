@@ -51,6 +51,6 @@ t_bool		find_shortest_path(t_room *src, t_room *end)
 		update_neighbors(src, set);
 		src = set_pop_min(set);
 	}
-	set_destroy(&set);
+	set_destroy(set);
 	return (src == end);
 }

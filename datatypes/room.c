@@ -14,9 +14,9 @@
 #include "libft.h"
 #include "datatypes.h"
 
-t_room		*room_new(void)
+t_room			*room_new(void)
 {
-	t_room	*room;
+	t_room		*room;
 
 	room = malloc(sizeof(t_room));		// check memory
 	room->name = NULL;
@@ -31,9 +31,9 @@ t_room		*room_new(void)
 	return (room);
 }
 
-t_room		*room_find(t_list const *rooms, char const *room_name)
+t_room			*room_find(t_list const *rooms, char const *room_name)
 {
-	t_room	*room;
+	t_room		*room;
 
 	while (rooms != NULL)
 	{

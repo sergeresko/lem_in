@@ -14,9 +14,9 @@
 # define DATATYPES_H
 
 # include <stddef.h>
+# include <limits.h>
 
-// TODO:
-# define INFINITY		123456
+# define INFINITY		INT_MAX
 
 typedef enum e_bool		t_bool;
 
@@ -142,6 +142,6 @@ struct		s_set
 t_set		*set_new(void);
 void		set_push(t_set *set, t_room *room);
 t_room		*set_pop_min(t_set *set);
-void		set_destroy(t_set **set);
+void		set_destroy(t_set *set);
 
 #endif
