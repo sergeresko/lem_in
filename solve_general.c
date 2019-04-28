@@ -46,7 +46,8 @@ static int		compute_max_paths(int total_ants, t_graph const *graph)
 	return (max_paths);
 }
 
-static void		print_solution(t_solution *best_solution, t_lem const *lem)
+// TODO: out of here
+void			print_solution(t_solution *best_solution, t_lem const *lem)
 {
 	// TODO: reorder, empty line
 	if (lem->options.paths)
@@ -57,7 +58,7 @@ static void		print_solution(t_solution *best_solution, t_lem const *lem)
 		print_moves(best_solution, lem->total_ants);		// should first print an empty line
 }
 
-void			solution_save(t_solution const *solution)
+static void		solution_save(t_solution const *solution)
 {
 	int			i;
 	t_room		*room;
