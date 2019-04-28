@@ -73,8 +73,8 @@ void		distribute_ants(int n_ants, t_solution *s);
 t_solution	*solution_build(int n_ants, t_room const *start, int n_paths);
 void		solution_destroy(t_solution *s);
 
-void		solve_instant(t_lem const *lem);
-void		solve_trivial(t_lem const *lem);
+void		solve_instant(t_lem const *lem);	// does not use t_solution
+void		solve_trivial(t_lem const *lem);	// does not use t_solution
 void		solve_general(t_lem *lem);
 
 // -----------------------------

@@ -18,9 +18,9 @@
 **	TODO: [Description]
 */
 
-static void	modify_path(t_room *start, t_room *in, t_room *end)
+static void		modify_path(t_room *start, t_room *in, t_room *end)
 {
-	t_room	*out;
+	t_room		*out;
 
 	link_delete(end, in);
 	while (in != start)
@@ -46,10 +46,10 @@ static void	modify_path(t_room *start, t_room *in, t_room *end)
 **	modify every path described by `pred`/`succ`
 */
 
-void		modify_graph(t_room *start, t_room *end)
+void			modify_graph(t_room *start, t_room *end)
 {
-	t_list	*links;
-	t_link	*l;
+	t_list		*links;
+	t_link		*l;
 
 	links = end->links;
 	while (links != NULL)

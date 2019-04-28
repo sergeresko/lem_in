@@ -80,6 +80,7 @@ void			print_moves(t_solution const *s, int total_ants)
 	loc = malloc(total_ants * sizeof(t_room *));		// check memory
 	count = s->n_turns;
 	k = 0;
+	ft_putchar('\n');
 	while (count--)
 	{
 		advance(loc, k);

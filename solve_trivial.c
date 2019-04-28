@@ -18,11 +18,20 @@ static void		print_paths_trivial(int total_ants, t_room const *start, t_room con
 	ft_putstr("#\n");
 }
 
+static void		print_total_trivial(void)
+{
+	// TODO: make just a single string
+	ft_putstr("#\n#   Total turns: ");
+	ft_putnbr(1);
+	ft_putstr("\n#\n");
+}
+
 static void		print_moves_trivial(int total_ants, t_room const *end)
 {
 	int			i;
 	t_bool		first;
 
+	ft_putchar('\n');
 	i = 0;
 	first = FALSE;
 	while (i < total_ants)
@@ -39,21 +48,12 @@ static void		print_moves_trivial(int total_ants, t_room const *end)
 	}
 }
 
-static void		print_total_trivial(void)
-{
-	// TODO: make just a single string
-	ft_putstr("#\n#   Total turns: ");
-	ft_putnbr(1);
-	ft_putstr("\n#\n");
-}
-
 void			solve_trivial(t_lem const *lem)
 {
-	// TODO: reorder, empty line
 	if (lem->options.paths)
 		print_paths_trivial(lem->total_ants, lem->graph.start, lem->graph.end);
-	if (lem->options.moves)
-		print_moves_trivial(lem->total_ants, lem->graph.end);
 	if (lem->options.total)
 		print_total_trivial();
+	if (lem->options.moves)
+		print_moves_trivial(lem->total_ants, lem->graph.end);
 }

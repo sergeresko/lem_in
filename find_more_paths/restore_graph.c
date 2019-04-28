@@ -19,10 +19,10 @@
 **	TODO: [Description]
 */
 
-static void	restore_path(t_room *start, t_room *out, t_room *end)
+static void		restore_path(t_room *start, t_room *out, t_room *end)
 {
-	t_room	*in;
-	t_room	*pred_out;
+	t_room		*in;
+	t_room		*pred_out;
 
 	link_delete(end, out);
 	while (out != start)
@@ -43,10 +43,10 @@ static void	restore_path(t_room *start, t_room *out, t_room *end)
 **	restore every path that had been described by `pred`/`succ`
 */
 
-void		restore_graph(t_room *start, t_room *end)
+void			restore_graph(t_room *start, t_room *end)
 {
-	t_list	*links;
-	t_link	*l;
+	t_list		*links;
+	t_link		*l;
 
 	links = end->links;
 	while (links != NULL)

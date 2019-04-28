@@ -15,10 +15,10 @@
 /*
 **	TODO: [Description]
 */
-void		combine_paths(t_room *start, t_room *end)
+void			combine_paths(t_room *start, t_room *end)
 {
-	t_room	*a;
-	t_room	*b;
+	t_room		*a;
+	t_room		*b;
 
 	b = end;
 	while ((a = b->parent) != NULL)

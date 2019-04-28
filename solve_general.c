@@ -49,13 +49,12 @@ static int		compute_max_paths(int total_ants, t_graph const *graph)
 // TODO: out of here
 void			print_solution(t_solution *best_solution, t_lem const *lem)
 {
-	// TODO: reorder, empty line
 	if (lem->options.paths)
 		print_paths(best_solution, lem->graph.start);
 	if (lem->options.total)
 		print_total(best_solution);
 	if (lem->options.moves)
-		print_moves(best_solution, lem->total_ants);		// should first print an empty line
+		print_moves(best_solution, lem->total_ants);
 }
 
 static void		solution_save(t_solution const *solution)
@@ -113,5 +112,3 @@ void			solve_general(t_lem *lem)
 	print_solution(best_solution, lem);		// why lem? because of options
 	solution_destroy(best_solution);
 }
-
-// TODO: decide the order of output and location of the empty line

@@ -13,12 +13,12 @@
 #include "datatypes.h"
 
 // TODO: rename `set` in both functions to something meaningful
-void		update_neighbors(t_room *src, t_set *set)
+void			update_neighbors(t_room *src, t_set *set)
 {
-	t_list	*links;
-	t_link	*l;
-	t_room	*dst;
-	int		new_distance;
+	t_list		*links;
+	t_link		*l;
+	t_room		*dst;
+	int			new_distance;
 
 	links = src->links;
 	while (links != NULL)
@@ -40,9 +40,9 @@ void		update_neighbors(t_room *src, t_set *set)
 **	modified Dijkstra's algorithm from the article by Bhandari
 */
 
-t_bool		find_shortest_path(t_room *src, t_room *end)
+t_bool			find_shortest_path(t_room *src, t_room *end)
 {
-	t_set	*set;
+	t_set		*set;
 
 	set = set_new();
 	src->distance = 0;

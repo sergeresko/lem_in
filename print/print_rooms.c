@@ -41,16 +41,16 @@ static void		print_room(t_room const *room)
 void			print_rooms(t_graph const *graph)
 {
 	t_list		*rooms;
-	t_room		*r;
+	t_room		*room;
 
 	ft_putstr("#\n#   Rooms:\n#\n");
 	rooms = graph->rooms;
 	while (rooms != NULL)
 	{
-		r = rooms->data;
-		if (r == graph->start)
+		room = rooms->data;
+		if (room == graph->start)
 			ft_putstr("#   ##start\n");
-		else if (r == graph->end)
+		else if (room == graph->end)
 			ft_putstr("#   ##end\n");
 		print_room(rooms->data);
 		rooms = rooms->next;
