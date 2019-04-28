@@ -16,6 +16,7 @@
 #include "lem_in.h"		// hence files that include "read_input.h" need not include "lem_in.h"
 
 typedef enum e_type		t_type;
+typedef struct s_move	t_move;
 typedef union u_value	t_value;
 typedef struct s_token	t_token;
 
@@ -33,6 +34,12 @@ enum		e_type
 	TOKEN_EOF,
 };
 
+struct		s_move
+{
+	int		ant;
+	char	*dst;
+};
+
 union		u_value
 {
 	int		ants;
@@ -47,6 +54,11 @@ union		u_value
 		char	*src;
 		char	*dst;
 	}		link;
+	struct	s_value_turn
+	{
+		int		len;
+		t_move	*moves;
+	}		turn;
 };
 
 struct		s_token
@@ -57,11 +69,15 @@ struct		s_token
 
 t_bool		ft_atoi_strict(char const *str, int *value);	// maybe out of here
 
+void		tokenize_turn(char const *line, t_token *token);
 void		tokenize(char const *line, t_token *token);
 void		get_next_token(t_lem *lem, t_token *token);
 
 void		read_ants(t_lem *lem, t_token *token);
 void		read_rooms(t_lem *lem, t_token *token);
 void		read_links(t_lem *lem, t_token *token);
+//
+void		read_turns(t_lem *lem, t_token *token);
+//
 
 #endif

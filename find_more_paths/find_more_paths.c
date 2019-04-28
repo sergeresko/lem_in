@@ -70,7 +70,7 @@ t_bool			find_more_paths(t_graph *graph)
 	found = find_shortest_path(graph->start, graph->end);
 	adjust_parents(graph->end);
 	restore_graph(graph->start, graph->end);
-	xor_paths(graph->start, graph->end);
+	combine_paths(graph->start, graph->end);
 	tidy_up(graph->rooms);
 	return (found);
 }

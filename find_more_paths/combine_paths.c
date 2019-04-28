@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   xor_paths.c                                        :+:      :+:    :+:   */
+/*   combine_paths.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,9 +13,9 @@
 #include "datatypes.h"
 
 /*
-**	TODO: [Description; rename]
+**	TODO: [Description]
 */
-void		xor_paths(t_room *start, t_room *end)
+void		combine_paths(t_room *start, t_room *end)
 {
 	t_room	*a;
 	t_room	*b;

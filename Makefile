@@ -11,8 +11,6 @@
 # **************************************************************************** #
 
 LIBFT_DIR = libft/
-#LIBFT_DIR = ~/projects/filler/rendu/libft/
-#LIBFT_DIR = ../filler/test/libft/
 
 NAME = lem-in
 
@@ -29,6 +27,7 @@ $(NAME):
 		read_options.c \
 		\
 		read_input/ft_atoi_strict.c \
+		read_input/tokenize_turn.c \
 		read_input/tokenize.c \
 		read_input/get_next_token.c \
 		read_input/read_ants.c \
@@ -47,7 +46,7 @@ $(NAME):
 		find_more_paths/modify_graph.c \
 		find_more_paths/find_shortest_path.c \
 		find_more_paths/restore_graph.c \
-		find_more_paths/xor_paths.c \
+		find_more_paths/combine_paths.c \
 		\
 		solution/build_solution.c \
 		solution/distribute_ants.c \

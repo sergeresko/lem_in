@@ -24,19 +24,21 @@ static void		tokenize_command_or_comment(char const *line, t_token *token)
 		token->type = TOKEN_COMMENT;
 }
 
+/*
 // TODO: to separate file
 void		tokenize_turn(char const *line, t_token *token)
 {
 	(void)line;
 	token->type = TOKEN_TURN;
 }
+*/
 
 static void		tokenize_room(char const *line, t_token *token)
 {
 	char		**words;
 
 	words = ft_strsplit(line, ' ');
-	if (words && words[0] && words[1] && words[2] && !words[3]
+	if (words && words[0] && words[1] && words[2] && !words[3] // words unneeded
 			&& !ft_strchr(words[0], '-')
 			&& ft_atoi_strict(words[1], &token->value.room.x)
 			&& ft_atoi_strict(words[2], &token->value.room.y))
