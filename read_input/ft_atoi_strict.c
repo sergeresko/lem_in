@@ -25,10 +25,9 @@ t_bool		ft_atoi_strict(char const *str, int *value)
 	abs = 0;
 	while ('0' <= *str && *str <= '9')
 	{
-		abs = abs * 10 + (int)(*str - '0');
-		if (abs < 0)
+		abs = abs * 10 + (int)(*(str++) - '0');
+		if (abs < 0 && !(abs == INT_MIN && *str == '\0'))
 			return (FALSE);
-		++str;
 	}
 	if (*str)
 		return (FALSE);
