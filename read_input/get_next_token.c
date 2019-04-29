@@ -41,6 +41,8 @@ static void	save_line(char *line, t_input *input)
 	input->last = item;
 	*/
 	input->line_count += 1;
+	if (input->line_count < 0)
+		error("file too large");
 }
 
 /*

@@ -53,6 +53,8 @@ static int		distribute_evenly(int ant_count, t_solution *s)
 	d = ant_count / i;
 	ant_count -= d * i;
 	s->n_turns = s->paths[i - 1].length + d;
+	if (s->n_turns < 0)
+		error("too many ants");
 	compute_ants_per_path(s, i);
 	return (ant_count);
 }
