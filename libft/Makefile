@@ -18,26 +18,22 @@ CFLAGS = -Wall -Wextra -Werror
 
 SRC = \
 	ft_memcpy.c \
+	ft_malloc_or_die.c \
 	\
 	ft_strlen.c \
-	ft_strdup.c ft_strcpy.c ft_strncpy.c \
-	ft_strcat.c ft_strncat.c \
-	ft_strlcat.c \
-	ft_strchr.c ft_strrchr.c ft_strstr.c ft_strnstr.c \
-	ft_strcmp.c ft_strncmp.c \
+	ft_strcmp.c \
+	ft_strchr.c \
+	ft_strdup.c \
+	ft_strsub.c \
 	\
-	ft_strsub.c ft_strjoin.c \
 	ft_strsplit.c \
-	\
 	ft_clear_tab.c \
 	\
 	ft_putchar.c ft_putchar_fd.c \
 	ft_putstr.c ft_putstr_fd.c \
 	ft_putnbr.c ft_putnbr_fd.c \
 	\
-	get_next_line.c \
-	\
-	ft_malloc_or_die.c
+	get_next_line.c
 
 OBJ_DIR = ./obj/
 
