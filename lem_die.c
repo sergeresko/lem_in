@@ -26,6 +26,16 @@ void		lem_die(char const *message)
 	exit(1);
 }
 
+void		lem_die_number(char const *prefix, int number, char const *postfix)
+{
+	ft_putstr_fd(ANSI_BOLD"ERROR: ", STDERR_FILENO);
+	ft_putstr_fd(prefix, STDERR_FILENO);
+	ft_putnbr_fd(number, STDERR_FILENO);
+	ft_putstr_fd(postfix, STDERR_FILENO);
+	ft_putstr_fd(ANSI_RESET"\n", STDERR_FILENO);
+	exit(1);
+}
+
 void		lem_die_at_line(t_lem const *lem, char const *message)
 {
 	ft_putstr_fd(ANSI_BOLD"ERROR at line ", STDERR_FILENO);
@@ -37,6 +47,22 @@ void		lem_die_at_line(t_lem const *lem, char const *message)
 	ft_putstr_fd("\n", STDERR_FILENO);
 	exit(1);
 }
+
+void		lem_die_at_line_number(t_lem const *lem, char const *prefix,
+		int number, char const *postfix)
+{
+	ft_putstr_fd(ANSI_BOLD"ERROR at line ", STDERR_FILENO);
+	ft_putnbr_fd(lem->input.line_count, STDERR_FILENO);
+	ft_putstr_fd(": ", STDERR_FILENO);
+	ft_putstr_fd(prefix, STDERR_FILENO);
+	ft_putnbr_fd(number, STDERR_FILENO);
+	ft_putstr_fd(postfix, STDERR_FILENO);
+	ft_putstr_fd(ANSI_RESET"\n", STDERR_FILENO);
+	ft_putstr_fd(lem->input.last->data, STDERR_FILENO);
+	ft_putstr_fd("\n", STDERR_FILENO);
+	exit(1);
+}
+
 
 // TODO: to be removed
 void		lem_die_from_bug(char const *message)

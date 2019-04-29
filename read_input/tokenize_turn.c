@@ -59,7 +59,7 @@ void			tokenize_turn(char const *line, t_token *token)
 		token->value.turn.len = len;
 		// <
 		//
-		ft_putstr("\033[32mDebug: OK\033[0m\n");
+//		ft_putstr("\033[32mDebug: OK\033[0m\n");
 		//
 		// >
 	}

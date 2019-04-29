@@ -1,6 +1,7 @@
 // <
 //
 #include <stdlib.h>		// system
+#include "libft.h"		// printing
 //
 // > 
 #include "lem_in.h"
@@ -22,6 +23,8 @@ int			main(int argc, char **argv)
 	// process input
 	read_input_verifier(&lem);
 	// print answer
+	ft_putnbr(lem.input.turn_count);
+	ft_putchar('\n');
 	// <
 	//
 	system("leaks -q verifier");

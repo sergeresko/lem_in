@@ -33,6 +33,7 @@ struct		s_input
 	int		line_count;
 	t_list	*lines;
 	t_list	*last;
+	int		turn_count;		// added for verifier
 };
 
 struct		s_lem
@@ -41,6 +42,7 @@ struct		s_lem
 	t_input	input;
 	int		total_ants;
 	t_graph	graph;
+	t_room	**loc;			// added for verifier
 };
 
 void		read_options(int argc, char *const *argv, t_opt *options);
@@ -84,7 +86,10 @@ t_bool		find_more_paths(t_graph *graph);
 // -----------------------------
 
 void		lem_die(char const *message);
+void		lem_die_number(char const *prefix, int number, char const *postfix);
 void		lem_die_at_line(t_lem const *lem, char const *message);
+void		lem_die_at_line_number(t_lem const *lem, char const *prefix,
+		int number, char const *postfix);
 void		lem_die_from_bug(char const *message);
 
 

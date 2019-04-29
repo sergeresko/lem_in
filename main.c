@@ -34,7 +34,7 @@ int			main(int argc, char **argv)
 		solve_general(&lem);
 	// <
 	//
-	system("leaks -q lem-in");
+//	system("leaks -q lem-in");
 	//
 	// >
 	return (0);

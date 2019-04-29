@@ -15,9 +15,9 @@
 
 // TODO: +/- 1 to n_turns so that it makes sense
 
-static void	compute_ants_per_path(t_solution *s, int i)
+static void		compute_ants_per_path(t_solution *s, int i)
 {
-	int		j;
+	int			j;
 
 	j = 0;
 	while (j < i)
@@ -36,10 +36,10 @@ static void	compute_ants_per_path(t_solution *s, int i)
 **	TODO: determine how many ants should travel each path
 */
 
-static int	distribute_evenly(int ant_count, t_solution *s)
+static int		distribute_evenly(int ant_count, t_solution *s)
 {
-	int		i;
-	int		d;
+	int			i;
+	int			d;
 
 	i = 1;
 	while (i < s->n_paths)
@@ -57,9 +57,9 @@ static int	distribute_evenly(int ant_count, t_solution *s)
 	return (ant_count);
 }
 
-static void	distribute_remainder(int ant_count, t_solution *s)
+static void		distribute_remainder(int ant_count, t_solution *s)
 {
-	int		i;
+	int			i;
 
 	if (ant_count == 0)
 		s->n_turns -= 1;
@@ -71,9 +71,9 @@ static void	distribute_remainder(int ant_count, t_solution *s)
 	}
 }
 
-void		distribute_ants(int total_ants, t_solution *s)
+void			distribute_ants(int total_ants, t_solution *s)
 {
-	int		remaining_ants;
+	int			remaining_ants;
 
 	remaining_ants = distribute_evenly(total_ants, s);
 	// TODO: if remaining_ants > 0
