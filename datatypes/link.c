@@ -12,7 +12,6 @@
 
 #include <stdlib.h>		// malloc, free
 #include "datatypes.h"
-//#include "lem_in.h"		// lem_die_from_bug
 
 void			link_push(t_room *src, t_room *dst, int weight)
 {
@@ -24,13 +23,12 @@ void			link_push(t_room *src, t_room *dst, int weight)
 	list_push(&src->links, l);
 }
 
+/*
+**	CAUTION: The behavior is undefined if the room has no links.
+*/
+
 t_room			*link_pop(t_room *src)
 {
-//	if (src->links == NULL)
-//	{
-//		lem_die_from_bug("popping an empty list");
-//		return (NULL);
-//	}
 	t_room		*dst;
 
 	dst = ((t_link *)src->links->data)->dst;
@@ -38,22 +36,13 @@ t_room			*link_pop(t_room *src)
 	return (dst);
 }
 
+/*
+**	CAUTION: The behavior is undefined if the first room does not have a link
+**	to the second one.
+*/
+
 void			link_delete(t_room *src, t_room *dst)
 {
-//	[...]
-//	links = src->links;
-//	while (links->next != NULL)
-//	{
-//		l = links->next->data;
-//		if (l->dst == dst)
-//		{
-//			free(l);
-//			(void)list_pop(&links->next);
-//			return ;
-//		}
-//		links = links->next;
-//	}
-//	lem_die_from_bug("no link to delete");
 	t_list		**addr;
 
 	addr = &src->links;

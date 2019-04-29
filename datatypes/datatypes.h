@@ -54,7 +54,6 @@ struct		s_list
 	t_list	*next;
 };
 
-t_list		*list_new(void *data);			// TODO: to be removed
 void		list_push(t_list **head, void *data);
 void		*list_pop(t_list **head);
 

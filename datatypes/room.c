@@ -14,12 +14,16 @@
 #include "libft.h"
 #include "datatypes.h"
 
+/*
+**	CAUTION: Fields `name`, `x`, `y` and `best_succ` are left uninitialized.
+*/
+
 t_room			*room_new(void)
 {
 	t_room		*room;
 
 	room = malloc(sizeof(t_room));		// check memory
-	room->name = NULL;
+//	room->name = NULL;
 //	room->x = 0;
 //	room->y = 0;
 	room->links = NULL;

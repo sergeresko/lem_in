@@ -12,7 +12,7 @@
 
 /*
 **	This is an inefficient implementation of a mutable set as a singly-linked
-**	list: both `set_push` and `set_pop_min` take O(n) time where n is the
+**	list: both `set_push` and `set_pop_min` take O(N) time where N is the
 **	current cardinality.
 */
 
@@ -30,14 +30,14 @@ t_set			*set_new(void)
 
 void			set_push(t_set *set, t_room *room)
 {
-	t_list		*e;
+	t_list		*element;
 
-	e = set->elements;
-	while (e != NULL)
+	element = set->elements;
+	while (element != NULL)
 	{
-		if (e->data == room)
+		if (element->data == room)
 			return ;
-		e = e->next;
+		element = element->next;
 	}
 	list_push(&set->elements, room);
 }

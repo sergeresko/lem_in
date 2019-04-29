@@ -23,8 +23,11 @@ void			list_push(t_list **head, void *data)
 	*head = item;
 }
 
-//	the return value is never used, so the function may be made void
-//	and all lines with `data` removed from its body
+/*
+**	NOTE: If the function didn't have to return a value, it could be made void
+**	and the three lines containing `data` could be removed.
+*/
+
 void			*list_pop(t_list **head)
 {
 	t_list		*item;
