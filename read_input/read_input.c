@@ -27,11 +27,11 @@ static void		lem_init(t_lem *lem)
 static void		read_eof(t_lem *lem, t_token *token)
 {
 	if (token->type != TOKEN_EOF)
-		lem_die_at_line(lem, "invalid link (format: name1-name2)");
+		error_at_line(lem, "invalid link (format: name1-name2)");
 	if (lem->graph.start == NULL)
-		lem_die("start is missing");
+		error("start is missing");
 	if (lem->graph.end == NULL)
-		lem_die("end is missing");
+		error("end is missing");
 }
 
 void			read_input(t_lem *lem)

@@ -108,7 +108,7 @@ void			solve_general(t_lem *lem)
 		solution_improve(&best_solution, lem->total_ants, lem->graph.start, path_count);
 	}
 	if (path_count == 0)	// `find_more_paths` failed upon the first call
-		lem_die("no solution (end is not reachable)");
+		error("no solution (end is not reachable)");
 	print_solution(best_solution, lem);		// why lem? because of options
 	solution_destroy(best_solution);
 }

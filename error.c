@@ -5,23 +5,74 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/23 12:52:11 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/23 12:57:05 by syeresko         ###   ########.fr       */
+/*   Created: 2019/04/23 19:34:35 by syeresko          #+#    #+#             */
+/*   Updated: 2019/04/24 15:16:37 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	lem_die(void)
-{
-	static char	*messages[] = {
-		"invalid number of ants (a non-negative integer expected)",
-		"already has a start room",
-		"already has an end room",
-		"already has a room with this name",
-		"invalid room (format: name coord_x coord_y)",
-		"invalid link (format: name1-name2)",
-		"already has a link between these rooms",
-	};
+#include <stdlib.h>		// exit
+#include <unistd.h>		// STDERR_FILENO
+#include "libft.h"
+#include "lem_in.h"
 
-	die_with_message();
+#define ANSI_BOLD	"\033[1m"
+#define ANSI_RESET	"\033[0m"
+
+static void		die(void)
+{
 	exit(1);
+}
+
+void			error(char const *message)
+{
+	ft_putstr_fd(ANSI_BOLD"ERROR: ", STDERR_FILENO);
+	ft_putstr_fd(message, STDERR_FILENO);
+	ft_putstr_fd(ANSI_RESET"\n", STDERR_FILENO);
+	die();
+}
+
+void			error_nbr(char const *prefix, int number, char const *postfix)
+{
+	ft_putstr_fd(ANSI_BOLD"ERROR: ", STDERR_FILENO);
+	ft_putstr_fd(prefix, STDERR_FILENO);
+	ft_putnbr_fd(number, STDERR_FILENO);
+	ft_putstr_fd(postfix, STDERR_FILENO);
+	ft_putstr_fd(ANSI_RESET"\n", STDERR_FILENO);
+	die();
+}
+
+void			error_at_line(t_lem const *lem, char const *message)
+{
+	ft_putstr_fd(ANSI_BOLD"ERROR at line ", STDERR_FILENO);
+	ft_putnbr_fd(lem->input.line_count, STDERR_FILENO);
+	ft_putstr_fd(": ", STDERR_FILENO);
+	ft_putstr_fd(message, STDERR_FILENO);
+	ft_putstr_fd(ANSI_RESET"\n", STDERR_FILENO);
+	ft_putstr_fd(lem->input.last->data, STDERR_FILENO);
+	ft_putstr_fd("\n", STDERR_FILENO);
+	die();
+}
+
+void			error_at_line_nbr(t_lem const *lem, char const *prefix,
+											int number, char const *postfix)
+{
+	ft_putstr_fd(ANSI_BOLD"ERROR at line ", STDERR_FILENO);
+	ft_putnbr_fd(lem->input.line_count, STDERR_FILENO);
+	ft_putstr_fd(": ", STDERR_FILENO);
+	ft_putstr_fd(prefix, STDERR_FILENO);
+	ft_putnbr_fd(number, STDERR_FILENO);
+	ft_putstr_fd(postfix, STDERR_FILENO);
+	ft_putstr_fd(ANSI_RESET"\n", STDERR_FILENO);
+	ft_putstr_fd(lem->input.last->data, STDERR_FILENO);
+	ft_putstr_fd("\n", STDERR_FILENO);
+	die();
+}
+
+// TODO: to be removed
+void			lem_die_from_bug(char const *message)
+{
+	ft_putstr_fd("\033[1;31mBUG: ", STDERR_FILENO);
+	ft_putstr_fd(message, STDERR_FILENO);
+	ft_putstr_fd("\033[0m\n", STDERR_FILENO);
+	die();
 }

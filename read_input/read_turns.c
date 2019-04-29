@@ -20,14 +20,14 @@ static void		check_label(t_lem const *lem, t_token const *token, int i)
 	int			j;
 
 	if (ant < 1)
-		lem_die_at_line(lem, "ant's label non-positive");
+		error_at_line(lem, "ant's label non-positive");
 	if (ant > lem->total_ants)
-		lem_die_at_line(lem, "ant's label exceeds the total amount of ants");
+		error_at_line(lem, "ant's label exceeds the total amount of ants");
 	j = 0;
 	while (j < i)
 	{
 		if (token->value.turn.moves[j].ant == ant)
-			lem_die_at_line_number(lem, "ant ", ant, " moves more than once");
+			error_at_line_nbr(lem, "ant ", ant, " moves more than once");
 		++j;
 	}
 }
@@ -42,11 +42,11 @@ static void		read_move(t_lem *lem, t_token const *token, int i)
 	src = lem->loc[ant - 1];
 	dst = room_find(lem->graph.rooms, token->value.turn.moves[i].dst);
 	if (dst == NULL)
-		lem_die_at_line_number(lem, "ant ", ant, " moves to a non-existent room");
+		error_at_line_nbr(lem, "ant ", ant, " moves to a non-existent room");
 	if (link_find(src, dst) == NULL)
-		lem_die_at_line_number(lem, "ant ", ant, " moves to a non-adjacent room");
+		error_at_line_nbr(lem, "ant ", ant, " moves to a non-adjacent room");
 	if (dst->distance == 0)
-		lem_die_at_line_number(lem, "ant ", ant, " moves to an occupied room");
+		error_at_line_nbr(lem, "ant ", ant, " moves to an occupied room");
 	src->distance = INFINITY;		// mark src as free
 	if (dst != lem->graph.start && dst != lem->graph.end)
 		dst->distance = 0;			// mark dst as occupied

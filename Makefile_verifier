@@ -23,7 +23,7 @@ $(NAME):
 		read_input/read_turns.c \
 		read_input/read_input_verifier.c \
 		\
-		lem_die.c \
+		error.c \
 		\
 		datatypes/list.c \
 		datatypes/link.c \

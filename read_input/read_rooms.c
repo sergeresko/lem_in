@@ -18,7 +18,7 @@ static void		add_room(t_lem *lem, t_token *token)
 	t_room		*room;
 
 	if (room_find(lem->graph.rooms, token->value.room.name) != NULL)
-		lem_die_at_line(lem, "already has a room with this name");
+		error_at_line(lem, "already has a room with this name");
 	room = room_new();
 	room->name = token->value.room.name;
 	room->x = token->value.room.x;
@@ -32,14 +32,14 @@ static void		read_start_or_end_room(t_lem *lem, t_token *token)
 
 	is_start = (token->type == TOKEN_CMD_START);
 	if (is_start && lem->graph.start != NULL)
-		lem_die_at_line(lem, "already has a start");
+		error_at_line(lem, "already has a start");
 	if (!is_start && lem->graph.end != NULL)
-		lem_die_at_line(lem, "already has an end");
+		error_at_line(lem, "already has an end");
 	get_next_token(lem, token);
 	if (token->type == TOKEN_EOF)
-		lem_die("unexpected end of file (room is missing)");
+		error("unexpected end of file (room is missing)");
 	if (token->type != TOKEN_ROOM)
-		lem_die_at_line(lem, "invalid room (format: name coord_x coord_y)");
+		error_at_line(lem, "invalid room (format: name coord_x coord_y)");
 	add_room(lem, token);
 	if (is_start)
 		lem->graph.start = lem->graph.rooms->data;

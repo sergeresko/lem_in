@@ -35,7 +35,7 @@ $(NAME):
 		read_input/read_links.c \
 		read_input/read_input.c \
 		\
-		lem_die.c \
+		error.c \
 		\
 		datatypes/list.c \
 		datatypes/link.c \

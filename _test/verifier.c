@@ -27,7 +27,7 @@ int			main(int argc, char **argv)
 	ft_putchar('\n');
 	// <
 	//
-	system("leaks -q verifier");
+//	system("leaks -q verifier");
 	//
 	// >
 	return (0);

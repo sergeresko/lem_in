@@ -30,13 +30,13 @@ static void		lem_init_loc(t_lem *lem)
 static void		read_empty_line(t_lem *lem, t_token *token)
 {
 	if (token->type == TOKEN_EOF)
-		lem_die("solution is missing");				//
+		error("solution is missing");				//
 	if (token->type != TOKEN_EMPTY_LINE)
-		lem_die_at_line(lem, "invalid link (format: name1-name2)");
+		error_at_line(lem, "invalid link (format: name1-name2)");
 	if (lem->graph.start == NULL)
-		lem_die("start is missing");
+		error("start is missing");
 	if (lem->graph.end == NULL)
-		lem_die("end is missing");
+		error("end is missing");
 	lem_init_loc(lem);
 	get_next_token(lem, token);
 }
@@ -46,12 +46,12 @@ static void		read_eof(t_lem *lem, t_token *token)
 	int		i;
 
 	if (token->type != TOKEN_EOF)
-		lem_die_at_line(lem, "invalid turn (example: L1-A L5-toto L12-q)");	//
+		error_at_line(lem, "invalid turn (example: L1-A L5-toto L12-q)");	//
 	i = 0;
 	while (i < lem->total_ants)
 	{
 		if (lem->loc[i] != lem->graph.end)
-			lem_die_number("ant ", i + 1, " has not reached the end");
+			error_nbr("ant ", i + 1, " has not reached the end");
 		++i;
 	}
 }
