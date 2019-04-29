@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <unistd.h>		// STDIN_FILENO
+#include <stdio.h>		// perror
 #include <stdlib.h>		// exit
 #include "libft.h"		// get_next_line, GNL_OK, ...
 #include "lem_in.h"		// not really needed, since read_input.h includes it
@@ -66,7 +67,7 @@ void		get_next_token(t_lem *lem, t_token *token)
 	}
 	if (status == GNL_ERROR)
 	{
-		// TODO:
+		perror("get_next_line");
 		exit(1);	/////////////////////////
 	}
 }
