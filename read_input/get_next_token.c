@@ -17,7 +17,6 @@
 #include "lem_in.h"		// not really needed, since read_input.h includes it
 #include "read_input.h"
 
-// TODO: remake using the new version of list_push
 static void	save_line(char *line, t_input *input)
 {
 	if (input->lines == NULL)
@@ -30,16 +29,6 @@ static void	save_line(char *line, t_input *input)
 		list_push(&input->last->next, line);
 		input->last = input->last->next;
 	}
-	/*
-	t_list	*item;
-
-	item = list_new(line);
-	if (input->lines == NULL)
-		input->lines = item;
-	else
-		input->last->next = item;
-	input->last = item;
-	*/
 	input->line_count += 1;
 	if (input->line_count < 0)
 		error("file too large");

@@ -33,15 +33,15 @@ static int		count_links(t_room const *src)
 **	of outlets from the start room, and number of inlets to the end room
 */
 
-static int		compute_max_paths(int total_ants, t_graph const *graph)
+static int		compute_max_paths(t_lem const *lem)
 {
 	int			max_paths;
 	int			n;
 
-	max_paths = total_ants;
-	if ((n = count_links(graph->start)) < max_paths)
+	max_paths = lem->total_ants;
+	if ((n = count_links(lem->graph.start)) < max_paths)
 		max_paths = n;
-	if ((n = count_links(graph->end)) < max_paths)
+	if ((n = count_links(lem->graph.end)) < max_paths)
 		max_paths = n;
 	return (max_paths);
 }
@@ -95,11 +95,10 @@ static void		solution_improve(t_solution **best_solution, int total_ants,
 
 void			solve_general(t_lem *lem)
 {
-	int			max_paths;		// const
+	int const	max_paths = compute_max_paths(lem);
 	int			path_count;
 	t_solution	*best_solution;
 
-	max_paths = compute_max_paths(lem->total_ants, &lem->graph);
 	path_count = 0;
 	best_solution = NULL;
 	while (path_count < max_paths && find_more_paths(&lem->graph))
