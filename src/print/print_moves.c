@@ -12,7 +12,8 @@
 
 #include <stdlib.h>		// malloc, free
 #include "libft.h"
-#include "lem_in.h"
+//#include "lem_in.h"
+#include "solve_general.h"
 
 static int		add(t_room **loc, t_solution const *s)
 {

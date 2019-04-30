@@ -11,7 +11,8 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "lem_in.h"
+//#include "lem_in.h"
+#include "solve_general.h"
 
 void		print_total(t_solution const *s)
 {

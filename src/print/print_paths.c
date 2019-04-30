@@ -11,7 +11,8 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "lem_in.h"
+//#include "lem_in.h"
+#include "solve_general.h"
 
 // TODO: rename
 static void	print_tail(t_room const *origin)

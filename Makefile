@@ -91,7 +91,8 @@ $(NAME): $(OBJ) $(LIBFT)
 # compiling
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	$(CC) $(CFLAGS) -o $@ -c $< -I $(INC_DIR)
+	mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -o $@ -c $< -I $(INC_DIR) -I $(LIBFT_DIR)
 
 # -----------------------------------------------------------------------------
 
@@ -100,6 +101,8 @@ $(OBJ): | $(OBJ_DIR)
 $(OBJ_DIR):
 	mkdir $(OBJ_DIR)
 
+$(LIBFT):
+	make -C $(LIBFT_DIR)
 # -----------------------------------------------------------------------------
 
 all: $(NAME)

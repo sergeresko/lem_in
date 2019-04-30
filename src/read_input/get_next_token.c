@@ -16,6 +16,7 @@
 #include "libft.h"		// get_next_line, GNL_OK, ...
 #include "lem_in.h"
 //#include "read_input.h"
+#include "error.h"
 #include "get_next_token.h"
 
 static void	save_line(char *line, t_input *input)

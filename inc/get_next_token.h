@@ -6,11 +6,11 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 14:51:58 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/24 12:51:04 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/04/30 18:01:38 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NET_TOKEN_H
+#ifndef GET_NEXT_TOKEN_H
 # define GET_NEXT_TOKEN_H
 
 # include "datatypes.h"		// t_bool

@@ -27,6 +27,6 @@ void			print_input(t_input const *input)
 		lines = lines->next;
 		++count;
 	}
-	if (count != input->line_count)
-		lem_die_from_bug("line count mismatch");
+//	if (count != input->line_count)
+//		lem_die_from_bug("line count mismatch");
 }

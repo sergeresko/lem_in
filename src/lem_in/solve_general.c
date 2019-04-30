@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"		// for printing
+#include "print.h"
+#include "error.h"
 #include "lem_in.h"
 #include "solve_general.h"
 

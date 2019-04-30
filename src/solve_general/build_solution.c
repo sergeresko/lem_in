@@ -12,7 +12,7 @@
 
 // TODO: rename file
 
-#include <stdlib.h>		// malloc, free
+#include <stdlib.h>		// malloc
 //#include "lem_in.h"
 #include "solve_general.h"
 
