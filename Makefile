@@ -10,56 +10,109 @@
 #                                                                              #
 # **************************************************************************** #
 
-LIBFT_DIR = libft/
+NAME		=	lem-in
 
-NAME = lem-in
+CC			=	gcc
+CFLAGS		=	-Wall -Wextra -Werror
 
-MAIN = main.c
-#MAIN = _test/test_read_eval_print.c
+INC_DIR		=	inc/
+SRC_DIR		=	src/
+OBJ_DIR		=	obj/
+
+LIBFT_DIR	=	libft/
+LIBFT		=	$(LIBFT_DIR)libft.a
+
+# -----------------------------------------------------------------------------
+
+FILES_C		+=	$(addprefix lem_in/, \
+					main.c \
+					read_options.c \
+					read_input.c \
+					solve_instant.c \
+					solve_trivial.c \
+					solve_general.c \
+				)
+FILES_C		+=	$(addprefix read_input/, \
+					get_next_token.c \
+					read_ants.c \
+					read_rooms.c \
+					read_links.c \
+				)
+# NOTE: `read_turns.c` is not needed in for `lem-in`
+FILES_C		+=	$(addprefix get_next_token/, \
+					ft_atoi_strict.c \
+					tokenize_turn.c \
+					tokenize.c \
+				)
+FILES_C		+=	$(addprefix solve_general/, \
+					find_more_paths.c \
+					distribute_ants.c \
+					build_solution.c \
+					improve_solution.c \
+					destroy_solution.c \
+				)
+FILES_C		+=	$(addprefix find_more_paths/, \
+					modify_graph.c \
+					find_shortest_path.c \
+					restore_graph.c \
+					combine_paths.c \
+				)
+FILES_C		+=	$(addprefix print/, \
+					print_input.c \
+					print_rooms.c \
+					print_paths.c \
+					print_total.c \
+					print_moves.c \
+				)
+FILES_C		+=	$(addprefix datatypes/, \
+					list.c \
+					room.c \
+					link.c \
+					set.c \
+				)
+FILES_C		+=	$(addprefix error/, \
+					error.c \
+				)
+
+# -----------------------------------------------------------------------------
+
+SRC			=	$(addprefix $(SRC_DIR), $(FILES_C))
+OBJ			=	$(addprefix $(OBJ_DIR), $(FILES_C:%.c=%.o))
+
+# -----------------------------------------------------------------------------
+
+# linking (do we need flags here?)
+
+$(NAME): $(OBJ) $(LIBFT)
+	$(CC) -o $(NAME) $(OBJ) $(LIBFT)
+
+# -----------------------------------------------------------------------------
+
+# compiling
+
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	$(CC) $(CFLAGS) -o $@ -c $< -I $(INC_DIR)
+
+# -----------------------------------------------------------------------------
+
+$(OBJ): | $(OBJ_DIR)
+
+$(OBJ_DIR):
+	mkdir $(OBJ_DIR)
+
+# -----------------------------------------------------------------------------
 
 all: $(NAME)
 
-$(NAME):
-	@ gcc -Wall -Wextra -Werror \
-		$(MAIN) \
-		-I ./ -I read_input/ -I datatypes/ -I find_more_paths/ -I $(LIBFT_DIR) \
-		\
-		read_options.c \
-		\
-		read_input/ft_atoi_strict.c \
-		read_input/tokenize_turn.c \
-		read_input/tokenize.c \
-		read_input/get_next_token.c \
-		read_input/read_ants.c \
-		read_input/read_rooms.c \
-		read_input/read_links.c \
-		read_input/read_input.c \
-		\
-		error.c \
-		\
-		datatypes/list.c \
-		datatypes/link.c \
-		datatypes/room.c \
-		datatypes/set.c \
-		\
-		find_more_paths/find_more_paths.c \
-		find_more_paths/modify_graph.c \
-		find_more_paths/find_shortest_path.c \
-		find_more_paths/restore_graph.c \
-		find_more_paths/combine_paths.c \
-		\
-		solution/build_solution.c \
-		solution/distribute_ants.c \
-		\
-		solve_instant.c \
-		solve_trivial.c \
-		solve_general.c \
-		\
-		print/print_input.c \
-		print/print_rooms.c \
-		print/print_paths.c \
-		print/print_moves.c \
-		print/print_total.c \
-		\
-		$(LIBFT_DIR)libft.a \
-		-o $(NAME)
+clean:
+	rm -f $(OBJ)
+	make clean -C $(LIBFT_DIR)
+
+fclean: clean
+	rm -rf $(OBJ_DIR)
+	rm -f $(NAME)
+	make fclean -C $(LIBFT_DIR)
+
+re: fclean all
+
+.PHONY: all clean fclean re
