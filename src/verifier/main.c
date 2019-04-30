@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verifier.c                                         :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -33,7 +33,7 @@ int			main(int argc, char **argv)
 	}
 	*/
 	// process input
-	read_input_verifier(&lem);
+	read_input(&lem);
 	// print answer
 	ft_putnbr(lem.input.turn_count);
 	ft_putchar('\n');

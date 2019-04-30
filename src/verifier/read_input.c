@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_input_verifier.c                              :+:      :+:    :+:   */
+/*   read_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -68,7 +68,7 @@ static void		read_eof(t_lem *lem, t_token *token)
 	}
 }
 
-void			read_input_verifier(t_lem *lem)
+void			read_input(t_lem *lem)
 {
 	t_token		token;
 

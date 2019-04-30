@@ -47,9 +47,6 @@ struct		s_lem
 
 void		read_options(int argc, char *const *argv, t_opt *options);
 void		read_input(t_lem *lem);
-//
-void		read_input_verifier(t_lem *lem);	///////////////
-//
 
 // -----------------------------
 
