@@ -12,7 +12,8 @@
 
 #include <stdlib.h>		// free
 #include "libft.h"
-#include "read_input.h"
+//#include "read_input.h"
+#include "get_next_token.h"
 
 static void		tokenize_command_or_comment(char const *line, t_token *token)
 {
@@ -23,15 +24,6 @@ static void		tokenize_command_or_comment(char const *line, t_token *token)
 	else
 		token->type = TOKEN_COMMENT;
 }
-
-/*
-// TODO: to separate file
-void		tokenize_turn(char const *line, t_token *token)
-{
-	(void)line;
-	token->type = TOKEN_TURN;
-}
-*/
 
 static void		tokenize_room(char const *line, t_token *token)
 {

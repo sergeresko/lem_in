@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_input.c                                      :+:      :+:    :+:   */
+/*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/24 13:45:32 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/24 15:07:16 by syeresko         ###   ########.fr       */
+/*   Created: 2019/04/30 15:52:47 by syeresko          #+#    #+#             */
+/*   Updated: 2019/04/30 16:16:25 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "lem_in.h"
+#ifndef ERROR_H
+# define ERROR_H
 
-void		print_input(t_input const *input)
-{
-	t_list	*lines;
-	int		count;
+# include "lem_in.h"		// t_lem
 
-	lines = input->lines;
-	count = 0;
-	while (lines != NULL)
-	{
-		ft_putstr(lines->data);
-		ft_putchar('\n');
-		lines = lines->next;
-		++count;
-	}
-	if (count != input->line_count)
-		lem_die_from_bug("line count mismatch");
-}
+void		error(char const *message);
+void		error_nbr(char const *prefix, int number, char const *postfix);
+void		error_at_line(t_lem const *lem, char const *message);
+void		error_at_line_nbr(t_lem const *lem, char const *prefix,
+		int number, char const *postfix);
+//void		lem_die_from_bug(char const *message);	// TODO: to be removed
+
+#endif

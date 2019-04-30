@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_input.h                                       :+:      :+:    :+:   */
+/*   get_next_token.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,10 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef READ_INPUT_H
-# define READ_INPUT_H
+#ifndef GET_NET_TOKEN_H
+# define GET_NEXT_TOKEN_H
 
-#include "lem_in.h"		// hence files that include "read_input.h" need not include "lem_in.h"
+# include "datatypes.h"		// t_bool
+//#include "lem_in.h"		// hence files that include "read_input.h" need not include "lem_in.h"
 
 typedef enum e_type		t_type;
 typedef struct s_move	t_move;
@@ -70,12 +71,5 @@ struct		s_token
 t_bool		ft_atoi_strict(char const *str, int *value);	// maybe out of here
 void		tokenize_turn(char const *line, t_token *token);
 void		tokenize(char const *line, t_token *token);
-
-void		get_next_token(t_lem *lem, t_token *token);
-
-void		read_ants(t_lem *lem, t_token *token);
-void		read_rooms(t_lem *lem, t_token *token);
-void		read_links(t_lem *lem, t_token *token);
-void		read_turns(t_lem *lem, t_token *token);		// only in verifier
 
 #endif

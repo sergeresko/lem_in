@@ -53,52 +53,8 @@ void		read_input_verifier(t_lem *lem);	///////////////
 
 // -----------------------------
 
-typedef struct s_path	t_path;
-typedef struct s_solution	t_solution;
-
-struct	s_path
-{
-	t_room	*origin;
-	int		length;
-	int		ants;		// TODO: what is this?
-};
-
-struct	s_solution
-{
-	int		n_paths;
-	t_path	*paths;
-	int		*ants_per_path;
-	int		n_turns;
-};
-
-void		distribute_ants(int n_ants, t_solution *s);
-t_solution	*solution_build(int n_ants, t_room const *start, int n_paths);
-void		solution_destroy(t_solution *s);
-
 void		solve_instant(t_lem const *lem);	// does not use t_solution
 void		solve_trivial(t_lem const *lem);	// does not use t_solution
 void		solve_general(t_lem *lem);
-
-// -----------------------------
-
-t_bool		find_more_paths(t_graph *graph);
-
-// -----------------------------
-
-void		error(char const *message);
-void		error_nbr(char const *prefix, int number, char const *postfix);
-void		error_at_line(t_lem const *lem, char const *message);
-void		error_at_line_nbr(t_lem const *lem, char const *prefix,
-		int number, char const *postfix);
-void		lem_die_from_bug(char const *message);	// TODO: to be removed
-
-
-
-
-void		print_input(t_input const *input);
-void		print_rooms(t_graph const *g);
-void		print_paths(t_solution const *s, t_room const *start);
-void		print_moves(t_solution const *s, int n_ants);
-void		print_total(t_solution const *s);
 
 #endif

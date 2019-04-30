@@ -13,7 +13,8 @@
 // TODO: rename file
 
 #include <stdlib.h>		// malloc, free
-#include "lem_in.h"
+//#include "lem_in.h"
+#include "solve_general.h"
 
 static int		path_length(t_room *origin)
 {
@@ -83,20 +84,14 @@ static void		sort_paths(int n_paths, t_path *paths)
 
 t_solution		*solution_build(int n_ants, t_room const *start, int n_paths)
 {
-	t_solution	*s;
+	t_solution	*solution;
 
-	s = malloc(sizeof(t_solution));
-	s->n_paths = n_paths;
-	s->paths = init_paths(n_paths, start);
-	sort_paths(n_paths, s->paths);
-	s->ants_per_path = malloc(n_paths * sizeof(int));
-	distribute_ants(n_ants, s);
-	return (s);
+	solution = malloc(sizeof(t_solution));
+	solution->n_paths = n_paths;
+	solution->paths = init_paths(n_paths, start);
+	sort_paths(n_paths, solution->paths);
+	solution->ants_per_path = malloc(n_paths * sizeof(int));
+	distribute_ants(n_ants, solution);
+	return (solution);
 }
 
-void			solution_destroy(t_solution *s)
-{
-	free(s->paths);
-	free(s->ants_per_path);
-	free(s);
-}

@@ -15,19 +15,20 @@
 
 // TODO: +/- 1 to n_turns so that it makes sense
 
-static void		compute_ants_per_path(t_solution *s, int i)
+static void		compute_ants_per_path(t_solution *solution, int i)
 {
 	int			j;
 
 	j = 0;
 	while (j < i)
 	{
-		s->ants_per_path[j] = s->n_turns - s->paths[j].length;
+		solution->ants_per_path[j] =
+				solution->n_turns - solution->paths[j].length;
 		++j;
 	}
-	while (j < s->n_paths)
+	while (j < solution->n_paths)
 	{
-		s->ants_per_path[j] = 0;
+		solution->ants_per_path[j] = 0;
 		++j;
 	}
 }
@@ -36,15 +37,15 @@ static void		compute_ants_per_path(t_solution *s, int i)
 **	TODO: determine how many ants should travel each path
 */
 
-static int		distribute_evenly(int ant_count, t_solution *s)
+static int		distribute_evenly(int ant_count, t_solution *solution)
 {
 	int			i;
 	int			d;
 
 	i = 1;
-	while (i < s->n_paths)
+	while (i < solution->n_paths)
 	{
-		d = s->paths[i].length - s->paths[i - 1].length;
+		d = solution->paths[i].length - solution->paths[i - 1].length;
 		if (ant_count / i <= d)
 			break ;
 		ant_count -= d * i;
@@ -52,32 +53,32 @@ static int		distribute_evenly(int ant_count, t_solution *s)
 	}
 	d = ant_count / i;
 	ant_count -= d * i;
-	s->n_turns = s->paths[i - 1].length + d;
-	if (s->n_turns < 0)
+	solution->n_turns = solution->paths[i - 1].length + d;
+	if (solution->n_turns < 0)
 		error("too many ants");
-	compute_ants_per_path(s, i);
+	compute_ants_per_path(solution, i);
 	return (ant_count);
 }
 
-static void		distribute_remainder(int ant_count, t_solution *s)
+static void		distribute_remainder(int ant_count, t_solution *solution)
 {
 	int			i;
 
 	if (ant_count == 0)
-		s->n_turns -= 1;
+		solution->n_turns -= 1;
 	i = 0;
 	while (ant_count--)
 	{
-		s->ants_per_path[i] += 1;
+		solution->ants_per_path[i] += 1;
 		++i;
 	}
 }
 
-void			distribute_ants(int total_ants, t_solution *s)
+void			distribute_ants(int total_ants, t_solution *solution)
 {
 	int			remaining_ants;
 
-	remaining_ants = distribute_evenly(total_ants, s);
+	remaining_ants = distribute_evenly(total_ants, solution);
 	// TODO: if remaining_ants > 0
-	distribute_remainder(remaining_ants, s);
+	distribute_remainder(remaining_ants, solution);
 }

@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"		// not really needed, since read_input.h includes it
+//#include "lem_in.h"		// not really needed, since read_input.h includes it
+#include "error.h"
 #include "read_input.h"
 
 static void		lem_init(t_lem *lem)
@@ -21,7 +22,7 @@ static void		lem_init(t_lem *lem)
 	lem->input.line_count = 0;
 	lem->input.lines = NULL;
 	lem->input.last = NULL;
-	lem->input.turn_count = 0;		// not needed (used only in verifier)
+//	lem->input.turn_count = 0;		// not needed (used only in verifier)
 }
 
 static void		read_eof(t_lem *lem, t_token *token)

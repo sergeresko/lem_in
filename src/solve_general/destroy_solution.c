@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_malloc_or_die.c                                 :+:      :+:    :+:   */
+/*   destroy_solution.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/30 14:07:27 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/30 14:07:32 by syeresko         ###   ########.fr       */
+/*   Created: 2019/04/30 15:17:53 by syeresko          #+#    #+#             */
+/*   Updated: 2019/04/30 15:18:45 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
+#include "solve_general.h"
 
-void		*ft_malloc_or_die(size_t size)
+void			solution_destroy(t_solution *solution)
 {
-	void	*ptr;
-
-	if ((ptr = malloc(size)) == NULL)
-	{
-		perror("malloc");
-		exit(1);
-	}
-	return (ptr);
-}
+	free(solution->paths);
+	free(solution->ants_per_path);
+	free(solution);
+} 

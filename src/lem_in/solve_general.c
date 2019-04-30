@@ -12,6 +12,7 @@
 
 #include "libft.h"		// for printing
 #include "lem_in.h"
+#include "solve_general.h"
 
 static int		count_links(t_room const *src)
 {
@@ -46,8 +47,7 @@ static int		compute_max_paths(t_lem const *lem)
 	return (max_paths);
 }
 
-// TODO: out of here
-void			print_solution(t_solution *best_solution, t_lem const *lem)
+static void		print_solution(t_solution *best_solution, t_lem const *lem)
 {
 	if (lem->options.paths)
 		print_paths(best_solution, lem->graph.start);
@@ -55,42 +55,6 @@ void			print_solution(t_solution *best_solution, t_lem const *lem)
 		print_total(best_solution);
 	if (lem->options.moves)
 		print_moves(best_solution, lem->total_ants);
-}
-
-static void		solution_save(t_solution const *solution)
-{
-	int			i;
-	t_room		*room;
-
-	i = 0;
-	while (i < solution->n_paths)
-	{
-		room = solution->paths[i].origin;
-		while (room->succ != NULL)
-		{
-			room->best_succ = room->succ;
-			room = room->succ;
-		}
-		++i;
-	}
-}
-
-static void		solution_improve(t_solution **best_solution, int total_ants,
-		t_room *start, int path_count)
-{
-	t_solution	*solution;
-
-	solution = solution_build(total_ants, start, path_count);
-	if (*best_solution == NULL
-			|| solution->n_turns < (*best_solution)->n_turns)
-	{
-		solution_save(solution);
-		if (*best_solution != NULL)
-			solution_destroy(*best_solution);
-		*best_solution = solution;
-	}
-	else
-		solution_destroy(solution);
 }
 
 void			solve_general(t_lem *lem)

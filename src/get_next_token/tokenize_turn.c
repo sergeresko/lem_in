@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tokenize_turn.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/30 14:07:06 by syeresko          #+#    #+#             */
+/*   Updated: 2019/04/30 14:57:03 by syeresko         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 // verifier, the Very Fire of lem-in
 
 #include <stdlib.h>		// malloc, free
 #include "libft.h"
-#include "read_input.h"
+//#include "read_input.h"
+#include "get_next_token.h"
 
 static int		array_length(char *const *array)
 {

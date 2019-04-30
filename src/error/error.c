@@ -69,6 +69,7 @@ void			error_at_line_nbr(t_lem const *lem, char const *prefix,
 }
 
 // TODO: to be removed
+/*
 void			lem_die_from_bug(char const *message)
 {
 	ft_putstr_fd("\033[1;31mBUG: ", STDERR_FILENO);
@@ -76,3 +77,4 @@ void			lem_die_from_bug(char const *message)
 	ft_putstr_fd("\033[0m\n", STDERR_FILENO);
 	die();
 }
+*/

@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"		// not really needed, since read_input.h includes it
+//#include "lem_in.h"		// not really needed, since read_input.h includes it
+#include "error.h"
 #include "read_input.h"
 
 static void		add_room(t_lem *lem, t_token *token)

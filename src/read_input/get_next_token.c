@@ -14,8 +14,9 @@
 #include <stdio.h>		// perror
 #include <stdlib.h>		// exit
 #include "libft.h"		// get_next_line, GNL_OK, ...
-#include "lem_in.h"		// not really needed, since read_input.h includes it
-#include "read_input.h"
+#include "lem_in.h"
+//#include "read_input.h"
+#include "get_next_token.h"
 
 static void	save_line(char *line, t_input *input)
 {
