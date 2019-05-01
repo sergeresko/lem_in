@@ -10,20 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+char		*ft_strsub(char const *s, unsigned int start, size_t len)
 {
 	char	*new;
 	char	*dst;
 
-	if ((new = (char *)malloc(len + 1)))
-	{
-		dst = new;
-		s += start;
-		while (len--)
-			*(dst++) = *(s++);
-		*dst = '\0';
-	}
+	new = ft_malloc_or_die(len + 1);
+	dst = new;
+	s += start;
+	while (len--)
+		*(dst++) = *(s++);
+	*dst = '\0';
 	return (new);
 }

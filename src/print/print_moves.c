@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>		// malloc, free
+#include <stdlib.h>		// free
 #include "libft.h"
 //#include "lem_in.h"
 #include "solve_general.h"
@@ -78,7 +78,7 @@ void			print_moves(t_solution const *solution, int total_ants)
 	int			count;
 	int			k;
 
-	loc = malloc(total_ants * sizeof(t_room *));		// check memory
+	loc = ft_malloc_or_die(total_ants * sizeof(t_room *));
 	count = solution->n_turns;
 	k = 0;
 	ft_putchar('\n');

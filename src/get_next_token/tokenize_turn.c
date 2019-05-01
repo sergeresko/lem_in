@@ -12,9 +12,8 @@
 
 // verifier, the Very Fire of lem-in
 
-#include <stdlib.h>		// malloc, free
+#include <stdlib.h>		// free
 #include "libft.h"
-//#include "read_input.h"
 #include "get_next_token.h"
 
 static int		array_length(char *const *array)
@@ -60,21 +59,16 @@ void			tokenize_turn(char const *line, t_token *token)
 
 	words = ft_strsplit(line, ' ');
 	len = array_length(words);
-	moves = malloc(len * sizeof(t_move));	// TODO: ft_malloc_or_die
+	moves = ft_malloc_or_die(len * sizeof(t_move));
 	i = 0;
 	while (i < len && parse_move(words[i], &moves[i]))
 		++i;
-	ft_clear_tab((void **)words);		// TODO: replace this function
+	ft_strsplit_clear(words);
 	if (i == len)
 	{
 		token->type = TOKEN_TURN;
 		token->value.turn.moves = moves;
 		token->value.turn.len = len;
-		// <
-		//
-//		ft_putstr("\033[32mDebug: OK\033[0m\n");
-		//
-		// >
 	}
 	else
 	{

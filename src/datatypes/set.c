@@ -16,14 +16,15 @@
 **	current cardinality.
 */
 
-#include <stdlib.h>		// malloc, free
-#include "lem_in.h"
+#include <stdlib.h>		// free
+#include "libft.h"
+#include "datatypes.h"	// "lem_in.h"
 
 t_set			*set_new(void)
 {
 	t_set		*set;
 
-	set = malloc(sizeof(t_set));		// check memory
+	set = ft_malloc_or_die(sizeof(t_set));
 	set->elements = NULL;
 	return (set);
 }

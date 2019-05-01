@@ -10,12 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// <
-//
-#include <stdlib.h>		// malloc
-//
-// >
-#include "lem_in.h"		// not really needed, since read_input.h includes it
+#include "libft.h"
+//#include "lem_in.h"		// not really needed, since read_input.h includes it
 #include "read_input.h"
 #include "error.h"
 
@@ -34,7 +30,7 @@ static void		lem_init_loc(t_lem *lem)
 {
 	int			i;
 
-	lem->loc = malloc(lem->total_ants * sizeof(t_room *));	// TODO: check mem
+	lem->loc = ft_malloc_or_die(lem->total_ants * sizeof(t_room *));
 	i = lem->total_ants;
 	while (i--)
 		lem->loc[i] = lem->graph.start;

@@ -39,7 +39,7 @@ char		*ft_strdup(const char *s1);
 char		*ft_strsub(char const *s, unsigned int start, size_t len);
 
 char		**ft_strsplit(char const *s, char c);
-void		ft_clear_tab(void **tab);
+void		ft_strsplit_clear(char **tab);
 
 /*
 **	write functions

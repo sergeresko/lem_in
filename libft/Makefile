@@ -27,7 +27,7 @@ SRC = \
 	ft_strsub.c \
 	\
 	ft_strsplit.c \
-	ft_clear_tab.c \
+	ft_strsplit_clear.c \
 	\
 	ft_putchar.c ft_putchar_fd.c \
 	ft_putstr.c ft_putstr_fd.c \

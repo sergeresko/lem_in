@@ -44,13 +44,6 @@ static int	ft_word_len(char const *s, char c)
 	return (word_len);
 }
 
-static void	ft_free_str_array(char **p)
-{
-	while (*p)
-		free(*(p++));
-	free(p);
-}
-
 char		**ft_strsplit(char const *s, char c)
 {
 	char	**new;
@@ -59,23 +52,16 @@ char		**ft_strsplit(char const *s, char c)
 	int		word_len;
 
 	word_count = ft_word_count(s, c);
-	new = (char **)malloc(sizeof(char *) * (word_count + 1));
-	if (new)
+	new = ft_malloc_or_die((word_count + 1) * sizeof(char *));
+	i = 0;
+	while (i < word_count)
 	{
-		i = 0;
-		while (i < word_count)
-		{
-			while (*s == c)
-				++s;
-			word_len = ft_word_len(s, c);
-			if ((new[i++] = ft_strsub(s, 0, word_len)) == NULL)
-			{
-				ft_free_str_array(new);
-				return (NULL);
-			}
-			s += word_len;
-		}
-		new[i] = NULL;
+		while (*s == c)
+			++s;
+		word_len = ft_word_len(s, c);
+		new[i++] = ft_strsub(s, 0, word_len);
+		s += word_len;
 	}
+	new[i] = NULL;
 	return (new);
 }

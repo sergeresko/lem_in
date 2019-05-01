@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_clear_tab.c                                     :+:      :+:    :+:   */
+/*   ft_strsplit_clear.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -16,15 +16,12 @@
 **	Free each element of a NULL-termainated array `tab` as well as `tab` itself.
 */
 
-void	ft_clear_tab(void **tab)
+void		ft_strsplit_clear(char **tab)
 {
-	void	**ptr;
+	char	**p;
 
-	ptr = tab;
-	while (*ptr != NULL)
-	{
-		free(*ptr);
-		++ptr;
-	}
+	p = tab;
+	while (*p)
+		free(*(p++));
 	free(tab);
 }

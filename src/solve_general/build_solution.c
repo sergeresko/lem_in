@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// TODO: rename file
-
-#include <stdlib.h>		// malloc
+#include "libft.h"		// malloc_or_die
 //#include "lem_in.h"
 #include "solve_general.h"
 
@@ -36,7 +34,7 @@ static t_path	*init_paths(int n_paths, t_room const *start)
 	t_link		*l;
 	int			i;
 
-	paths = malloc(n_paths * sizeof(t_path));	// check memory
+	paths = ft_malloc_or_die(n_paths * sizeof(t_path));
 	links = start->links;
 	i = 0;
 	while (i < n_paths)
@@ -86,11 +84,11 @@ t_solution		*solution_build(int n_ants, t_room const *start, int n_paths)
 {
 	t_solution	*solution;
 
-	solution = malloc(sizeof(t_solution));
+	solution = ft_malloc_or_die(sizeof(t_solution));
 	solution->n_paths = n_paths;
 	solution->paths = init_paths(n_paths, start);
 	sort_paths(n_paths, solution->paths);
-	solution->ants_per_path = malloc(n_paths * sizeof(int));
+	solution->ants_per_path = ft_malloc_or_die(n_paths * sizeof(int));
 	distribute_ants(n_ants, solution);
 	return (solution);
 }

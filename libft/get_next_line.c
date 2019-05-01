@@ -16,7 +16,7 @@
 
 static t_flist	*find(int fd, t_flist **afiles)
 {
-	t_flist	*file;
+	t_flist		*file;
 
 	if (afiles == NULL)
 		return (NULL);
@@ -27,9 +27,7 @@ static t_flist	*find(int fd, t_flist **afiles)
 			return (file);
 		file = file->next;
 	}
-	file = (t_flist *)malloc(sizeof(t_flist));
-	if (file == NULL)
-		return (NULL);
+	file = ft_malloc_or_die(sizeof(t_flist));
 	file->fd = fd;
 	file->start = 0;
 	file->end = 0;
@@ -46,21 +44,18 @@ static t_flist	*find(int fd, t_flist **afiles)
 
 static char		*ft_strnjoin(char *s1, int n1, char *s2, int n2)
 {
-	char	*old_s1;
-	char	*new;
-	char	*dst;
+	char		*old_s1;
+	char		*new;
+	char		*dst;
 
 	old_s1 = s1;
-	new = (char *)malloc(n1 + n2 + 1);
-	if (new)
-	{
-		dst = new;
-		while (n1--)
-			*(dst++) = *(s1++);
-		while (n2--)
-			*(dst++) = *(s2++);
-		*dst = '\0';
-	}
+	new = ft_malloc_or_die(n1 + n2 + 1);
+	dst = new;
+	while (n1--)
+		*(dst++) = *(s1++);
+	while (n2--)
+		*(dst++) = *(s2++);
+	*dst = '\0';
 	if (old_s1)
 		free(old_s1);
 	return (new);
@@ -68,7 +63,7 @@ static char		*ft_strnjoin(char *s1, int n1, char *s2, int n2)
 
 static int		newline_index(const char *s, int len)
 {
-	int		i;
+	int			i;
 
 	i = 0;
 	while (i < len && s[i] != '\n')
@@ -78,8 +73,8 @@ static int		newline_index(const char *s, int len)
 
 static int		gnl(t_flist *f, char **line)
 {
-	int		eol;
-	int		length;
+	int			eol;
+	int			length;
 
 	length = 0;
 	while (1)

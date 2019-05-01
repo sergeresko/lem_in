@@ -44,7 +44,7 @@ static void		tokenize_room(char const *line, t_token *token)
 	else
 	{
 		token->type = TOKEN_ERROR;
-		ft_clear_tab((void **)words);		// TODO: replace this function
+		ft_strsplit_clear(words);
 	}
 }
 
