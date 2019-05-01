@@ -26,7 +26,7 @@ LIBFT		=	libft/libft.a
 # -----------------------------------------------------------------------------
 
 LEMIN_H		=	inc/lem_in.h
-LEMIN_C		=	$(addprefix src/lemin/, \
+LEMIN_C		=	$(addprefix src/lem_in/, \
 					main.c \
 					read_options.c \
 					read_input.c \
@@ -113,6 +113,8 @@ OBJ_V		=	$(VERIF_O) $(RDINP_V_O) $(GNTOK_O) $(DTYPS_O) $(ERROR_O)
 
 # -----------------------------------------------------------------------------
 
+all: lem-in verifier
+
 # linking (do we need flags here?)
 
 lem-in: obj/ $(OBJ_L) $(LIBFT)
@@ -141,11 +143,8 @@ $(LIBFT):
 
 # -----------------------------------------------------------------------------
 
-all: lem-in verifier
-
 clean:
-	rm -f $(OBJ_L)
-	rm -f $(OBJ_V)
+	rm -f $(OBJ_L) $(OBJ_V)
 	make clean -C libft/
 
 fclean: clean

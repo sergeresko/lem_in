@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>		// malloc
+#include <stdlib.h>			// malloc
 #include "solve_general.h"
 //#include "lem_in.h"
 #include "error.h"

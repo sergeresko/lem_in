@@ -23,7 +23,9 @@ int			main(int argc, char **argv)
 	t_lem	lem;
 
 	// process options
-	read_options(argc, argv, &lem.options);
+	(void)argc;
+	(void)argv;
+//	read_options(argc, argv, &lem.options);
 	// TODO: help
 	/*
 	if (lem.options.help)

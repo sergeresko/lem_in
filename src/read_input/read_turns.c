@@ -86,7 +86,6 @@ static t_bool	read_turn(t_lem *lem, t_token *token)
 
 void		read_turns(t_lem *lem, t_token *token)
 {
-	// TODO: ...?
 	while (read_turn(lem, token))
 		get_next_token(lem, token);
 }
