@@ -75,8 +75,8 @@ SRC_FMPTH	=	$(addprefix src/find_more_paths/,	\
 SRC_PRINT	=	$(addprefix src/print/,				\
 					print_input.c					\
 					print_rooms.c					\
-					print_paths.c					\
 					print_total.c					\
+					print_path.c					\
 					print_moves.c					\
 				)
 SRC_DTYPS	=	$(addprefix src/datatypes/,			\

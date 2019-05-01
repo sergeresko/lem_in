@@ -15,15 +15,15 @@
 //#include "lem_in.h"
 #include "solve_general.h"
 
-static int		add(t_room **loc, t_solution const *s)
+static int		add(t_room **loc, t_solution const *solution)
 {
 	int			i;
 
 	i = 0;
-	while (i < s->n_paths && s->ants_per_path[i] > 0)
+	while (i < solution->n_paths && solution->ants_per_path[i] > 0)
 	{
-		s->ants_per_path[i] -= 1;		// modifies solution, so const is misleading
-		loc[i] = s->paths[i].origin;
+		solution->ants_per_path[i] -= 1;	// modifies solution, so const is misleading
+		loc[i] = solution->paths[i].origin;
 		++i;
 	}
 	return (i);
@@ -72,20 +72,20 @@ static void		print_turn(t_room *const *loc, int k)
 **	TODO: [Description; what `loc` is for]
 */
 
-void			print_moves(t_solution const *s, int total_ants)
+void			print_moves(t_solution const *solution, int total_ants)
 {
 	t_room		**loc;
 	int			count;
 	int			k;
 
 	loc = malloc(total_ants * sizeof(t_room *));		// check memory
-	count = s->n_turns;
+	count = solution->n_turns;
 	k = 0;
 	ft_putchar('\n');
 	while (count--)
 	{
 		advance(loc, k);
-		k += add(loc + k, s);
+		k += add(loc + k, solution);
 		print_turn(loc, k);
 	}
 	free(loc);

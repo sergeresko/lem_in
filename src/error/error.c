@@ -20,7 +20,13 @@
 
 static void		die(void)
 {
+	// <
+	//
+	system("leaks -q lem-in");
+	//
+	// >
 	exit(1);
+
 }
 
 void			error(char const *message)

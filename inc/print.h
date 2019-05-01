@@ -14,13 +14,13 @@
 # define PRINT_H
 
 # include "lem_in.h"
-# include "solve_general.h"
+# include "solve_general.h"		// for print_moves
 
 void		print_input(t_input const *input);
-void		print_moves(t_solution const *s, int total_ants);
-void		print_paths(t_solution const *s, t_room const *start);
 void		print_rooms(t_graph const *graph);
-void		print_total(t_solution const *s);
-
+void		print_total(char const *str, int number);
+void		print_moves(t_solution const *solution, int total_ants);
+void		print_path(int n_ants, int length,
+					t_room const *start, t_room const *origin);
 
 #endif

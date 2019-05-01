@@ -12,9 +12,14 @@
 
 #include "libft.h"		// for printing
 #include "lem_in.h"
+#include "print.h"
 
 static void		print_paths_trivial(int total_ants, t_room const *start, t_room const *end)
 {
+	print_total("paths", 1);
+	print_path(total_ants, 1, start, end);
+	ft_putstr("#\n");		// TODO:
+	/*
 	ft_putstr("#\n#   Paths:\n#\n");
 	// TODO: number of paths: 1
 	ft_putstr("#   ");
@@ -28,14 +33,18 @@ static void		print_paths_trivial(int total_ants, t_room const *start, t_room con
 	ft_putstr(end->name);
 	ft_putstr(" ]\n");
 	ft_putstr("#\n");
+	*/
 }
 
 static void		print_total_trivial(void)
 {
+	print_total("turns", 1);
+	/*
 	// TODO: make just a single string
 	ft_putstr("#\n#   Total turns: ");
 	ft_putnbr(1);
 	ft_putstr("\n#\n");
+	*/
 }
 
 static void		print_moves_trivial(int total_ants, t_room const *end)

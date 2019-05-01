@@ -10,22 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"		// for printing
+#include "libft.h"		// TODO: to be removed
 #include "lem_in.h"
+#include "print.h"
 
 static void		print_paths_instant(void)
 {
+	print_total("paths", 0);
+	ft_putstr("#\n");		// TODO:
+	/*
 	ft_putstr("#\n#   Paths:\n#\n");
 	// TODO: number of paths: 0
 	ft_putstr("#\n");
+	*/
 }
 
 static void		print_total_instant(void)
 {
+	print_total("turns", 0);
+	/*
 	// TODO: make just a single string
 	ft_putstr("#\n#   Total turns: ");
 	ft_putnbr(0);
 	ft_putstr("\n#\n");
+	*/
 }
 
 static void		print_moves_instant(void)

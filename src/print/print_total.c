@@ -11,12 +11,12 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-//#include "lem_in.h"
-#include "solve_general.h"
 
-void		print_total(t_solution const *s)
+void		print_total(char const *str, int number)
 {
-	ft_putstr("#\n#   Total turns: ");
-	ft_putnbr(s->n_turns);
+	ft_putstr("#\n#   Total ");
+	ft_putstr(str);
+	ft_putstr(": ");
+	ft_putnbr(number);
 	ft_putstr("\n#\n");
 }

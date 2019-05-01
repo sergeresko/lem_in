@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "print.h"
+#include "libft.h"		// for printing, to be removed
 #include "error.h"
 #include "lem_in.h"
 #include "solve_general.h"
@@ -48,12 +49,27 @@ static int		compute_max_paths(t_lem const *lem)
 	return (max_paths);
 }
 
+static void		print_paths(t_solution const *solution, t_room const *start)
+{
+	int		i;
+
+	print_total("paths", solution->n_paths);
+	i = 0;
+	while (i < solution->n_paths)
+	{
+		print_path(solution->ants_per_path[i], solution->paths[i].length,
+				start, solution->paths[i].origin);
+		++i;
+	}
+	ft_putstr("#\n");		// TODO:
+}
+
 static void		print_solution(t_solution *best_solution, t_lem const *lem)
 {
 	if (lem->options.paths)
 		print_paths(best_solution, lem->graph.start);
 	if (lem->options.total)
-		print_total(best_solution);
+		print_total("turns", best_solution->n_turns);
 	if (lem->options.moves)
 		print_moves(best_solution, lem->total_ants);
 }
