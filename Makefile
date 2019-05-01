@@ -62,9 +62,9 @@ SRC_GNTOK	=	$(addprefix src/get_next_token/,	\
 SRC_SLVGN	=	$(addprefix src/solve_general/,		\
 					find_more_paths.c				\
 					distribute_ants.c				\
-					build_solution.c				\
-					improve_solution.c				\
-					destroy_solution.c				\
+					solution_build.c				\
+					solution_improve.c				\
+					solution_destroy.c				\
 				)
 SRC_FMPTH	=	$(addprefix src/find_more_paths/,	\
 					modify_graph.c					\
