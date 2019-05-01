@@ -49,15 +49,15 @@ int main(int ac, char **av) {
 	int i = 0;
 	while (++i < n_paths) {
 		int d = lengths[i] - lengths[i - 1];
-		printf("-- d = l[%d] - l[%d] = %d\n", i, i - 1, d);		//
+//		printf("-- d = l[%d] - l[%d] = %d\n", i, i - 1, d);		//
 		if (n_ants / i <= d) {
-			printf("-- break\n");								//
+//			printf("-- break\n");								//
 			break;
 		}
 		n_ants -= d * i;
 	}
 	int d = n_ants / i;
-	printf("-- d = a / i = %d / %d = %d\n", n_ants, i, d);		//
+//	printf("-- d = a / i = %d / %d = %d\n", n_ants, i, d);		//
 	n_ants -= d * i;
 	n_turns = lengths[i - 1] + d;
 	for (int j = 0; j < i; ++j) {
