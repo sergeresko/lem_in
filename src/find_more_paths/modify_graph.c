@@ -15,7 +15,16 @@
 /*
 **	modify the path whose last room before `end` is `in`
 **
-**	TODO: [Description]
+**	All bidirectional links between the rooms along the path are replaced
+**	by unidirectional links of negative weight directed towards the start.
+**
+**	Each room along the path apart from `start` and `end` is split into two
+**	rooms, `in` and `out`, connected with a link of weight 0 leading from `out`
+**	to `in` (this direction is also towards the start).
+**
+**	All links that led previously into the room under consideration now lead
+**	to its `in` version, and all links that went previously out of that room
+**	now go from its `out` version.
 */
 
 static void		modify_path(t_room *start, t_room *in, t_room *end)

@@ -12,7 +12,16 @@
 
 #include "find_more_paths.h"
 
-// TODO: rename rooms
+/*
+**	override `parent` fields of some rooms so as to exclude the `out` versions
+**	of rooms on the path defined by `parent` fields
+**
+**	Every successive `out` and `in` as well as a self-standing `out` is
+**	replaced in terms of `parent` fields by a single `in`.
+**
+**	NOTE: The last statement `x = x->parent` is not equivalent to `x = p`.
+*/
+
 static void		adjust_parents(t_room *x)
 {
 	t_room		*p;
@@ -29,7 +38,7 @@ static void		adjust_parents(t_room *x)
 				x->parent = r;
 			r->parent = p->parent;
 		}
-		x = x->parent;		// not equivalent to x = p
+		x = x->parent;
 	}
 }
 

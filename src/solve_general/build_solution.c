@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"		// malloc_or_die
-//#include "lem_in.h"
+#include "libft.h"
 #include "solve_general.h"
 
 static int		path_length(t_room *origin)

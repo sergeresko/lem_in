@@ -12,6 +12,10 @@
 
 #include "solve_general.h"
 
+/*
+**	copy the values of `succ` fields to `best_succ` fields
+*/
+
 static void		solution_save(t_solution const *solution)
 {
 	int			i;
@@ -30,8 +34,13 @@ static void		solution_save(t_solution const *solution)
 	}
 }
 
-void			solution_improve(t_solution **best_solution, int total_ants,
-		t_room *start, int path_count)
+/*
+**	build a new solution based on `succ` fields and, if it has less turns than
+**	the current best solution, save it and let it be the best one
+*/
+
+void			solution_improve(t_solution **best_solution,
+						int total_ants, t_room *start, int path_count)
 {
 	t_solution	*solution;
 

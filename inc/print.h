@@ -19,8 +19,8 @@
 void		print_input(t_input const *input);
 void		print_rooms(t_graph const *graph);
 void		print_total(char const *str, int number);
-void		print_moves(t_solution const *solution, int total_ants);
 void		print_path(int n_ants, int length,
 					t_room const *start, t_room const *origin);
+void		print_moves(t_solution const *solution, int total_ants);
 
 #endif

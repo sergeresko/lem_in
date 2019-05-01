@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>		// exit
-#include <unistd.h>		// STDERR_FILENO
+#include <unistd.h>
+#include <stdlib.h>
 #include "libft.h"
 #include "lem_in.h"
 
@@ -22,11 +22,10 @@ void		die(void)
 {
 	// <
 	//
-	system("leaks -q lem-in");
+	system("leaks -q lem-in");		// TODO: to be removed
 	//
 	// >
 	exit(1);
-
 }
 
 void		error(char const *message)
@@ -59,8 +58,8 @@ void		error_at_line(t_lem const *lem, char const *message)
 	die();
 }
 
-void		error_at_line_nbr(t_lem const *lem, char const *prefix,
-											int number, char const *postfix)
+void		error_at_line_nbr(t_lem const *lem,
+					char const *prefix, int number, char const *postfix)
 {
 	ft_putstr_fd(ANSI_BOLD"ERROR at line ", STDERR_FILENO);
 	ft_putnbr_fd(lem->input.line_count, STDERR_FILENO);
@@ -73,14 +72,3 @@ void		error_at_line_nbr(t_lem const *lem, char const *prefix,
 	ft_putstr_fd("\n", STDERR_FILENO);
 	die();
 }
-
-// TODO: to be removed
-/*
-void			lem_die_from_bug(char const *message)
-{
-	ft_putstr_fd("\033[1;31mBUG: ", STDERR_FILENO);
-	ft_putstr_fd(message, STDERR_FILENO);
-	ft_putstr_fd("\033[0m\n", STDERR_FILENO);
-	die();
-}
-*/

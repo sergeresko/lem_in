@@ -10,13 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>		// free
+#include <stdlib.h>
 #include "datatypes.h"
 
 /*
 **	restore the path whose last room before `end` in the modified graph is `out`
 **
-**	TODO: [Description]
+**	Pairs of rooms that result from splitting are coalesced, and negative
+**	and zero-weight unidirectional links are replaced with original positive
+**	bidirectional ones.
+**
+**	What distinguishes the current state of the graph from the original one
+**	(before modification) is that `parent` fields now describe the new path.
 */
 
 static void		restore_path(t_room *start, t_room *out, t_room *end)
@@ -30,7 +35,7 @@ static void		restore_path(t_room *start, t_room *out, t_room *end)
 		in = link_pop(out);
 		pred_out = link_pop(in);
 		in->links = out->links;
-		free(out);			// instead of room_destroy
+		free(out);
 		link_push(in, in->succ, LINK_POSITIVE);
 		link_push(in->succ, in, LINK_POSITIVE);
 		out = pred_out;

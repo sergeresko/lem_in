@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>			// free
+#include <stdlib.h>	
 #include "solve_general.h"
 
 void			solution_destroy(t_solution *solution)

@@ -13,8 +13,21 @@
 #include "datatypes.h"
 
 /*
-**	TODO: [Description]
+**	The set of paths described by `pred`/`succ` is overlaid with the path
+**	that is described by `parent` fields and leads from `end` to `start`.
+**
+**	The paths in the first set are considered to be directed towards the end
+**	and the latter path towards the start.
+**
+**	Overlaying means that if any two rooms are connected in either the first
+**	set of paths or the latter path, this directed connection goes to the
+**	result. If it is not present in either of them or is present in both (in
+**	this case the connections have opposite directions), the result does not
+**	contain it.
+**
+**	Fields `pred`/`succ` are modified in order to represent this new result.
 */
+
 void			combine_paths(t_room *start, t_room *end)
 {
 	t_room		*a;

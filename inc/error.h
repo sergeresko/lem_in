@@ -20,9 +20,8 @@ void		die(void);
 void		error(char const *message);
 void		error_nbr(char const *prefix, int number, char const *postfix);
 void		error_at_line(t_lem const *lem, char const *message);
-void		error_at_line_nbr(t_lem const *lem, char const *prefix,
-		int number, char const *postfix);
+void		error_at_line_nbr(t_lem const *lem,
+					char const *prefix, int number, char const *postfix);
 
-//void		lem_die_from_bug(char const *message);	// TODO: to be removed
 
 #endif

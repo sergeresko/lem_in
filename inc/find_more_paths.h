@@ -10,6 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+**	the core algorithm of the project
+*/
+
 #ifndef FIND_MORE_PATHS_H
 # define FIND_MORE_PATHS_H
 

@@ -12,7 +12,6 @@
 
 #include "datatypes.h"
 
-// TODO: rename `set` in both functions to something meaningful
 void			update_neighbors(t_room *src, t_set *set)
 {
 	t_list		*links;

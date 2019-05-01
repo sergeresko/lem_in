@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "solve_general.h"
-//#include "lem_in.h"
 #include "error.h"
 
 // TODO: +/- 1 to n_turns so that it makes sense

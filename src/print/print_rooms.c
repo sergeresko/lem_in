@@ -11,8 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "lem_in.h"
-// #include "datatypes.h"
+#include "datatypes.h"
 
 static void		print_neighbors(t_room const *room)
 {
