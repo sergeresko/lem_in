@@ -12,7 +12,7 @@
 
 #include "datatypes.h"
 
-t_bool		ft_atoi_strict(char const *str, int *value)
+t_bool		ft_atoi_strict(char const *str, int *number)
 {
 	int		sign;
 	int		abs;
@@ -31,6 +31,6 @@ t_bool		ft_atoi_strict(char const *str, int *value)
 	}
 	if (*str)
 		return (FALSE);
-	*value = sign * abs;
+	*number = sign * abs;
 	return (TRUE);
 }

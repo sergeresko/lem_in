@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// verifier, the Very Fire of lem-in
-
-#include <stdlib.h>		// free
+#include <stdlib.h>	
 #include "libft.h"
 #include "get_next_token.h"
 

@@ -15,6 +15,8 @@
 
 # include "lem_in.h"		// t_lem
 
+void		die(void);
+
 void		error(char const *message);
 void		error_nbr(char const *prefix, int number, char const *postfix);
 void		error_at_line(t_lem const *lem, char const *message);

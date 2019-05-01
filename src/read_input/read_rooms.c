@@ -10,11 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "lem_in.h"		// not really needed, since read_input.h includes it
-#include "error.h"
 #include "read_input.h"
+#include "error.h"
 
-static void		add_room(t_lem *lem, t_token *token)
+static void		add_room(t_lem *lem, t_token const *token)
 {
 	t_room		*room;
 
@@ -59,10 +58,6 @@ static t_bool	read_room(t_lem *lem, t_token *token)
 
 void			read_rooms(t_lem *lem, t_token *token)
 {
-//	if (token->type == TOKEN_EOF)
-//		lem_die_eof(lem);
-//	if (token->type != TOKEN_ROOM)
-//		lem_die(lem, "invalid room (format: name coord_x coord_y)");
 	while (read_room(lem, token))
 		get_next_token(lem, token);
 }

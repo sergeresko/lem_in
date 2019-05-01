@@ -10,10 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>		// free
+#include <stdlib.h>
 #include "libft.h"
-//#include "read_input.h"
 #include "get_next_token.h"
+
+/*
+**	NOTE: Any command apart from `##start` and `##end` is considered a comment.
+*/
 
 static void		tokenize_command_or_comment(char const *line, t_token *token)
 {
@@ -30,7 +33,7 @@ static void		tokenize_room(char const *line, t_token *token)
 	char		**words;
 
 	words = ft_strsplit(line, ' ');
-	if (words && words[0] && words[1] && words[2] && !words[3] // words unneeded
+	if (words[0] && words[1] && words[2] && !words[3] 
 			&& !ft_strchr(words[0], '-')
 			&& ft_atoi_strict(words[1], &token->value.room.x)
 			&& ft_atoi_strict(words[2], &token->value.room.y))
@@ -67,7 +70,9 @@ static void		tokenize_link(char const *line, t_token *token)
 		token->type = TOKEN_ERROR;
 }
 
-//	NOTE that the number of ants may be zero!
+/*
+**	NOTE: Zero is a valid number of ants.
+*/
 
 static void		tokenize_ants(char const *line, t_token *token)
 {
@@ -82,7 +87,9 @@ static void		tokenize_ants(char const *line, t_token *token)
 		token->type = TOKEN_ERROR;
 }
 
-//	the order matters
+/*
+**	NOTE: The order matters.
+*/
 
 void		tokenize(char const *line, t_token *token)
 {

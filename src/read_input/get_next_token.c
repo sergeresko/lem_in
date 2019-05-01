@@ -10,16 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>		// STDIN_FILENO
-#include <stdio.h>		// perror
-#include <stdlib.h>		// exit
-#include "libft.h"		// get_next_line, GNL_OK, ...
+#include <unistd.h>
+#include <stdio.h>
+#include "libft.h"
 #include "lem_in.h"
-//#include "read_input.h"
-#include "error.h"
 #include "get_next_token.h"
+#include "error.h"
 
-static void	save_line(char *line, t_input *input)
+static void		save_line(char *line, t_input *input)
 {
 	if (input->lines == NULL)
 	{
@@ -36,15 +34,10 @@ static void	save_line(char *line, t_input *input)
 		error("file too large");
 }
 
-/*
-**	read and save lines until first non-comment or end of file,
-**	construct a respective token
-*/
-
-void		get_next_token(t_lem *lem, t_token *token)
+void			get_next_token(t_lem *lem, t_token *token)
 {
-	int		status;
-	char	*line;
+	int			status;
+	char		*line;
 
 	while ((status = get_next_line(STDIN_FILENO, &line)) == GNL_OK)
 	{
@@ -61,6 +54,6 @@ void		get_next_token(t_lem *lem, t_token *token)
 	if (status == GNL_ERROR)
 	{
 		perror("get_next_line");
-		exit(1);	/////////////////////////
+		die();
 	}
 }

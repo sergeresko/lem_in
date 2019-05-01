@@ -18,7 +18,7 @@
 #define ANSI_BOLD	"\033[1m"
 #define ANSI_RESET	"\033[0m"
 
-static void		die(void)
+void		die(void)
 {
 	// <
 	//
@@ -29,7 +29,7 @@ static void		die(void)
 
 }
 
-void			error(char const *message)
+void		error(char const *message)
 {
 	ft_putstr_fd(ANSI_BOLD"ERROR: ", STDERR_FILENO);
 	ft_putstr_fd(message, STDERR_FILENO);
@@ -37,7 +37,7 @@ void			error(char const *message)
 	die();
 }
 
-void			error_nbr(char const *prefix, int number, char const *postfix)
+void		error_nbr(char const *prefix, int number, char const *postfix)
 {
 	ft_putstr_fd(ANSI_BOLD"ERROR: ", STDERR_FILENO);
 	ft_putstr_fd(prefix, STDERR_FILENO);
@@ -47,7 +47,7 @@ void			error_nbr(char const *prefix, int number, char const *postfix)
 	die();
 }
 
-void			error_at_line(t_lem const *lem, char const *message)
+void		error_at_line(t_lem const *lem, char const *message)
 {
 	ft_putstr_fd(ANSI_BOLD"ERROR at line ", STDERR_FILENO);
 	ft_putnbr_fd(lem->input.line_count, STDERR_FILENO);
@@ -59,7 +59,7 @@ void			error_at_line(t_lem const *lem, char const *message)
 	die();
 }
 
-void			error_at_line_nbr(t_lem const *lem, char const *prefix,
+void		error_at_line_nbr(t_lem const *lem, char const *prefix,
 											int number, char const *postfix)
 {
 	ft_putstr_fd(ANSI_BOLD"ERROR at line ", STDERR_FILENO);

@@ -12,12 +12,10 @@
 
 #include <stdlib.h>		// free
 #include "libft.h"		// ft_strcmp
-//#include "lem_in.h"
-#include "error.h"
 #include "read_input.h"
+#include "error.h"
 
-void			add_link(t_lem *lem, t_token *token)
-//void		add_link(char const *src_name, char const *dst_name)
+static void		add_link(t_lem *lem, t_token *token)
 {
 	t_room		*src;
 	t_room		*dst;

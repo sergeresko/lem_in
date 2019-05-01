@@ -10,9 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>			// free
-#include "error.h"
+#include <stdlib.h>
 #include "read_input.h"
+#include "error.h"
+
+/*
+**	clear and free the array of moves
+*/
 
 static void		clear_token(t_token *token)
 {
@@ -45,6 +49,15 @@ static void		check_label(t_lem const *lem, t_token const *token, int i)
 	}
 }
 
+/*
+**	process the i-th move of the turn by storing the destination room in array
+**		`lem->loc` at the index corresponding to the ant's label
+**
+**	NOTE: The `distance` field is abused to indicate whether a room is free.
+**		A free room is marked by INFINITY and an occupied one by 0.
+**		The start and end rooms always have INFINITY.
+*/
+
 static void		read_move(t_lem *lem, t_token const *token, int i)
 {
 	int const	ant = token->value.turn.moves[i].ant;
@@ -60,9 +73,9 @@ static void		read_move(t_lem *lem, t_token const *token, int i)
 		error_at_line_nbr(lem, "ant ", ant, " moves to a non-adjacent room");
 	if (dst->distance == 0)
 		error_at_line_nbr(lem, "ant ", ant, " moves to an occupied room");
-	src->distance = INFINITY;		// mark src as free
+	src->distance = INFINITY;
 	if (dst != lem->graph.start && dst != lem->graph.end)
-		dst->distance = 0;			// mark dst as occupied
+		dst->distance = 0;
 	lem->loc[ant - 1] = dst;
 }
 

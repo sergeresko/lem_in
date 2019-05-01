@@ -13,8 +13,7 @@
 #ifndef GET_NEXT_TOKEN_H
 # define GET_NEXT_TOKEN_H
 
-# include "datatypes.h"		// t_bool
-//#include "lem_in.h"		// hence files that include "read_input.h" need not include "lem_in.h"
+# include "datatypes.h"
 
 typedef enum e_type		t_type;
 typedef struct s_move	t_move;
@@ -40,6 +39,10 @@ struct		s_move
 	int		ant;
 	char	*dst;
 };
+
+/*
+**	only TOKEN_ANTS, TOKEN_ROOM, TOKEN_LINK and TOKEN_TURN have a value
+*/
 
 union		u_value
 {
@@ -68,7 +71,15 @@ struct		s_token
 	t_value	value;
 };
 
-t_bool		ft_atoi_strict(char const *str, int *value);	// maybe out of here
+/*
+**	`ft_atoi_strict` converts a string to a number if it is exactly in the
+**		range of `int` and returns a value indicating whether the conversion
+**		was successful.
+**	`tokenize` converts a line to a token.
+**	`tokenize_turn` is a helper function for `tokenize`.
+*/
+
+t_bool		ft_atoi_strict(char const *str, int *number);
 void		tokenize_turn(char const *line, t_token *token);
 void		tokenize(char const *line, t_token *token);
 

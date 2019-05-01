@@ -10,9 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "lem_in.h"
-#include "error.h"
 #include "read_input.h"
+#include "error.h"
 
 void		read_ants(t_lem *lem, t_token *token)
 {
