@@ -10,148 +10,146 @@
 #                                                                              #
 # **************************************************************************** #
 
-#NAME_L		=	lem-in
-#NAME_V		=	verifier
+LEMIN		=	lem-in
+VERIFIER	=	verifier
+LIBFT		=	libft/libft.a
 
 CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror
 
-#INC_DIR		=	inc/
-#SRC_DIR		=	src/
-#OBJ_DIR		=	obj/
+# --------- Header files ------------------------------------------------------
 
-#LIBFT_DIR	=	libft/
-LIBFT		=	libft/libft.a
+INC			=	$(addprefix inc/,					\
+					lem_in.h						\
+					read_input.h					\
+					get_next_token.h				\
+					datatypes.h						\
+					error.h							\
+					solve_general.h					\
+					find_more_paths.h				\
+					print.h							\
+				)
 
-# -----------------------------------------------------------------------------
+# --------- Source files ------------------------------------------------------
 
-LEMIN_H		=	inc/lem_in.h
-LEMIN_C		=	$(addprefix src/lem_in/, \
-					main.c \
-					read_options.c \
-					read_input.c \
-					solve_instant.c \
-					solve_trivial.c \
-					solve_general.c)
-LEMIN_O		=	$(LEMIN_C:src/%.c=obj/%.o)
+SRC_LEMIN	=	$(addprefix src/lem_in/,			\
+					main.c							\
+					read_options.c					\
+					read_input.c					\
+					solve_instant.c					\
+					solve_trivial.c					\
+					solve_general.c					\
+				)
+SRC_VERIF	=	$(addprefix src/verifier/,			\
+					main.c							\
+					read_input.c					\
+				)
+SRC_RDINP_L	=	$(addprefix src/read_input/,		\
+					get_next_token.c				\
+					read_ants.c						\
+					read_rooms.c					\
+					read_links.c					\
+				)
+SRC_RDINP_V	=	$(SRC_RDINP_L) 						\
+				$(addprefix src/read_input/,		\
+					read_turns.c					\
+				)
+SRC_GNTOK	=	$(addprefix src/get_next_token/,	\
+					ft_atoi_strict.c				\
+					tokenize_turn.c					\
+					tokenize.c						\
+				)
+SRC_SLVGN	=	$(addprefix src/solve_general/,		\
+					find_more_paths.c				\
+					distribute_ants.c				\
+					build_solution.c				\
+					improve_solution.c				\
+					destroy_solution.c				\
+				)
+SRC_FMPTH	=	$(addprefix src/find_more_paths/,	\
+					modify_graph.c					\
+					find_shortest_path.c			\
+					restore_graph.c					\
+					combine_paths.c					\
+				)
+SRC_PRINT	=	$(addprefix src/print/,				\
+					print_input.c					\
+					print_rooms.c					\
+					print_paths.c					\
+					print_total.c					\
+					print_moves.c					\
+				)
+SRC_DTYPS	=	$(addprefix src/datatypes/,			\
+					list.c							\
+					room.c							\
+					link.c							\
+					set.c							\
+				)
+SRC_ERROR	=	$(addprefix src/error/,				\
+					error.c							\
+				)
 
-VERIF_C		=	$(addprefix src/verifier/, \
-					main.c \
-					read_input.c)
-VERIF_O		=	$(VERIF_C:src/%.c=obj/%.o)
+# --------- Object files ------------------------------------------------------
 
-RDINP_H		=	inc/read_input.h
-RDINP_L_C	=	$(addprefix src/read_input/, \
-					get_next_token.c \
-					read_ants.c \
-					read_rooms.c \
-					read_links.c)
-RDINP_V_C	=	$(RDINP_L_C) \
-				$(addprefix src/read_input/, \
-					read_turns.c)
-RDINP_L_O	=	$(RDINP_L_C:src/%.c=obj/%.o)
-RDINP_V_O	=	$(RDINP_V_C:src/%.c=obj/%.o)
+OBJ_L		=	$(patsubst src/%.c, obj/%.o,		\
+					$(SRC_LEMIN)					\
+					$(SRC_RDINP_L)					\
+					$(SRC_GNTOK)					\
+					$(SRC_DTYPS)					\
+					$(SRC_ERROR)					\
+					$(SRC_SLVGN)					\
+					$(SRC_FMPTH)					\
+					$(SRC_PRINT)					\
+				)
+OBJ_V		=	$(patsubst src/%.c, obj/%.o,		\
+					$(SRC_VERIF)					\
+					$(SRC_RDINP_V)					\
+					$(SRC_GNTOK)					\
+					$(SRC_DTYPS)					\
+					$(SRC_ERROR)					\
+				)
 
-GNTOK_H		=	inc/get_next_token.h
-GNTOK_C		=	$(addprefix src/get_next_token/, \
-					ft_atoi_strict.c \
-					tokenize_turn.c \
-					tokenize.c)
-GNTOK_O		=	$(GNTOK_C:src/%.c=obj/%.o)
+# --------- Phony targets -----------------------------------------------------
 
-SLVGN_H		=	inc/solve_general.h
-SLVGN_C		=	$(addprefix src/solve_general/, \
-					find_more_paths.c \
-					distribute_ants.c \
-					build_solution.c \
-					improve_solution.c \
-					destroy_solution.c)
-SLVGN_O		=	$(SLVGN_C:src/%.c=obj/%.o)
+.PHONY: all clean fclean re
 
-FMPAT_H		=	inc/find_more_paths.h
-FMPAT_C		=	$(addprefix src/find_more_paths/, \
-					modify_graph.c \
-					find_shortest_path.c \
-					restore_graph.c \
-					combine_paths.c)
-FMPAT_O		=	$(FMPAT_C:src/%.c=obj/%.o)
-
-PRINT_H		=	inc/print.h
-PRINT_C		=	$(addprefix src/print/, \
-					print_input.c \
-					print_rooms.c \
-					print_paths.c \
-					print_total.c \
-					print_moves.c)
-PRINT_O		=	$(PRINT_C:src/%.c=obj/%.o)
-
-DTYPS_H		=	inc/datatypes.h
-DTYPS_C		=	$(addprefix src/datatypes/, \
-					list.c \
-					room.c \
-					link.c \
-					set.c)
-DTYPS_O		=	$(DTYPS_C:src/%.c=obj/%.o)
-
-ERROR_H		=	inc/error.h
-ERROR_C		=	$(addprefix src/error/, \
-					error.c)
-ERROR_O		=	$(ERROR_C:src/%.c=obj/%.o)
-
-# -----------------------------------------------------------------------------
-
-INC			=	$(LEMIN_H) $(RDINP_H) $(GNTOK_H) $(DTYPS_H) $(ERROR_H) \
-				$(SLVGN_H) $(FMPAT_H) $(PRINT_H)
-
-OBJ_L		=	$(LEMIN_O) $(RDINP_L_O) $(GNTOK_O) $(DTYPS_O) $(ERROR_O) \
-				$(SLVGN_O) $(FMPAT_O) $(PRINT_O)
-
-OBJ_V		=	$(VERIF_O) $(RDINP_V_O) $(GNTOK_O) $(DTYPS_O) $(ERROR_O)
-
-#SRC			=	$(addprefix $(SRC_DIR), $(FILES_C))
-#OBJ			=	$(addprefix $(OBJ_DIR), $(FILES_C:%.c=%.o))
-
-# -----------------------------------------------------------------------------
-
-all: lem-in verifier
-
-# linking (do we need flags here?)
-
-lem-in: obj/ $(OBJ_L) $(LIBFT)
-	$(CC) -o lem-in $(OBJ_L) $(LIBFT)
-
-verifier: obj/ $(OBJ_V) $(LIBFT)
-	$(CC) -o verifier $(OBJ_V) $(LIBFT)
-
-# -----------------------------------------------------------------------------
-
-# compiling
-
-obj/%.o: src/%.c $(INC) libft/libft.h
-	mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -o $@ -c $< -I inc/ -I libft/
-
-# -----------------------------------------------------------------------------
-
-#$(OBJ): | $(OBJ_DIR)
-
-obj/:
-	mkdir -p obj/
-
-$(LIBFT):
-	make -C libft/
-
-# -----------------------------------------------------------------------------
+all: $(LEMIN) $(VERIFIER)
 
 clean:
-	rm -f $(OBJ_L) $(OBJ_V)
-	make clean -C libft/
+	@ rm -f $(OBJ_L) $(OBJ_V)
+	@ make clean -sC libft/
+	@ echo "Object files removed"
 
 fclean: clean
-	rm -rf obj/
-	rm -f lem-in verifier
-	make fclean -C libft/
+	@ rm -rf obj/
+	@ rm -f $(LEMIN) $(VERIFIER)
+	@ make fclean -sC libft/
+	@ echo "Binaries and library removed"
 
 re: fclean all
 
-.PHONY: all clean fclean re
+# --------- Linking -----------------------------------------------------------
+
+$(LEMIN): $(LIBFT) $(OBJ_L)
+	@ mkdir -p obj/
+	@ printf "%-60s\n" "Linking $@"
+	@ $(CC) -o $(LEMIN) $(OBJ_L) $(LIBFT)
+	@ echo "Done"
+
+$(VERIFIER): $(LIBFT) $(OBJ_V)
+	@ mkdir -p obj/
+	@ printf "%-60s\n" "Linking $@"
+	@ $(CC) -o $(VERIFIER) $(OBJ_V) $(LIBFT)
+	@ echo "Done"
+
+$(LIBFT):
+	@ echo "Building $@"
+	@ make -sC libft/
+	@ echo "Done"
+
+# --------- Compiling ---------------------------------------------------------
+
+obj/%.o: src/%.c $(INC) libft/libft.h
+	@ mkdir -p $(dir $@)
+	@ printf "%-60s\r" "Compiling $<"
+	@ $(CC) $(CFLAGS) -o $@ -c $< -I inc/ -I libft/
