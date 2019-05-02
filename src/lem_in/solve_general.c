@@ -68,7 +68,7 @@ static void		print_solution(t_solution *best_solution, t_lem const *lem)
 {
 	if (lem->options.paths)
 		print_paths(best_solution, lem->graph.start);
-	if (lem->options.total)
+	if (lem->options.turns)
 		print_total("turns", best_solution->n_turns);
 	if (lem->options.moves)
 		print_moves(best_solution, lem->total_ants);

@@ -21,11 +21,12 @@ typedef struct s_lem	t_lem;
 
 struct		s_opt
 {
+	int		help;
 	int		input;
 	int		rooms;
 	int		paths;
+	int		turns;
 	int		moves;
-	int		total;
 };
 
 struct		s_input

@@ -25,7 +25,7 @@ static void		print_paths_instant(void)
 	*/
 }
 
-static void		print_total_instant(void)
+static void		print_turns_instant(void)
 {
 	print_total("turns", 0);
 	/*
@@ -46,8 +46,8 @@ void			solve_instant(t_lem const *lem)
 {
 	if (lem->options.paths)
 		print_paths_instant();
-	if (lem->options.total)
-		print_total_instant();
+	if (lem->options.turns)
+		print_turns_instant();
 	if (lem->options.moves)
 		print_moves_instant();
 }

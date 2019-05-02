@@ -36,7 +36,7 @@ static void		print_paths_trivial(int total_ants, t_room const *start, t_room con
 	*/
 }
 
-static void		print_total_trivial(void)
+static void		print_turns_trivial(void)
 {
 	print_total("turns", 1);
 	/*
@@ -73,8 +73,8 @@ void			solve_trivial(t_lem const *lem)
 {
 	if (lem->options.paths)
 		print_paths_trivial(lem->total_ants, lem->graph.start, lem->graph.end);
-	if (lem->options.total)
-		print_total_trivial();
+	if (lem->options.turns)
+		print_turns_trivial();
 	if (lem->options.moves)
 		print_moves_trivial(lem->total_ants, lem->graph.end);
 }

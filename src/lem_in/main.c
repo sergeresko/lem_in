@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"		// ft_putstr
 #include "print.h"
 // <
 //
@@ -18,20 +19,31 @@
 // > 
 #include "lem_in.h"
 
-int			main(int argc, char **argv)
+static void		print_help(void)
 {
-	t_lem	lem;
+	ft_putstr("lem-in (c) 2019 syeresko\n\n"
+			"usage: ./lem-in [options] < filename\n\n"
+			"Options indicate what to print:\n"
+			"    -i, --input     raw input\n"
+			"    -r, --rooms     rooms with their adjacency lists\n"
+			"    -p, --paths     selected paths and ant distribution\n"
+			"    -t, --turns     total number of turns\n"
+			"    -m, --moves     lists of moves made at each turn\n"
+			"    -h, --help      only this help\n"
+			"If called without options, -i and -m are assumed.\n");
+}
+
+int				main(int argc, char **argv)
+{
+	t_lem		lem;
 
 	// process options
 	read_options(argc, argv, &lem.options);
-	// TODO: help
-	/*
 	if (lem.options.help)
 	{
 		print_help();
 		return (0);
 	}
-	*/
 	// process input
 	read_input(&lem);
 	if (lem.options.input)
