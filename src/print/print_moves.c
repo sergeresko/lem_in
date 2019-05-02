@@ -14,26 +14,31 @@
 #include "libft.h"
 #include "solve_general.h"
 
-static int		add(t_room **loc, t_solution const *solution)
+/*
+**	CAUTION: This function modifies values strored in `solution->ants_per_path`
+**		so `const` qualifier is misleading.
+*/
+
+static int		release_ants(t_room **loc, t_solution const *solution)
 {
 	int			i;
 
 	i = 0;
 	while (i < solution->n_paths && solution->ants_per_path[i] > 0)
 	{
-		solution->ants_per_path[i] -= 1;	// modifies solution, so const is misleading
+		solution->ants_per_path[i] -= 1;
 		loc[i] = solution->paths[i].origin;
 		++i;
 	}
 	return (i);
 }
 
-static void		advance(t_room **loc, int k)
+static void		advance_ants(t_room **loc, int limit)
 {
 	int			i;
 
 	i = 0;
-	while (i < k)
+	while (i < limit)
 	{
 		if (loc[i] != NULL)
 			loc[i] = loc[i]->best_succ;		// ->... ?
@@ -41,14 +46,14 @@ static void		advance(t_room **loc, int k)
 	}
 }
 
-static void		print_turn(t_room *const *loc, int k)
+static void		print_turn(t_room *const *loc, int limit)
 {
 	int			i;
 	t_bool		first;
 
 	i = 0;
 	first = TRUE;
-	while (i < k)
+	while (i < limit)
 	{
 		if (loc[i] != NULL)
 		{
@@ -63,8 +68,8 @@ static void		print_turn(t_room *const *loc, int k)
 		}
 		++i;
 	}
-	if (!first)				// Are these two lines
-		ft_putchar('\n');	// still needed?
+	if (!first)
+		ft_putchar('\n');
 }
 
 /*
@@ -75,17 +80,17 @@ void			print_moves(t_solution const *solution, int total_ants)
 {
 	t_room		**loc;
 	int			count;
-	int			k;
+	int			limit;
 
 	loc = ft_malloc_or_die(total_ants * sizeof(t_room *));
 	count = solution->n_turns;
-	k = 0;
+	limit = 0;
 	ft_putchar('\n');
 	while (count--)
 	{
-		advance(loc, k);
-		k += add(loc + k, solution);
-		print_turn(loc, k);
+		advance_ants(loc, limit);
+		limit += release_ants(loc + limit, solution);
+		print_turn(loc, limit);
 	}
 	free(loc);
 }
