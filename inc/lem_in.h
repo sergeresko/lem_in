@@ -46,13 +46,23 @@ struct		s_lem
 	t_room	**loc;			// added for verifier
 };
 
+/*
+**	NOTE: The following pair of functions has different implementations for
+**		`lem-in` and `verifier`.
+*/
+
 void		read_options(int argc, char *const *argv, t_opt *options);
 void		read_input(t_lem *lem);
 
-// -----------------------------
+/*
+**	`solve_instant` prints the solution when there are no ants.
+**	`solve_trivial` prints the solution when the start and the end are directly
+**		connected.
+**	`solve_general` finds and prints the solution in other cases.
+*/
 
-void		solve_instant(t_lem const *lem);	// does not use t_solution
-void		solve_trivial(t_lem const *lem);	// does not use t_solution
+void		solve_instant(t_lem const *lem);
+void		solve_trivial(t_lem const *lem);
 void		solve_general(t_lem *lem);
 
 #endif

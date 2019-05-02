@@ -10,9 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>		// free
+#include <stdlib.h>
 #include "libft.h"
-//#include "lem_in.h"
 #include "solve_general.h"
 
 static int		add(t_room **loc, t_solution const *solution)

@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "print.h"
-#include "libft.h"		// for printing, to be removed
-#include "error.h"
+#include "libft.h"
 #include "lem_in.h"
+#include "print.h"
 #include "solve_general.h"
+#include "error.h"
 
 static int		count_links(t_room const *src)
 {
@@ -61,7 +61,7 @@ static void		print_paths(t_solution const *solution, t_room const *start)
 				start, solution->paths[i].origin);
 		++i;
 	}
-	ft_putstr("#\n");		// TODO:
+	ft_putstr("#\n");
 }
 
 static void		print_solution(t_solution *best_solution, t_lem const *lem)
@@ -85,10 +85,11 @@ void			solve_general(t_lem *lem)
 	while (path_count < max_paths && find_more_paths(&lem->graph))
 	{
 		++path_count;
-		solution_improve(&best_solution, lem->total_ants, lem->graph.start, path_count);
+		solution_improve(&best_solution,
+				lem->total_ants, lem->graph.start, path_count);
 	}
-	if (path_count == 0)	// `find_more_paths` failed upon the first call
+	if (path_count == 0)
 		error("no solution (end is not reachable)");
-	print_solution(best_solution, lem);		// why lem? because of options
+	print_solution(best_solution, lem);
 	solution_destroy(best_solution);
 }

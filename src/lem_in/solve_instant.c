@@ -10,30 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"		// TODO: to be removed
+#include "libft.h"
 #include "lem_in.h"
 #include "print.h"
 
 static void		print_paths_instant(void)
 {
 	print_total("paths", 0);
-	ft_putstr("#\n");		// TODO:
-	/*
-	ft_putstr("#\n#   Paths:\n#\n");
-	// TODO: number of paths: 0
 	ft_putstr("#\n");
-	*/
-}
-
-static void		print_turns_instant(void)
-{
-	print_total("turns", 0);
-	/*
-	// TODO: make just a single string
-	ft_putstr("#\n#   Total turns: ");
-	ft_putnbr(0);
-	ft_putstr("\n#\n");
-	*/
 }
 
 static void		print_moves_instant(void)
@@ -41,13 +25,12 @@ static void		print_moves_instant(void)
 	ft_putstr("\n");
 }
 
-// if there are zero ants
 void			solve_instant(t_lem const *lem)
 {
 	if (lem->options.paths)
 		print_paths_instant();
 	if (lem->options.turns)
-		print_turns_instant();
+		print_total("turns", 0);
 	if (lem->options.moves)
 		print_moves_instant();
 }

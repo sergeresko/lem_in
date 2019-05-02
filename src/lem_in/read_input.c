@@ -10,9 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "lem_in.h"		// not really needed, since read_input.h includes it
-#include "error.h"
 #include "read_input.h"
+#include "error.h"
 
 static void		lem_init(t_lem *lem)
 {

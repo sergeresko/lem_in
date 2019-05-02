@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-//#include "lem_in.h"		// not really needed, since read_input.h includes it
 #include "read_input.h"
 #include "error.h"
 
@@ -52,7 +51,7 @@ static void		read_empty_line(t_lem *lem, t_token *token)
 
 static void		read_eof(t_lem *lem, t_token *token)
 {
-	int		i;
+	int			i;
 
 	if (token->type != TOKEN_EOF)
 		error_at_line(lem, "invalid turn (example: L1-A L5-toto L12-q)");	//

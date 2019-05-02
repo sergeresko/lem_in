@@ -10,12 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// verifier, the Very Fire of lem-in
-
+#include "libft.h"
 // <
 //
 #include <stdlib.h>		// system
-#include "libft.h"		// printing
 //
 // > 
 #include "lem_in.h"

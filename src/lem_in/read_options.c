@@ -13,13 +13,13 @@
 #include <unistd.h>
 #include "libft.h"
 #include "lem_in.h"
-#include "error.h"		// die
+#include "error.h"
 
 static void		print_usage(void)
 {
 	ft_putstr_fd("usage: ./lem-in [options] < filename\n\n"
-		"See `./lem-in --help` for the list of options.\n",
-		STDERR_FILENO);
+			"See `./lem-in --help` for the list of options.\n",
+			STDERR_FILENO);
 	die();
 }
 

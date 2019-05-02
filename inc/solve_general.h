@@ -22,7 +22,7 @@ struct		s_path
 {
 	t_room	*origin;
 	int		length;
-	int		ants;		// TODO: what is this?
+//	int		ants;		// TODO: what is this?
 };
 
 struct		s_solution
@@ -36,8 +36,8 @@ struct		s_solution
 t_bool		find_more_paths(t_graph *graph);
 void		distribute_ants(int total_ants, t_solution *solution);
 t_solution	*solution_build(int n_ants, t_room const *start, int n_paths);
-void		solution_improve(t_solution **best_solution, int total_ants,
-		t_room *start, int path_count);
+void		solution_improve(t_solution **best_solution,
+					int total_ants, t_room *start, int path_count);
 void		solution_destroy(t_solution *solution);
 
 #endif

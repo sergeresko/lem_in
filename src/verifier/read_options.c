@@ -1,13 +1,13 @@
 #include <unistd.h>
 #include "libft.h"
 #include "lem_in.h"
-#include "error.h"		// die
+#include "error.h"
 
 static void		print_usage(void)
 {
 	ft_putstr_fd("usage: ./verifier [options] < lem_in_output\n\n"
-		"See `./verifier --help` for more information.\n",
-		STDERR_FILENO);
+			"See `./verifier --help` for more information.\n",
+			STDERR_FILENO);
 	die();
 }
 
