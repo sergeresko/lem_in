@@ -20,22 +20,29 @@
 // > 
 #include "lem_in.h"
 
-int			main(int argc, char **argv)
+static void		print_help(void)
 {
-	t_lem	lem;
+	ft_putstr("verifier, the Very Fire of lem-in (c) 2019 syeresko\n\n"
+			"usage:  ./verifier [options] < lem_in_output\n"
+			"        ./lem-in < filename | ./verifier [options]\n\n"
+			"The verifier checks the solution provided by lem-in and, "
+			"if it is correct,\nprints the total number of turns in it.\n\n"
+			"Options:\n"
+			"    -i, --input     also print the input\n"
+			"    -h, --help      print only this help and quit\n");
+}
+
+int				main(int argc, char **argv)
+{
+	t_lem		lem;
 
 	// process options
-	(void)argc;
-	(void)argv;
-//	read_options(argc, argv, &lem.options);
-	// TODO: help
-	/*
+	read_options(argc, argv, &lem.options);
 	if (lem.options.help)
 	{
 		print_help();
 		return (0);
 	}
-	*/
 	// process input
 	read_input(&lem);
 	// print answer
@@ -43,7 +50,7 @@ int			main(int argc, char **argv)
 	ft_putchar('\n');
 	// <
 	//
-//	system("leaks -q verifier");
+	system("leaks -q verifier >&2");
 	//
 	// >
 	return (0);

@@ -59,7 +59,7 @@ int				main(int argc, char **argv)
 		solve_general(&lem);
 	// <
 	//
-	system("leaks -q lem-in");
+	system("leaks -q lem-in >&2");
 	//
 	// >
 	return (0);

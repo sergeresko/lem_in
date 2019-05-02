@@ -42,6 +42,7 @@ SRC_LEMIN	=	$(addprefix src/lem_in/,			\
 				)
 SRC_VERIF	=	$(addprefix src/verifier/,			\
 					main.c							\
+					read_options.c					\
 					read_input.c					\
 				)
 SRC_RDINP_L	=	$(addprefix src/read_input/,		\
@@ -58,6 +59,15 @@ SRC_GNTOK	=	$(addprefix src/get_next_token/,	\
 					ft_atoi_strict.c				\
 					tokenize_turn.c					\
 					tokenize.c						\
+				)
+SRC_DTYPS	=	$(addprefix src/datatypes/,			\
+					list.c							\
+					room.c							\
+					link.c							\
+					set.c							\
+				)
+SRC_ERROR	=	$(addprefix src/error/,				\
+					error.c							\
 				)
 SRC_SLVGN	=	$(addprefix src/solve_general/,		\
 					find_more_paths.c				\
@@ -78,15 +88,6 @@ SRC_PRINT	=	$(addprefix src/print/,				\
 					print_total.c					\
 					print_path.c					\
 					print_moves.c					\
-				)
-SRC_DTYPS	=	$(addprefix src/datatypes/,			\
-					list.c							\
-					room.c							\
-					link.c							\
-					set.c							\
-				)
-SRC_ERROR	=	$(addprefix src/error/,				\
-					error.c							\
 				)
 
 # --------- Object files ------------------------------------------------------

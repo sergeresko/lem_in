@@ -22,7 +22,8 @@ void		die(void)
 {
 	// <
 	//
-	system("leaks -q lem-in");		// TODO: to be removed
+	system("leaks -q lem-in >&2");		// TODO: to be removed
+	system("leaks -q verifier >&2");		// TODO: to be removed
 	//
 	// >
 	exit(1);
