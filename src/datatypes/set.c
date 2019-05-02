@@ -16,9 +16,9 @@
 **	current cardinality.
 */
 
-#include <stdlib.h>		// free
+#include <stdlib.h>
 #include "libft.h"
-#include "datatypes.h"	// "lem_in.h"
+#include "datatypes.h"
 
 t_set			*set_new(void)
 {

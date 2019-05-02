@@ -10,14 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>		// malloc, free
+#include <stdlib.h>
+#include "libft.h"
 #include "datatypes.h"
 
 void			list_push(t_list **head, void *data)
 {
 	t_list		*item;
 
-	item = malloc(sizeof(t_list));
+	item = ft_malloc_or_die(sizeof(t_list));
 	item->data = data;
 	item->next = *head;
 	*head = item;

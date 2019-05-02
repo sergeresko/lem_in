@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>		// malloc
 #include "libft.h"
 #include "datatypes.h"
 
@@ -22,7 +21,7 @@ t_room			*room_new(void)
 {
 	t_room		*room;
 
-	room = malloc(sizeof(t_room));		// check memory
+	room = ft_malloc_or_die(sizeof(t_room));
 //	room->name = NULL;
 //	room->x = 0;
 //	room->y = 0;

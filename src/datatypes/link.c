@@ -10,14 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>		// malloc, free
+#include <stdlib.h>
+#include "libft.h"
 #include "datatypes.h"
 
 void			link_push(t_room *src, t_room *dst, int weight)
 {
 	t_link		*l;
 
-	l = malloc(sizeof(t_link));		// TODO: check memory
+	l = ft_malloc_or_die(sizeof(t_link));
 	l->dst = dst;
 	l->weight = weight;
 	list_push(&src->links, l);
