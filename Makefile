@@ -6,7 +6,7 @@
 #    By: syeresko <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/25 19:29:13 by syeresko          #+#    #+#              #
-#    Updated: 2019/04/27 15:56:06 by syeresko         ###   ########.fr        #
+#    Updated: 2019/05/03 15:59:33 by syeresko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,8 +82,11 @@ SRC_FMPTH	=	$(addprefix src/find_more_paths/,	\
 					restore_graph.c					\
 					combine_paths.c					\
 				)
-SRC_PRINT	=	$(addprefix src/print/,				\
+SRC_PRINT_V	=	$(addprefix src/print/,				\
 					print_input.c					\
+				)
+SRC_PRINT_L	=	$(SRC_PRINT_V)						\
+				$(addprefix src/print/,				\
 					print_rooms.c					\
 					print_total.c					\
 					print_path.c					\
@@ -100,7 +103,7 @@ OBJ_L		=	$(patsubst src/%.c, obj/%.o,		\
 					$(SRC_ERROR)					\
 					$(SRC_SLVGN)					\
 					$(SRC_FMPTH)					\
-					$(SRC_PRINT)					\
+					$(SRC_PRINT_L)					\
 				)
 OBJ_V		=	$(patsubst src/%.c, obj/%.o,		\
 					$(SRC_VERIF)					\
@@ -108,6 +111,7 @@ OBJ_V		=	$(patsubst src/%.c, obj/%.o,		\
 					$(SRC_GNTOK)					\
 					$(SRC_DTYPS)					\
 					$(SRC_ERROR)					\
+					$(SRC_PRINT_V)					\
 				)
 
 # --------- Phony targets -----------------------------------------------------

@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 14:06:31 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/30 14:06:35 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/05/03 15:59:45 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 //
 // > 
 #include "lem_in.h"
+#include "print.h"
 
 static void		print_help(void)
 {
@@ -43,6 +44,8 @@ int				main(int argc, char **argv)
 	}
 	// process input
 	read_input(&lem);
+	if (lem.options.input)
+		print_input(&lem.input);
 	// print answer
 	ft_putnbr(lem.input.turn_count);
 	ft_putchar('\n');
