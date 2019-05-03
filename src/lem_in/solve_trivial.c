@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 15:10:49 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/30 15:10:53 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/05/03 16:01:10 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void		print_moves_trivial(t_lem const *lem)
 
 	ft_putchar('\n');
 	i = 0;
-	first = FALSE;
+	first = TRUE;
 	while (i < lem->total_ants)
 	{
 		if (!first)
