@@ -1,5 +1,5 @@
 /*
- *	(c) syeresko@student.unit.ua
+ *	(c) 2019 syeresko@student.unit.ua
  *
  *	This program outputs a lem-in map with 13 rooms where each pair of rooms,
  *	except start and end, is directly connected (i.e. it represents a complete
@@ -8,6 +8,11 @@
  *	The number of ants is passed as a command-line argument.
  *
  *	Compiling: `gcc complete13.c -o complete13`.
+ *
+ *	The purpose of the map is to crash a lem-in that tries to precompute all
+ *	paths. The total number of different non-looping paths from `start` to
+ *	`end` on this map is 1,302,061,344 = floor(e * factorial(13)) - 1, while
+ *	the number of rooms is miserable.
  */
 
 #include <stdio.h>
