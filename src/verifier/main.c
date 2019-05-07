@@ -6,15 +6,13 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 14:06:31 by syeresko          #+#    #+#             */
-/*   Updated: 2019/05/03 15:59:45 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/05/07 15:56:36 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 // <
-//
-#include <stdlib.h>		// system
-//
+//#include <stdlib.h>		// system
 // > 
 #include "lem_in.h"
 #include "print.h"
@@ -50,9 +48,7 @@ int				main(int argc, char **argv)
 	ft_putnbr(lem.input.turn_count);
 	ft_putchar('\n');
 	// <
-	//
-	system("leaks -q verifier >&2");
-	//
+	//system("leaks -q verifier >&2");
 	// >
 	return (0);
 }

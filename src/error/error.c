@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:34:35 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/24 15:16:37 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/05/07 15:55:24 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@
 void		die(void)
 {
 	// <
-	//
-	system("leaks -q lem-in >&2");		// TODO: to be removed
-	system("leaks -q verifier >&2");		// TODO: to be removed
-	//
+	//system("leaks -q lem-in >&2");
+	//system("leaks -q verifier >&2");
 	// >
 	exit(1);
 }

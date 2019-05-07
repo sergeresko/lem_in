@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 14:05:55 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/30 14:06:02 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/05/07 15:54:16 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void		lem_init_loc(t_lem *lem)
 static void		read_empty_line(t_lem *lem, t_token *token)
 {
 	if (token->type == TOKEN_EOF)
-		error("solution is missing");				//
+		error("solution is missing");
 	if (token->type != TOKEN_EMPTY_LINE)
 		error_at_line(lem, "invalid link (format: name1-name2)");
 	if (lem->graph.start == NULL)
@@ -54,7 +54,8 @@ static void		read_eof(t_lem *lem, t_token *token)
 	int			i;
 
 	if (token->type != TOKEN_EOF)
-		error_at_line(lem, "invalid turn (example: L1-A L5-toto L12-q)");	//
+		error_at_line(lem,
+				"invalid turn (example: L1-lorem L5-ipsum L42-Toto)");
 	i = 0;
 	while (i < lem->total_ants)
 	{

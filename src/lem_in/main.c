@@ -6,16 +6,14 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 18:00:13 by syeresko          #+#    #+#             */
-/*   Updated: 2019/04/30 18:00:30 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/05/07 15:56:07 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "print.h"
 // <
-//
-#include <stdlib.h>		// system
-//
+//#include <stdlib.h>		// system
 // > 
 #include "lem_in.h"
 
@@ -58,9 +56,7 @@ int				main(int argc, char **argv)
 	else
 		solve_general(&lem);
 	// <
-	//
-	system("leaks -q lem-in >&2");
-	//
+	//system("leaks -q lem-in >&2");
 	// >
 	return (0);
 }
